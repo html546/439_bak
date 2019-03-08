@@ -1,0 +1,32 @@
+
+> 439item@1.0.0 start /www/wwwroot/t439.shangtua.com/app/439gasm
+> cross-env NODE_ENV=production node server/index.js
+
+
+00:17:54  READY  Server listening on http://0.0.0.0:3000
+
+
+> 439item@1.0.0 start /www/wwwroot/t439.shangtua.com/app/439gasm
+> cross-env NODE_ENV=production node server/index.js
+
+
+09:32:11  READY  Server listening on http://120.220.14.253:3000
+
+
+> 439item@1.0.0 start /www/wwwroot/www.gasm.cc/app/439gasm
+> cross-env NODE_ENV=production node server/index.js
+
+[11:37:49 AM] Server listening on http://0.0.0.0:3000
+[11:53:54 AM] [NUXT:PROXY] [HPM] Error occurred while trying to proxy request /api/Login/language from www.gasm.cc:3000 to http://t439.shangtua.com:88/ (ECONNRESET) (https://nodejs.org/api/errors.html#errors_common_system_errors)
+[11:54:03 AM] [NUXT:PROXY] [HPM] Error occurred while trying to proxy request /api/Login/getad from www.gasm.cc:3000 to http://t439.shangtua.com:88/ (ETIMEDOUT) (https://nodejs.org/api/errors.html#errors_common_system_errors)
+[12:00:02 PM] [NUXT:PROXY] [HPM] Error occurred while trying to proxy request /api/member/mActionList from www.gasm.cc:3000 to http://t439.shangtua.com:88/ (ETIMEDOUT) (https://nodejs.org/api/errors.html#errors_common_system_errors)
+[12:21:36 PM] [NUXT:PROXY] [HPM] Error occurred while trying to proxy request /api/Login/getad from gasm.cc:3000 to http://t439.shangtua.com:88/ (ECONNRESET) (https://nodejs.org/api/errors.html#errors_common_system_errors)
+
+> 439item@1.0.0 start /www/wwwroot/www.gasm.cc/app/439gasm
+> cross-env NODE_ENV=production node server/index.js
+
+[1:43:44 PM] Server listening on http://0.0.0.0:3000
+[1:46:17 PM] [NUXT:PROXY] [HPM] Error occurred while trying to proxy request /api/login/login from www.gasm.cc:3000 to http://t439.shangtua.com:88/ (ECONNRESET) (https://nodejs.org/api/errors.html#errors_common_system_errors)
+[1:55:59 PM] [NUXT:PROXY] [HPM] Error occurred while trying to proxy request /api/webmember/registersave from www.gasm.cc:3000 to http://t439.shangtua.com:88/ (ECONNRESET) (https://nodejs.org/api/errors.html#errors_common_system_errors)
+[1:56:11 PM] [NUXT:PROXY] [HPM] Error occurred while trying to proxy request /api/webmember/registersave from www.gasm.cc:3000 to http://t439.shangtua.com:88/ (ECONNRESET) (https://nodejs.org/api/errors.html#errors_common_system_errors)
+[2:03:45 PM] [NUXT:PROXY] [HPM] Error occurred while trying to proxy request /api/login/login from www.gasm.cc:3000 to http://t439.shangtua.com:88/ (ECONNRESET) (https://nodejs.org/api/errors.html#errors_common_system_errors)
