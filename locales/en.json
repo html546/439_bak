@@ -56,7 +56,8 @@
         "paypass": "Payment password",
         "paypass1": "Confirm payment password",
         "forget": "forget password",
-        "login": "Immediate landing"
+        "login": "Immediate landing",
+        "username": "username"
     },
     "forget": {
         "mobile": "Mobile phone retrieved",

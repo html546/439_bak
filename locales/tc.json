@@ -56,7 +56,8 @@
         "paypass": "支付密碼",
         "paypass1": "確認支付密碼",
         "forget": "忘記密碼",
-        "login": "立即登錄"
+        "login": "立即登錄",
+        "username": "用户编号"
     },
     "forget": {
         "mobile": "手機找回",

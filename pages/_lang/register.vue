@@ -19,10 +19,19 @@
           </el-row>
         </div>
         <form @submit="handleSubmit">
+          <div class="register_form">
+            <label for="">{{$t('register.username')}}</label>
+            <input
+              type="text"
+              v-model="username"
+              :readonly="true"
+            >
+          </div>
           <div
             class="register_form"
             v-for="(val,key) in regdata"
             :key="key"
+            :class="{active:val.input == 'hidden'}"
           >
             <label for="">{{val.name}}</label>
             <input
@@ -322,6 +331,9 @@ export default {
 }
 .register_form {
   margin-top: 8px;
+}
+.register_form.active {
+  display: none;
 }
 .register_form select,
 .register_form input {
