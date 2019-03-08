@@ -49,7 +49,7 @@
         "register": "register",
         "Captcha": "Captcha",
         "code": "verify",
-        "getcode": "Get the authentication code",
+        "getcode": "Get verification code",
         "retrieve": "retrieve",
         "loginpass": "password",
         "loginpass1": "again",
