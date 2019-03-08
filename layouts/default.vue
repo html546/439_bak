@@ -101,7 +101,7 @@ export default {
   },
   methods: {
     getAd() {
-      axios.post('/api/Login/getad').then(res => {
+      axios.post('/api/Login/getPCad').then(res => {
         // console.log(res);
         this.bg = res.data.data;
       })
