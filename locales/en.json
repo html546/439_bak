@@ -44,19 +44,19 @@
         "register": "Immediate registration"
     },
     "register": {
-        "mobile": "mobile register",
-        "email": "mailbox register",
+        "mobile": "Phone",
+        "email": "Email",
         "register": "register",
         "Captcha": "Captcha",
-        "code": "identifying code",
-        "getcode": "Get identifying code",
+        "code": "verify",
+        "getcode": "Get the authentication code",
         "retrieve": "retrieve",
-        "loginpass": "Login password",
-        "loginpass1": "Confirm the login password",
+        "loginpass": "password",
+        "loginpass1": "again",
         "paypass": "Payment password",
-        "paypass1": "Confirm payment password",
-        "forget": "forget password",
-        "login": "Immediate landing",
+        "paypass1": "again",
+        "forget": "Forget",
+        "login": "Sign in",
         "username": "username"
     },
     "forget": {
