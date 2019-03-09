@@ -619,7 +619,7 @@ export default {
       this.remitTime = '';
     },
     timefilter(val) {
-      return this.format1(val * 1000);
+      return this.$format1(val * 1000);
     }
   },
 }

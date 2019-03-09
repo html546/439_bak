@@ -174,7 +174,7 @@ export default {
       this.salesdetail = [];
     },
     timefilter(val) {
-      return this.format1(val * 1000);
+      return this.$format1(val * 1000);
     }
   },
 }
