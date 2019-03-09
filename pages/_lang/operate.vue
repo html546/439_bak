@@ -13,7 +13,7 @@
             :label="$t('operate.buydate')"
           >
             <template slot-scope="scope">
-              <p>{{scope.row.buy_date | timefilter}}</p>
+              <p>{{timefilter(scope.row.buy_date)}}</p>
             </template>
           </el-table-column>
           <el-table-column
@@ -171,21 +171,11 @@ export default {
     },
     handleClose() {
       this.salesdetail = [];
+    },
+    timefilter(val) {
+      return this.format1(val * 1000);
     }
   },
-  filters: {
-    timefilter(val) {
-      return format1(val * 1000);
-    }
-  }
-}
-function add0(m) { return m < 10 ? '0' + m : m }
-function format1(shijianchuo) {
-  var time = new Date(shijianchuo);
-  var y = time.getFullYear();
-  var m = time.getMonth() + 1;
-  var d = time.getDate();
-  return y + '-' + add0(m) + '-' + add0(d);
 }
 </script>
 

@@ -17,7 +17,7 @@
             >
               <template slot-scope="scope">
                 <div>
-                  {{scope.row.time |timefilter }}
+                  {{timefilter(scope.row.time)}}
                 </div>
               </template>
             </el-table-column>
@@ -79,7 +79,7 @@
             >
               <template slot-scope="scope">
                 <div>
-                  {{scope.row.time | timefilter}}
+                  {{timefilter(scope.row.time)}}
                 </div>
               </template>
             </el-table-column>
@@ -252,21 +252,11 @@ export default {
         this.getData(this.$store.state.page2, 1);
         this.$store.commit('SET_PAGE2', this.$store.state.page2);
       }
+    },
+    timefilter(val) {
+      return this.$format1(val * 1000);
     }
   },
-  filters: {
-    timefilter(val) {
-      return format1(val * 1000);
-    }
-  }
-}
-function add0(m) { return m < 10 ? '0' + m : m }
-function format1(shijianchuo) {
-  var time = new Date(shijianchuo);
-  var y = time.getFullYear();
-  var m = time.getMonth() + 1;
-  var d = time.getDate();
-  return y + '-' + add0(m) + '-' + add0(d);
 }
 </script>
 <style>

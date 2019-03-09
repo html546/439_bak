@@ -30,7 +30,7 @@
             :label="$t('prize.date')"
           >
             <template slot-scope="scope">
-              <p>{{scope.row.calc_date | timefilter}}</p>
+              <p>{{timefilter(scope.row.calc_date)}}</p>
             </template>
           </el-table-column>
           <el-table-column
@@ -185,20 +185,10 @@ export default {
       this.getData(val);
       this.$store.state.commit('SET_PRIZEPAGE', val);
     },
-  },
-  filters: {
     timefilter(val) {
-      return format1(val * 1000);
+      return this.$format1(val * 1000);
     }
-  }
-}
-function add0(m) { return m < 10 ? '0' + m : m }
-function format1(shijianchuo) {
-  var time = new Date(shijianchuo);
-  var y = time.getFullYear();
-  var m = time.getMonth() + 1;
-  var d = time.getDate();
-  return y + '-' + add0(m) + '-' + add0(d);
+  },
 }
 </script>
 

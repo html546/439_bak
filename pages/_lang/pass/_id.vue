@@ -17,7 +17,7 @@
           :label="$t('finance_detail.time')"
         >
           <template slot-scope="scope">
-            {{scope.row.time | timefilter}}
+            {{timefilter(scope.row.time)}}
           </template>
         </el-table-column>
         <el-table-column
@@ -108,20 +108,10 @@ export default {
       this.getPage(val);
       this.$store.state.commit('SET_FINANCE', val);
     },
-  },
-  filters: {
     timefilter(val) {
-      return format1(val * 1000);
+      return this.$format1(val * 1000);
     }
-  }
-}
-function add0(m) { return m < 10 ? '0' + m : m }
-function format1(shijianchuo) {
-  var time = new Date(shijianchuo);
-  var y = time.getFullYear();
-  var m = time.getMonth() + 1;
-  var d = time.getDate();
-  return y + '-' + add0(m) + '-' + add0(d);
+  },
 }
 </script>
 

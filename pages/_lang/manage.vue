@@ -34,7 +34,7 @@
             prop="reg_date"
           >
             <template slot-scope="scope">
-              <p>{{scope.row.reg_date | timefilter}}</p>
+              <p>{{timefilter(scope.row.reg_date)}}</p>
             </template>
           </el-table-column>
           <el-table-column
@@ -67,6 +67,15 @@
                 type="primary"
                 @click="handleCheck(scope)"
               >{{$t('manage.check')}}</el-button>
+              <el-button
+                size="mini"
+                type="danger"
+                v-if="scope.row.bd_state == '未确认'"
+              >
+                <nuxt-link :to="$i18n.path(`activate1/${scope.row.id}`)">
+                  激活
+                </nuxt-link>
+              </el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -193,22 +202,13 @@ export default {
     },
     handleClose() {
       this.salesdetail = [];
+    },
+    timefilter(val) {
+      return this.$format1(val * 1000)
     }
   },
-  filters: {
-    timefilter(val) {
-      return format1(val * 1000)
-    }
-  }
 }
-function add0(m) { return m < 10 ? '0' + m : m }
-function format1(shijianchuo) {
-  var time = new Date(shijianchuo);
-  var y = time.getFullYear();
-  var m = time.getMonth() + 1;
-  var d = time.getDate();
-  return y + '-' + add0(m) + '-' + add0(d);
-}
+
 </script>
 
 <style>
@@ -217,7 +217,11 @@ function format1(shijianchuo) {
   margin: 50px auto;
 }
 .manage_box {
-  width: 950px;
+  width: 1100px;
   margin: 0 auto;
+}
+.manage_box .el-button + .el-button {
+  margin-left: 0px;
+  margin-top: 10px;
 }
 </style>

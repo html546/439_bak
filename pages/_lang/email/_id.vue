@@ -11,7 +11,7 @@
         <div style="overflow:hidden;">
           <h3>{{title}}</h3>
           <p v-html="content"></p>
-          <p class="time">{{time | timefilter}}</p>
+          <p class="time">{{timefilter(time)}}</p>
         </div>
         <el-button
           type="primary"
@@ -55,21 +55,11 @@ export default {
     },
     goback() {
       this.$router.go(-1);
+    },
+    timefilter(val) {
+      return this.$format1(val * 1000);
     }
   },
-  filters: {
-    timefilter(val) {
-      return format1(val * 1000);
-    }
-  }
-}
-function add0(m) { return m < 10 ? '0' + m : m }
-function format1(shijianchuo) {
-  var time = new Date(shijianchuo);
-  var y = time.getFullYear();
-  var m = time.getMonth() + 1;
-  var d = time.getDate();
-  return y + '-' + add0(m) + '-' + add0(d);
 }
 </script>
 

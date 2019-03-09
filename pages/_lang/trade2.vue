@@ -69,7 +69,7 @@
           :label="$t('trade2.time')"
         >
           <template slot-scope="scope">
-            <p>{{scope.row.buytime | timefilter}}</p>
+            <p>{{timefilter(scope.row.buytime)}}</p>
           </template>
         </el-table-column>
         <el-table-column
@@ -616,21 +616,11 @@ export default {
     handleClose() {
       this.image_input = '';
       this.remitTime = '';
+    },
+    timefilter(val) {
+      return this.format1(val * 1000);
     }
   },
-  filters: {
-    timefilter(val) {
-      return format1(val * 1000);
-    }
-  }
-}
-function add0(m) { return m < 10 ? '0' + m : m }
-function format1(shijianchuo) {
-  var time = new Date(shijianchuo);
-  var y = time.getFullYear();
-  var m = time.getMonth() + 1;
-  var d = time.getDate();
-  return y + '-' + add0(m) + '-' + add0(d);
 }
 </script>
 

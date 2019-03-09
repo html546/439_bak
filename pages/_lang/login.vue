@@ -101,7 +101,7 @@ export default {
     },
     onclose() {
       this.$router.push({
-        path: '/'
+        path: this.$i18n.path('')
       })
     }
   },
