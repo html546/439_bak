@@ -222,6 +222,7 @@ export default {
     this.getVerifyCode();
     this.getQRCode();
   },
+  middleware: "auth",
   mounted() {
   },
   methods: {

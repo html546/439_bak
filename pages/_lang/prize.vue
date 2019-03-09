@@ -124,6 +124,7 @@ export default {
       loading: true
     }
   },
+  middleware: "auth",
   created() {
     var prize_page = this.$store.state.prize_page;
     if (prize_page > 1) {

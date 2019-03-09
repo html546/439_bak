@@ -95,6 +95,7 @@ export default {
       },
     }
   },
+  middleware: "auth",
   created() {
     this.getFee();
   },

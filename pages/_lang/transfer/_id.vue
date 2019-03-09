@@ -150,6 +150,7 @@ export default {
       mobile: ''
     }
   },
+  middleware: "auth",
   created() {
     this.getData();
     this.getVerifyCode();

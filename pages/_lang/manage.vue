@@ -138,6 +138,7 @@
 import axios from 'axios';
 export default {
   name: '',
+  middleware: "auth",
   data() {
     return {
       sales: [],

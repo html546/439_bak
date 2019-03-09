@@ -127,6 +127,7 @@ export default {
       this.getData(1);
     }
   },
+  middleware: "auth",
   methods: {
     getData(page) {
       axios.post('/api/member/mActionList', {

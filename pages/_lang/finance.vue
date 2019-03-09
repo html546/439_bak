@@ -58,6 +58,7 @@ export default {
       link1: ''
     }
   },
+  middleware: "auth",
   created() {
   },
   methods: {

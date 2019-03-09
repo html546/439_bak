@@ -55,6 +55,7 @@ export default {
       memberInfo: ''
     }
   },
+  middleware: "auth",
   created() {
     this.getPage();
   },

@@ -220,6 +220,7 @@ export default {
       percentage: 0
     }
   },
+  middleware: "auth",
   created() {
     let page = this.$store.state.notice;
     if (page > 1) {

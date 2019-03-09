@@ -18,6 +18,7 @@ export default {
 
     }
   },
+  middleware: "auth",
   created() {
     this.getNetwork();
   },

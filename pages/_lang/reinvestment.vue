@@ -83,6 +83,7 @@ export default {
       balance1: ''
     }
   },
+  middleware: "auth",
   created() {
     this.getData();
   },

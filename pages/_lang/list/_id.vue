@@ -33,6 +33,7 @@ export default {
       time: ''
     }
   },
+  middleware: 'auth',
   created() {
     this.getDetail();
   },

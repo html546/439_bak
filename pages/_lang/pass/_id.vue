@@ -68,6 +68,7 @@ export default {
       currentPage1: 1
     }
   },
+  middleware: 'auth',
   created() {
     let page = this.$store.state.finance;
     if (page > 1) {

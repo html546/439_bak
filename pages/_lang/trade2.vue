@@ -329,6 +329,7 @@ import axios from 'axios';
 export default {
   layout: 'default',
   name: '',
+  middleware: "auth",
   data() {
     return {
       detailData: [],

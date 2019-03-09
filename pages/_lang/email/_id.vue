@@ -36,6 +36,7 @@ export default {
   created() {
     this.getDetail();
   },
+  middleware: 'auth',
   methods: {
     getDetail() {
       axios.post('/api/notice/viewdetails', {

@@ -147,6 +147,7 @@ export default {
       loading2: true,
     }
   },
+  middleware: "auth",
   created() {
     let page1 = this.$store.state.page1;
     let page2 = this.$store.state.page2;
