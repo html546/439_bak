@@ -51,7 +51,7 @@
               >
               <div class="register_right">
                 <h3>{{$t('person.order')}}</h3>
-                <nuxt-link :to="$i18n.path('manage')">
+                <nuxt-link :to="$i18n.path('order')">
                   <el-button
                     type="primary"
                     plain
