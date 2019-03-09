@@ -23,6 +23,7 @@
           class="login_btn1"
           type="submit"
           @click="handleSubmit"
+          @keyup.enter="handleSubmit"
         >{{$t('login.submit')}}</button>
         <el-row
           type="flex"

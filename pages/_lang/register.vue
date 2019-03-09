@@ -18,7 +18,10 @@
             </el-col>
           </el-row>
         </div>
-        <form @submit="handleSubmit">
+        <form
+          @submit="handleSubmit"
+          @keyup.enter="handleSubmit"
+        >
           <div class="register_form">
             <label for="">{{$t('register.username')}}</label>
             <input

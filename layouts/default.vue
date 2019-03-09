@@ -109,6 +109,7 @@ export default {
     reload() {
       this.isRouterAlive = false;
       this.$nextTick(() => {
+        this.getAd();
         this.isRouterAlive = true;
       })
     }

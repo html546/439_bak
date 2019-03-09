@@ -53,6 +53,7 @@
             class="forget_btn1"
             type="submit"
             @click="handleSubmit"
+            @keydown.enter="handleSubmit"
           >{{$t('forget.getback')}}</button>
           <el-row
             type="flex"
@@ -134,7 +135,6 @@ export default {
 </script>
 
 <style >
-
 .forget_panel {
   width: 1200px;
   margin: 0 auto;
