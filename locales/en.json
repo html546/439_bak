@@ -52,9 +52,9 @@
         "getcode": "Get verification code",
         "retrieve": "retrieve",
         "loginpass": "password",
-        "loginpass1": "again",
+        "loginpass1": "confirm",
         "paypass": "Payment password",
-        "paypass1": "again",
+        "paypass1": "confirm",
         "forget": "Forget",
         "login": "Sign in",
         "username": "username"
