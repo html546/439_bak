@@ -8,7 +8,7 @@
         :border="true"
         :stripe="true"
         v-loading="loading"
-        element-loading-text="拼命加载中"
+        :element-loading-text="$t('trade2.loading')"
         element-loading-spinner="el-icon-loading"
         element-loading-background="rgba(0, 0, 0, 0.8)"
         class="trade2_btn"
@@ -148,54 +148,54 @@
       >
       </el-pagination>
       <el-dialog
-        title="交易详情"
+        :title="$t('trade2.detail1')"
         :visible.sync="dialogFormVisible"
         top="5vh"
       >
         <el-form :model="form">
-          <el-form-item label="卖家编号">
+          <el-form-item :label="$t('trade2.sellid')">
             <el-input
               v-model="form.saleusername"
               :readonly="true"
             ></el-input>
           </el-form-item>
-          <el-form-item label="开户行">
+          <el-form-item :label="$t('trade2.bank')">
             <el-input
               v-model="form.bank_name"
               :readonly="true"
             ></el-input>
           </el-form-item>
-          <el-form-item label="银行卡号">
+          <el-form-item :label="$t('trade2.banknumber')">
             <el-input
               v-model="form.bank_number"
               :readonly="true"
             ></el-input>
           </el-form-item>
-          <el-form-item label="开户名">
+          <el-form-item :label="$t('trade2.accountname')">
             <el-input
               v-model="form.bank_username"
               :readonly="true"
             ></el-input>
           </el-form-item>
-          <el-form-item label="买家编号">
+          <el-form-item :label="$t('trade2.buyer1')">
             <el-input
               v-model="form.username"
               :readonly="true"
             ></el-input>
           </el-form-item>
-          <el-form-item label="购买数量">
+          <el-form-item :label="$t('trade2.num1')">
             <el-input
               v-model="form.num"
               :readonly="true"
             ></el-input>
           </el-form-item>
-          <el-form-item label="购买价格">
+          <el-form-item :label="$t('trade2.price')">
             <el-input
               v-model="form.oneprice"
               :readonly="true"
             ></el-input>
           </el-form-item>
-          <el-form-item label="购买时间">
+          <el-form-item :label="$t('trade2.buytime')">
             <el-input
               v-model="buytime"
               :readonly="true"
@@ -204,7 +204,7 @@
         </el-form>
       </el-dialog>
       <el-dialog
-        title="交易汇款"
+        :title="$t('trade2.remit1')"
         :visible.sync="dialogFormVisible1"
         :close="handleClose"
         top="5vh"
@@ -213,32 +213,32 @@
           :model="form1"
           label-width="80px"
         >
-          <el-form-item label="卖家编号">
+          <el-form-item :label="$t('trade2.sellid')">
             <el-input
               v-model="form1.saleusername"
               :readonly="true"
             ></el-input>
           </el-form-item>
-          <el-form-item label="汇款金额">
+          <el-form-item :label="$t('trade2.money')">
             <el-input
               v-model="money"
               :readonly="true"
             ></el-input>
           </el-form-item>
           <el-form-item
-            label="汇款时间"
+            :label="$t('trade2.time1')"
             class="time"
           >
             <el-date-picker
               v-model="remitTime"
               type="datetime"
-              placeholder="选择日期时间"
+              :placeholder="$t('trade2.timedate')"
               align="right"
               :picker-options="pickerOptions1"
             >
             </el-date-picker>
           </el-form-item>
-          <el-form-item label="汇款凭证">
+          <el-form-item :label="$t('trade2.voucher')">
             <el-upload
               class="upload-demo"
               :action="upload"
@@ -250,7 +250,7 @@
               <el-button
                 size="small"
                 type="primary"
-              >点击上传</el-button>
+              >{{$t('trade2.upload')}}</el-button>
               <img
                 :src="imageUrl"
                 style="max-width:200px;"
@@ -262,17 +262,17 @@
             <el-button
               type="primary"
               @click="handleRemitSubmit"
-            >立即提交</el-button>
+            >{{$t('trade2.submit')}}</el-button>
           </el-form-item>
         </el-form>
       </el-dialog>
       <el-dialog
-        title="申诉内容"
+        :title="$t('trade2.appeal')"
         :visible.sync="dialogFormVisible2"
         top="5vh"
       >
         <el-form>
-          <el-form-item label="申诉内容">
+          <el-form-item :label="$t('trade2.appeal')">
             <el-input
               type="textarea"
               v-model="content"
@@ -282,17 +282,17 @@
             <el-button
               type="primary"
               @click="handleArbitrateSubmit"
-            >立即提交</el-button>
+            >{{$t('trade2.submit')}}</el-button>
           </el-form-item>
         </el-form>
       </el-dialog>
       <el-dialog
-        title="上传交易凭据"
+        :title="$t('trade2.proof1')"
         :visible.sync="dialogFormVisible3"
         top="5vh"
       >
         <el-form>
-          <el-form-item label="交易凭据">
+          <el-form-item :label="$t('trade2.proof')">
             <el-upload
               class="upload-demo"
               :action="upload"
@@ -304,7 +304,7 @@
               <el-button
                 size="small"
                 type="primary"
-              >点击上传</el-button>
+              >{{$t('trade2.upload')}}</el-button>
               <img
                 :src="imageUrl"
                 style="max-width:200px;"
@@ -316,7 +316,7 @@
             <el-button
               type="primary"
               @click="handleTradeSubmit"
-            >立即提交</el-button>
+            >{{$t('trade2.submit')}}</el-button>
           </el-form-item>
         </el-form>
       </el-dialog>
