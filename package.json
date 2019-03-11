@@ -1,7 +1,7 @@
 {
-  "name": "gsam.cc",
+  "name": "gasm",
   "version": "1.0.0",
-  "description": "My doozie Nuxt.js project",
+  "description": "gasm项目",
   "author": "wangdong",
   "private": true,
   "scripts": {
