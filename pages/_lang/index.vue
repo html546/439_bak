@@ -125,6 +125,8 @@ export default {
   width: 165px;
   height: 40px;
   color: #258ffc;
+  text-align: center;
+  padding: 12px 6px;
 }
 .download_android_right .el-button:hover {
   background: #258ffc;
