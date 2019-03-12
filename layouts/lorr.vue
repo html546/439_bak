@@ -46,7 +46,7 @@ body {
 }
 .lorr {
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   background-image: url("~assets/bg.png");
   background-repeat: no-repeat;
   background-position: center center;

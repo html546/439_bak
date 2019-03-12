@@ -47,7 +47,7 @@
             type="flex"
             justify="space-between"
           >
-            <el-col
+            <!-- <el-col
               :span="8"
               class="space_between"
             >
@@ -55,7 +55,7 @@
               <p>
                 <a href="#">{{$t('links.legal')}}</a>
               </p>
-            </el-col>
+            </el-col> -->
             <el-col
               :span="8"
               class="space_between"

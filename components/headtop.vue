@@ -160,7 +160,6 @@ export default {
   data() {
     return {
       activeIndex: '0',
-      title: 'english',
     }
   },
   created() {
@@ -173,13 +172,20 @@ export default {
       } else {
         return true;
       }
+    },
+    title(){
+      if(this.$i18n.locale == 'en'){
+        return this.$t('links.english');
+      }else{
+        return this.$t('links.chinese');
+      }
     }
   },
   methods: {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
       if (key == '5-1') {
-        this.title = 'english';
+        this.title = this.$t('links.english');
         let formdata = new FormData();
         formdata.append('lang', 'en');
         var that = this;
@@ -191,7 +197,7 @@ export default {
           console.log(err);
         })
       } else if (key == '5-2') {
-        this.title = '繁體中文';
+        this.title = this.$t('links.chinese');
         let formdata = new FormData();
         formdata.append('lang', 'tw');
         var that = this;
