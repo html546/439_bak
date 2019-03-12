@@ -150,6 +150,7 @@
       <el-dialog
         :title="$t('trade2.detail1')"
         :visible.sync="dialogFormVisible"
+        :close="dialogClose"
         top="5vh"
       >
         <el-form :model="form">
@@ -159,7 +160,25 @@
               :readonly="true"
             ></el-input>
           </el-form-item>
-          <el-form-item :label="$t('trade2.bank')">
+          <el-form-item
+            :label="$t('trade2.saller_address')"
+            v-if="saleuser"
+          >
+            <el-input
+              v-model="saleuser.usdtaddress"
+              :readonly="true"
+            ></el-input>
+          </el-form-item>
+          <el-form-item
+            :label="$t('trade2.buyer_address')"
+            v-else-if="buyuser"
+          >
+            <el-input
+              v-model="buyuser.usdt_address"
+              :readonly="true"
+            ></el-input>
+          </el-form-item>
+          <!-- <el-form-item :label="$t('trade2.bank')">
             <el-input
               v-model="form.bank_name"
               :readonly="true"
@@ -176,7 +195,7 @@
               v-model="form.bank_username"
               :readonly="true"
             ></el-input>
-          </el-form-item>
+          </el-form-item> -->
           <el-form-item :label="$t('trade2.buyer1')">
             <el-input
               v-model="form.username"
@@ -216,6 +235,12 @@
           <el-form-item :label="$t('trade2.sellid')">
             <el-input
               v-model="form1.saleusername"
+              :readonly="true"
+            ></el-input>
+          </el-form-item>
+          <el-form-item :label="$t('trade2.saller_address')">
+            <el-input
+              v-model="usdt_address"
               :readonly="true"
             ></el-input>
           </el-form-item>
@@ -351,6 +376,9 @@ export default {
       },
       imageUrl: '',
       content: '',
+      usdt_address: '',
+      buyuser: '',
+      saleuser: '',
       pickerOptions1: {
         shortcuts: [
           {
@@ -448,14 +476,38 @@ export default {
       this.dialogFormVisible = true;
       console.log(scope);
       this.form = scope.row;
-      this.buytime = format1(scope.row.buytime * 1000);
+      this.buytime = this.$format1(scope.row.buytime * 1000);
       this.id = scope.row.id;
+      axios.post('/api/trade/viewbuytrade', {
+        userid: this.$store.state.message.userid,
+        sessionid: this.$store.state.message.sessionid,
+        id: scope.row.id
+      }).then(res => {
+        if (scope.row.state == 0 && scope.row.username == this.$store.state.message.username) {
+          this.saleuser = res.data.data.saleuser;
+        } else if (scope.row.state == 1 && scope.row.saleusername == this.$store.state.message.username) {
+          this.buyuser = res.data.data.buyuser;
+        } else if (scope.row.state == 4 && scope.row.username == this.$store.state.message.username) {
+          this.saleuser = res.data.data.saleuser;
+        }
+      }).catch(err => {
+        console.log(err);
+      })
     },
     handleRemit(scope) {
       console.log(scope);
       this.form1 = scope.row;
       this.dialogFormVisible1 = true;
       this.id = scope.row.id;
+      axios.post('/api/trade/prizes', {
+        userid: this.$store.state.message.userid,
+        sessionid: this.$store.state.message.sessionid,
+        id: scope.row.id
+      }).then(res => {
+        this.usdt_address = res.data.data.trade_buy.saleusdt;
+      }).catch(err => {
+        console.log(err);
+      })
     },
     handleArbitrate(scope) {
       this.dialogFormVisible2 = true;
@@ -617,6 +669,10 @@ export default {
     handleClose() {
       this.image_input = '';
       this.remitTime = '';
+    },
+    dialogClose() {
+      this.saleuser = '';
+      this.buyuser = '';
     },
     timefilter(val) {
       return this.$format1(val * 1000);

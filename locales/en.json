@@ -122,7 +122,9 @@
         "upload":"Click to upload",
         "submit":"Submit now",
         "appeal":"Appeal content",
-        "proof1":"Upload transaction credentials"
+        "proof1":"Upload transaction credentials",
+        "saller_address":"Seller's usdt address",
+        "buyer_address":"Buyer's usdt address"
     },
     "trade3": {
         "hangout": "Trading out",

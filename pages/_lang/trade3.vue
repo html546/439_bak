@@ -34,7 +34,7 @@
                 ></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item :label="$t('trade3.pay')">
+            <!-- <el-form-item :label="$t('trade3.pay')">
               <el-select
                 v-model="form.paytype"
                 :placeholder="$t('trade3.pay_mode')"
@@ -53,7 +53,7 @@
                   value="3"
                 ></el-option>
               </el-select>
-            </el-form-item>
+            </el-form-item> -->
             <el-form-item :label="$t('trade3.price')">
               <el-input v-model="form.price"></el-input>
             </el-form-item>
