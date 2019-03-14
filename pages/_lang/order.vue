@@ -22,7 +22,7 @@
             prop="pay_date"
           >
             <template slot-scope="scope">
-              <p>{{scope.row.pay_date | timefilter}}</p>
+              <p>{{timefilter(scope.row.pay_date)}}</p>
             </template>
           </el-table-column>
           <el-table-column
@@ -94,7 +94,7 @@
               :label="$t('manage.buydate')"
             >
               <template slot-scope="scope">
-                <p>{{scope.row.buy_date | timefilter}}</p>
+                <p>{{timefilter(scope.row.buy_date)}}</p>
               </template>
             </el-table-column>
             <el-table-column
@@ -102,7 +102,7 @@
               prop="pay_date"
             >
               <template slot-scope="scope">
-                <p>{{scope.row.pay_date | timefilter}}</p>
+                <p>{{timefilter(scope.row.pay_date)}}</p>
               </template>
             </el-table-column>
             <el-table-column
