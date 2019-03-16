@@ -25,7 +25,7 @@
           >
             <el-menu-item index="1">
               <nuxt-link
-                :to="$i18n.path('pc')"
+                :to="$i18n.path('')"
                 exact
               >
                 {{$t('links.home')}}
