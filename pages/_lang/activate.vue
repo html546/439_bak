@@ -3,12 +3,26 @@
     <div class="activate">
       <div class="form_box">
         <el-form label-width="140">
-          <el-form-item :label="$t('activate.balance')">
+          <el-form-item :label="$t('activate.balance1')">
             <el-input
-              v-model="balance"
+              v-model="balance1"
               :readonly="true"
             ></el-input>
           </el-form-item>
+          <template v-if="combine">
+            <el-form-item :label="$t('activate.balance2')">
+              <el-input
+                v-model="balance2"
+                :readonly="true"
+              ></el-input>
+            </el-form-item>
+            <el-form-item :label="$t('activate.balance3')">
+              <el-input
+                v-model="balance3"
+                :readonly="true"
+              ></el-input>
+            </el-form-item>
+          </template>
           <el-form-item :label="$t('activate.price')">
             <el-input
               v-model="price"
@@ -32,6 +46,17 @@
               ></el-option>
             </el-select>
           </el-form-item>
+          <template v-if="combine">
+            <el-form-item :label="$t('activate.balance1_1')">
+              <el-input v-model="lv1money"></el-input>
+            </el-form-item>
+            <el-form-item :label="$t('activate.balance2_1')">
+              <el-input v-model="lv2money"></el-input>
+            </el-form-item>
+            <el-form-item :label="$t('activate.balance3_1')">
+              <el-input v-model="lv3money"></el-input>
+            </el-form-item>
+          </template>
           <el-button
             type="primary"
             @click="handleSubmit"
@@ -48,7 +73,13 @@ export default {
   name: '',
   data() {
     return {
-      balance: '',
+      balance1: '',
+      balance2: '',
+      balance3: '',
+      combine: false,
+      lv1money: '',
+      lv2money: '',
+      lv3money: '',
       price: '',
       level: '',
       mode: '',
@@ -66,7 +97,9 @@ export default {
         sessionid: this.$store.state.message.sessionid
       }).then(res => {
         console.log(res);
-        this.balance = res.data.data.financeinfo[0].money;
+        this.balance1 = res.data.data.financeinfo[0].money;
+        this.balance2 = res.data.data.financeinfo[1].money;
+        this.balance3 = res.data.data.financeinfo[2].money;
         this.price = res.data.data.price;
         this.memberInfo = res.data.data.memberInfo;
       }).catch(err => {
@@ -75,8 +108,10 @@ export default {
     },
     handleChange(val) {
       if (val == 1) {
+        this.combine = false;
         this.level = this.memberInfo.jh1;
       } else if (val == 2) {
+        this.combine = true;
         this.level = this.memberInfo.jh2;
       }
     },
@@ -84,7 +119,11 @@ export default {
       axios.post('/api/member/meconfirmSave', {
         userid: this.$store.state.message.userid,
         sessionid: this.$store.state.message.sessionid,
-        regtype: this.mode
+        regtype: this.mode,
+        price: this.price,
+        lv1money: this.lv1money,
+        lv2money: this.lv2money,
+        lv3money: this.lv3money
       }).then(res => {
         console.log(res);
         if (res.data.status == 1) {

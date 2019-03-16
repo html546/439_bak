@@ -177,7 +177,12 @@
     "reinvestment": {
         "mode": "Reinvestment method",
         "type": "Account type",
-        "balance": "Account balance",
+        "balance1": "Activate account balance",
+        "balance2":"Cash account balance",
+        "balance3":"Registered account balance",
+        "balance1_1":"Activate account",
+        "balance2_1":"Cash account",
+        "balance3_1":"Registered account",
         "price": "USDT Real time price",
         "money": "Re-investment amount",
         "select": "Choose a reinvestment method",
@@ -186,7 +191,12 @@
         "submit": "Submit now"
     },
     "activate": {
-        "balance": "Activate account balance",
+        "balance1": "Activate account balance",
+        "balance2":"Cash account balance",
+        "balance3":"Registered account balance",
+        "balance1_1":"Activate account",
+        "balance2_1":"Cash account",
+        "balance3_1":"Registered account",
         "price": "USDT current price",
         "need": "Activate account to activate account",
         "parameter": "parameter",

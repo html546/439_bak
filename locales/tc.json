@@ -177,7 +177,12 @@
     "reinvestment": {
         "mode": "復投方式",
         "type": "賬戶類型",
-        "balance": "賬戶餘額",
+        "balance1": "激活賬戶餘額",
+        "balance2":"現金賬戶餘額",
+        "balance3":"註冊賬戶餘額",
+        "balance1_1":"激活賬戶",
+        "balance2_1":"現金賬戶",
+        "balance3_1":"註冊賬戶",
         "price": "USDT實時價格",
         "money": "復投金額",
         "select": "選擇復投方式",
@@ -186,7 +191,12 @@
         "submit": "立即提交"
     },
     "activate": {
-        "balance": "激活賬戶餘額",
+        "balance1": "激活賬戶餘額",
+        "balance2":"現金賬戶餘額",
+        "balance3":"註冊賬戶餘額",
+        "balance1_1":"激活賬戶",
+        "balance2_1":"現金賬戶",
+        "balance3_1":"註冊賬戶",
         "price": "USDT當前價格",
         "need": "激活賬號需要激活賬戶",
         "parameter": "參數",

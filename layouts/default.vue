@@ -21,7 +21,7 @@
       </el-carousel>
     </div>
     <nuxt v-if="isRouterAlive" />
-    <div class="footer">
+    <!-- <div class="footer"> -->
       <!-- <div class="footer_top">
         <div class="footer_content">
           <h3>{{$t('links.link')}}</h3>
@@ -41,13 +41,13 @@
           </div>
         </div>
       </div> -->
-      <div class="footer_bottom">
+     <!--  <div class="footer_bottom">
         <div class="footer_content">
           <el-row
             type="flex"
             justify="space-between"
           >
-            <!-- <el-col
+            <el-col
               :span="8"
               class="space_between"
             >
@@ -55,7 +55,7 @@
               <p>
                 <a href="#">{{$t('links.legal')}}</a>
               </p>
-            </el-col> -->
+            </el-col>
             <el-col
               :span="8"
               class="space_between"
@@ -76,8 +76,8 @@
             </el-col>
           </el-row>
         </div>
-      </div>
-    </div>
+      </div> -->
+    <!-- </div> -->
   </div>
 </template>
 
