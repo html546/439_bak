@@ -177,7 +177,7 @@
     "reinvestment": {
         "mode": "復投方式",
         "type": "賬戶類型",
-        "balance1": "激活賬戶餘額",
+        "balance": "激活賬戶餘額",
         "balance2":"現金賬戶餘額",
         "balance3":"註冊賬戶餘額",
         "balance1_1":"激活賬戶",
@@ -191,7 +191,7 @@
         "submit": "立即提交"
     },
     "activate": {
-        "balance1": "激活賬戶餘額",
+        "balance": "激活賬戶餘額",
         "balance2":"現金賬戶餘額",
         "balance3":"註冊賬戶餘額",
         "balance1_1":"激活賬戶",

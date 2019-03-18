@@ -177,7 +177,7 @@
     "reinvestment": {
         "mode": "Reinvestment method",
         "type": "Account type",
-        "balance1": "Activate account balance",
+        "balance": "Activate account balance",
         "balance2":"Cash account balance",
         "balance3":"Registered account balance",
         "balance1_1":"Activate account",
@@ -191,7 +191,7 @@
         "submit": "Submit now"
     },
     "activate": {
-        "balance1": "Activate account balance",
+        "balance": "Activate account balance",
         "balance2":"Cash account balance",
         "balance3":"Registered account balance",
         "balance1_1":"Activate account",
