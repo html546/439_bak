@@ -60,7 +60,7 @@
         </el-table>
         <el-pagination
           layout="prev,pager,next"
-          :total="total"
+          :page-count="total"
           style="text-align:center;margin-top:20px;"
           :background="true"
           :current-page.sync="currentpage"
@@ -119,7 +119,7 @@ export default {
       dialogTableVisible: false,
       gridData: [],
       data: [],
-      total: 0,
+      total: 1,
       currentpage: 1,
       loading: true
     }
@@ -141,7 +141,8 @@ export default {
         sessionid: this.$store.state.message.sessionid,
         page: page
       }).then(res => {
-        console.log(res);
+        console.log(res.data.data);
+        this.total = res.data.data.allPage;
         this.tableData = res.data.data.res;
         this.loading = false;
         var bonus = res.data.data.bonus;
@@ -174,17 +175,17 @@ export default {
     handlePrev(val) {
       this.loading = true;
       this.getData(val);
-      this.$store.state.commit('SET_PRIZEPAGE', val);
+      this.$store.commit('SET_PRIZEPAGE', val);
     },
     handleNext(val) {
       this.loading = true;
       this.getData(val);
-      this.$store.state.commit('SET_PRIZEPAGE', val);
+      this.$store.commit('SET_PRIZEPAGE', val);
     },
     handleChange(val) {
       this.loading = true;
       this.getData(val);
-      this.$store.state.commit('SET_PRIZEPAGE', val);
+      this.$store.commit('SET_PRIZEPAGE', val);
     },
     timefilter(val) {
       return this.$format1(val * 1000);
