@@ -23,6 +23,10 @@
           :label="$t('trade2.num')"
         ></el-table-column>
         <el-table-column
+          prop="ordertype"
+          :label="$t('trade2.type')"
+        ></el-table-column>
+        <el-table-column
           prop="oneprice"
           :label="$t('trade2.oneprice')"
         ></el-table-column>
@@ -409,6 +413,7 @@ export default {
   },
   created() {
     var page = this.$store.state.page3;
+    console.log(page);
     if (page) {
       this.currentPage = Number(page);
       this.getPage(page);
@@ -439,17 +444,18 @@ export default {
     handlePrevClick(val) {
       this.loading = true;
       this.getPage(val);
-      this.$store.state.commit('SET_PAGE3', val);
+      this.$store.commit('SET_PAGE3', val);
     },
     handleNextClick(val) {
+      console.log(val);
       this.loading = true;
       this.getPage(val);
-      this.$store.state.commit('SET_PAGE3', val);
+      this.$store.commit('SET_PAGE3', val);
     },
     handleChange(val) {
       this.loading = true;
       this.getPage(val);
-      this.$store.state.commit('SET_PAGE3', val);
+      this.$store.commit('SET_PAGE3', val);
     },
     CheckState1(scope) {
       if (scope.row.state == 0 && scope.row.username == this.$store.state.message.username) {

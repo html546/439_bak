@@ -192,32 +192,32 @@ export default {
     handlePrevClick(val) {
       this.loading1 = true;
       this.getData(val, 1);
-      this.$store.state.commit('SET_PAGE', val);
+      this.$store.commit('SET_PAGE', val);
     },
     handleNextClick(val) {
       this.loading1 = true;
       this.getData(val, 1);
-      this.$store.state.commit('SET_PAGE', val);
+      this.$store.commit('SET_PAGE', val);
     },
     handleChange(val) {
       this.loading1 = true;
       this.getData(val, 1);
-      this.$store.state.commit('SET_PAGE', val);
+      this.$store.commit('SET_PAGE', val);
     },
     handlePrevClick1(val) {
       this.loading2 = true;
       this.getData(val, 2);
-      this.$store.state.commit('SET_PAGE2', val);
+      this.$store.commit('SET_PAGE2', val);
     },
     handleNextClick1(val) {
       this.loading2 = true;
       this.getData(val, 2);
-      this.$store.state.commit('SET_PAGE2', val);
+      this.$store.commit('SET_PAGE2', val);
     },
     handleChange1(val) {
       this.loading2 = true;
       this.getData(val, 2);
-      this.$store.state.commit('SET_PAGE2', val);
+      this.$store.commit('SET_PAGE2', val);
     },
     handleBuy(row, type) {
       axios.post('/api/trade/buytrade', {

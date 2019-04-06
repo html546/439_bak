@@ -23,6 +23,7 @@
                 v-model="form.tradetype"
                 :placeholder="$t('trade3.hangout_mode')"
                 style="width:100%;"
+                @change="handleChange"
               >
                 <el-option
                   :label="$t('trade3.sale')"
@@ -105,10 +106,13 @@ export default {
         userid: this.$store.state.message.userid,
         sessionid: this.$store.state.message.sessionid
       }).then(res => {
-        this.form.fee = res.data.data.tax;
+        this.form.fee = res.data.data.tax + '%';
       }).catch(err => {
         console.log(err);
       })
+    },
+    handleChange(e) {
+      console.log(e);
     },
     handleHangOut() {
       axios.post('/api/trade/start', {
