@@ -141,6 +141,10 @@ export default {
         sessionid: this.$store.state.message.sessionid,
         page: page
       }).then(res => {
+        if (res.data.status == 0) {
+          this.$store.commit('clearMessage');
+          this.$router.replace('/login');
+        }
         console.log(res.data.data);
         this.total = res.data.data.allPage;
         this.tableData = res.data.data.res;

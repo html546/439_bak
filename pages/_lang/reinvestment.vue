@@ -112,6 +112,10 @@ export default {
         userid: this.$store.state.message.userid,
         sessionid: this.$store.state.message.sessionid
       }).then(res => {
+        if (res.data.status == 0) {
+          this.$store.commit('clearMessage');
+          this.$router.replace('/login');
+        }
         console.log(res);
         this.bd_money = res.data.data.salenode.default;
         this.price = res.data.data.price;

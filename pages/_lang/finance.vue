@@ -83,6 +83,10 @@ export default {
         userid: this.$store.state.message.userid,
         sessionid: this.$store.state.message.sessionid
       }).then(res => {
+        if (res.data.status == 0) {
+          this.$store.commit('clearMessage');
+          this.$router.replace('/login');
+        }
         console.log(res);
         this.wallet = res.data.data;
       }).catch(err => {

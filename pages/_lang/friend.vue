@@ -235,6 +235,10 @@ export default {
         userid: this.$store.state.message.userid,
         sessionid: this.$store.state.message.sessionid
       }).then(res => {
+        if (res.data.status == 0) {
+          this.$store.commit('clearMessage');
+          this.$router.replace('/login');
+        }
         console.log(res, 666666);
         this.qrcode = res.data.data;
         if (!document.getElementById('qrcode').innerHTML) {
@@ -267,6 +271,10 @@ export default {
         sessionid: this.$store.state.message.sessionid,
         statetype: statetype
       }).then(res => {
+        if (res.data.status == 0) {
+          this.$store.commit('clearMessage');
+          this.$router.replace('/login');
+        }
         console.log(res);
         this.username = res.data.data.defaultname;
         this.formContent = res.data.data.regdatasets;

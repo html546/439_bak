@@ -103,6 +103,10 @@ export default {
         userid: this.$store.state.message.userid,
         sessionid: this.$store.state.message.sessionid
       }).then(res => {
+        if (res.data.status == 0) {
+          this.$store.commit('clearMessage');
+          this.$router.replace('/login');
+        }
         console.log(res);
         this.balance1 = res.data.data.financeinfo[0].money;
         this.balance2 = res.data.data.financeinfo[1].money;

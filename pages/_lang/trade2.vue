@@ -482,7 +482,10 @@ export default {
         sessionid: this.$store.state.message.sessionid,
         page: page
       }).then(res => {
-        console.log(res);
+        if (res.data.status == 0) {
+          this.commit('clearMessage');
+          this.$router.replace('/login');
+        }
         this.detailData = res.data.data.trade_buy;
         this.loading = false;
         this.total = res.data.data.total;

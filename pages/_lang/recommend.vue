@@ -29,6 +29,10 @@ export default {
         sessionid: this.$store.state.message.sessionid
       }).then(res => {
         console.log(res);
+        if (res.data.status == 0) {
+          this.$store.commit('clearMessage');
+          this.$router.replace('/login');
+        }
         document.getElementById('network').innerHTML = res.data.data.htmlstr;
       }).catch(err => {
         console.log(err);

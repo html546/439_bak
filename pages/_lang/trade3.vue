@@ -114,6 +114,10 @@ export default {
         userid: this.$store.state.message.userid,
         sessionid: this.$store.state.message.sessionid
       }).then(res => {
+        if (res.data.status == 0) {
+          this.$store.commit('clearMessage');
+          this.$router.replace('/login');
+        }
         this.form.price = res.data.data.price.usdtprized;
       }).catch(err => {
         console.log(err);
@@ -124,6 +128,10 @@ export default {
         userid: this.$store.state.message.userid,
         sessionid: this.$store.state.message.sessionid
       }).then(res => {
+        if (res.data.status == 0) {
+          this.$store.commit('clearMessage');
+          this.$router.replace('/login');
+        }
         this.form.fee = res.data.data.tax;
       }).catch(err => {
         console.log(err);

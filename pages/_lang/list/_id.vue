@@ -44,6 +44,10 @@ export default {
         sessionid: this.$store.state.message.sessionid,
         id: this.$route.params.id
       }).then(res => {
+        if (res.data.status == 0) {
+          this.$store.commit('clearMessage');
+          this.$router.replace('/login');
+        }
         console.log(res);
         if (res.data.status == 1) {
           this.title = res.data.data.title;

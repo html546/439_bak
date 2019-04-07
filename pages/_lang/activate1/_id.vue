@@ -66,6 +66,10 @@ export default {
         sessionid: this.$store.state.message.sessionid,
         saleid: this.$route.params.id
       }).then(res => {
+        if (res.data.status == 0) {
+          this.$store.commit('clearMessage');
+          this.$router.replace('/login');
+        }
         console.log(res);
         this.balance = res.data.data.financeinfo[0].money;
         this.price = res.data.data.price;

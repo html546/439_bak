@@ -178,12 +178,17 @@ export default {
         page: page,
         tradetype: type
       }).then(res => {
-        if (type == 1) {
-          this.loading1 = false;
-          this.tableData = res.data.data.trades.data;
-        } else if (type == 2) {
-          this.loading2 = false;
-          this.tableData1 = res.data.data.trades.data;
+        if (res.data.status == 0) {
+          this.$store.commit('clearMessage');
+          this.$router.replace('/login');
+        } else {
+          if (type == 1) {
+            this.loading1 = false;
+            this.tableData = res.data.data.trades.data;
+          } else if (type == 2) {
+            this.loading2 = false;
+            this.tableData1 = res.data.data.trades.data;
+          }
         }
       }).catch(err => {
         console.log(err);
