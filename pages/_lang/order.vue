@@ -205,6 +205,9 @@ export default {
       this.salesdetail = [];
     },
     timefilter(val) {
+      if (val === 0) {
+        return '';
+      }
       return this.$format1(val * 1000)
     }
   },

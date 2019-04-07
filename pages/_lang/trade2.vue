@@ -35,7 +35,7 @@
           :label="$t('trade2.total')"
         >
           <template slot-scope="scope">
-            <p>{{scope.row.num* scope.row.oneprice}}</p>
+            <p>{{scope.row.num* scope.row.oneprice | allFilter}}</p>
           </template>
         </el-table-column>
         <el-table-column
@@ -684,6 +684,12 @@ export default {
       return this.$format1(val * 1000);
     }
   },
+  filters: {
+    allFilter(val) {
+      val = val.toFixed(2);
+      return val;
+    }
+  }
 }
 </script>
 

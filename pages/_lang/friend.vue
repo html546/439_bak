@@ -140,24 +140,28 @@
               <el-input
                 name="pass1"
                 v-model="pass1"
+                show-password
               ></el-input>
             </el-form-item>
             <el-form-item :label="$t('friend.pass1c')">
               <el-input
                 name="pass1c"
                 v-model="pass1c"
+                show-password
               ></el-input>
             </el-form-item>
             <el-form-item :label="$t('friend.pass2')">
               <el-input
                 name="pass2"
                 v-model="pass2"
+                show-password
               ></el-input>
             </el-form-item>
             <el-form-item :label="$t('friend.pass2c')">
               <el-input
                 name="pass2c"
                 v-model="pass2c"
+                show-password
               ></el-input>
             </el-form-item>
             <el-form-item>
@@ -212,7 +216,7 @@ export default {
       name: this.$t('friend.getcode'),
       mobile_code: '',
       statetype: 1,
-      isActive: true,
+      isActive: false,
       qrcode: '',
     }
   },
@@ -360,6 +364,9 @@ export default {
     },
     onclose1() {
       this.getPage(this.statetype);
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
     },
     handleActive() {
       this.isActive = false;

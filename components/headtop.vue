@@ -132,7 +132,7 @@
                 style="float:right;"
               >
                 <template slot="title">
-                  {{$t('links.lorr')}}
+                  {{$t('links.login')}}
                 </template>
                 <el-menu-item index="7-1">
                   <nuxt-link :to="$i18n.path('login')">

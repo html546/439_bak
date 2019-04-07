@@ -21,6 +21,7 @@
               v-model="mode"
               style="width:100%;"
               @change="handleChange"
+              :placeholder="$t('activate.select')"
             >
               <el-option
                 :label="$t('activate.register')"

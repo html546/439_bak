@@ -31,6 +31,7 @@
               value-key="money"
               @change="handleChange"
               v-model="balance1"
+              :placeholder="$t('reinvestment.select1')"
             >
               <el-option
                 v-for="(item,index) in finance"
