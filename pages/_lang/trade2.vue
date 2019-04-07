@@ -81,7 +81,7 @@
           :label="$t('trade2.fee')"
         ></el-table-column>
         <el-table-column
-          prop="usdtprice"
+          prop="remitmoney"
           :label="$t('trade2.pay')"
         ></el-table-column>
         <el-table-column
@@ -164,45 +164,33 @@
               :readonly="true"
             ></el-input>
           </el-form-item>
-          <el-form-item
-            :label="$t('trade2.saller_address')"
-            v-if="saleuser"
-          >
+          <el-form-item :label="$t('trade2.saller_address')">
             <el-input
               v-model="saleuser.usdtaddress"
               :readonly="true"
             ></el-input>
           </el-form-item>
-          <el-form-item
-            :label="$t('trade2.buyer_address')"
-            v-else-if="buyuser"
-          >
-            <el-input
-              v-model="buyuser.usdt_address"
-              :readonly="true"
-            ></el-input>
-          </el-form-item>
-          <!-- <el-form-item :label="$t('trade2.bank')">
-            <el-input
-              v-model="form.bank_name"
-              :readonly="true"
-            ></el-input>
-          </el-form-item>
-          <el-form-item :label="$t('trade2.banknumber')">
-            <el-input
-              v-model="form.bank_number"
-              :readonly="true"
-            ></el-input>
-          </el-form-item>
-          <el-form-item :label="$t('trade2.accountname')">
-            <el-input
-              v-model="form.bank_username"
-              :readonly="true"
-            ></el-input>
-          </el-form-item> -->
           <el-form-item :label="$t('trade2.buyer1')">
             <el-input
               v-model="form.username"
+              :readonly="true"
+            ></el-input>
+          </el-form-item>
+          <el-form-item :label="$t('trade2.buyer_address')">
+            <el-input
+              v-model="buyuser.usdtaddress"
+              :readonly="true"
+            ></el-input>
+          </el-form-item>
+          <el-form-item :label="$t('trade2.type')">
+            <el-input
+              v-model="ordertype"
+              :readonly="true"
+            ></el-input>
+          </el-form-item>
+          <el-form-item label="手机号">
+            <el-input
+              v-model="tel"
               :readonly="true"
             ></el-input>
           </el-form-item>
@@ -218,11 +206,68 @@
               :readonly="true"
             ></el-input>
           </el-form-item>
+          <el-form-item :label="$t('trade2.pay')">
+            <el-input
+              v-model="form.remitmoney"
+              :readonly="true"
+            ></el-input>
+          </el-form-item>
+          <el-form-item :label="$t('trade2.state')">
+            <template>
+              <div>
+                <el-input
+                  v-if="state == 0"
+                  :readonly="true"
+                  :value="$t('trade2.unpaid')"
+                />
+                <el-input
+                  v-else-if="state == 1"
+                  :readonly="true"
+                  :value="$t('trade2.paid')"
+                />
+                <el-input
+                  v-else-if="state == 2"
+                  :readonly="true"
+                  :value="$t('trade2.completed')"
+                />
+                <el-input
+                  v-else-if="state == 3"
+                  :readonly="true"
+                  :value="$t('trade2.rescinded')"
+                />
+                <el-input
+                  v-else-if="state == 4"
+                  :readonly="true"
+                  :value="$t('trade2.Arbitration')"
+                />
+                <el-input
+                  v-else-if="state == 5"
+                  :readonly="true"
+                  :value="$t('trade2.seller')"
+                />
+                <el-input
+                  v-else-if="state == 6"
+                  :readonly="true"
+                  :value="$t('trade2.buyer')"
+                />
+              </div>
+            </template>
+          </el-form-item>
           <el-form-item :label="$t('trade2.buytime')">
             <el-input
               v-model="buytime"
               :readonly="true"
             ></el-input>
+          </el-form-item>
+          <el-form-item
+            label="凭证"
+            v-if="buydata"
+          >
+            <img
+              :src="buydata"
+              style="max-width:100%;max-height:500px;"
+              alt=""
+            >
           </el-form-item>
         </el-form>
       </el-dialog>
@@ -409,6 +454,10 @@ export default {
           }
         ]
       },
+      state: '',
+      tel: '',
+      ordertype: '',
+      buydata: ''
     }
   },
   created() {
@@ -489,12 +538,18 @@ export default {
         sessionid: this.$store.state.message.sessionid,
         id: scope.row.id
       }).then(res => {
+        console.log(res);
+        this.saleuser = res.data.data.saleuser;
+        this.buyuser = res.data.data.buyuser;
+        this.state = res.data.data.state;
+        this.ordertype = res.data.data.ordertype;
+        this.buydata = res.data.data.buydata;
         if (scope.row.state == 0 && scope.row.username == this.$store.state.message.username) {
-          this.saleuser = res.data.data.saleuser;
+          this.tel = res.data.data.saleuser.mobile_phone;
         } else if (scope.row.state == 1 && scope.row.saleusername == this.$store.state.message.username) {
-          this.buyuser = res.data.data.buyuser;
+          this.tel = res.data.data.buyuser.mobile_phone;
         } else if (scope.row.state == 4 && scope.row.username == this.$store.state.message.username) {
-          this.saleuser = res.data.data.saleuser;
+          this.tel = res.data.data.saleuser.mobile_phone;
         }
       }).catch(err => {
         console.log(err);

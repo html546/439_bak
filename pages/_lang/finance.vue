@@ -132,7 +132,9 @@ export default {
 .finance_btn .el-button {
   margin: 10px 0;
 }
-.box-card {
+.box-card1,
+.box-card2,
+.box-card3 {
   color: #fff;
 }
 .box-card1 .el-button,
