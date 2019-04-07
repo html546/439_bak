@@ -80,6 +80,7 @@
     "loading": "拼命加載中"
   },
   "trade2": {
+    "tel":"手機號",
     "detail": "交易明細",
     "number": "用戶名",
     "type": "類型",

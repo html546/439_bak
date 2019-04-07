@@ -80,6 +80,7 @@
     "loading": "Desperately loading"
   },
   "trade2": {
+    "tel": "Phone number",
     "detail": "Transaction details",
     "number": "username",
     "type": "type",

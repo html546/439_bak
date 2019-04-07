@@ -188,7 +188,7 @@
               :readonly="true"
             ></el-input>
           </el-form-item>
-          <el-form-item label="手机号">
+          <el-form-item :label="$t('trade2.tel')">
             <el-input
               v-model="tel"
               :readonly="true"
@@ -260,7 +260,7 @@
             ></el-input>
           </el-form-item>
           <el-form-item
-            label="凭证"
+            :label="$t('trade2.voucher')"
             v-if="buydata"
           >
             <img
