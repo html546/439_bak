@@ -20,7 +20,7 @@
                   type="text"
                   style="float:right;padding:3px 0;"
                   @click="dialogShow(index+1)"
-                >跳转</el-button>
+                >{{$t('finance.jump')}}</el-button>
               </div>
               <div>{{item.balance}}</div>
             </el-card>
@@ -135,7 +135,9 @@ export default {
 .box-card {
   color: #fff;
 }
-.box-card .el-button {
+.box-card1 .el-button,
+.box-card2 .el-button,
+.box-card3 .el-button {
   color: #fff;
 }
 .box-card1 {

@@ -186,7 +186,7 @@
     "price": "USDT Real time price",
     "money": "Re-investment amount",
     "select": "Choose a reinvestment method",
-    "select1":"Please choose",
+    "select1": "Please choose",
     "register": "Full registration",
     "combine": "Combined registration",
     "submit": "Submit now"
@@ -226,6 +226,7 @@
     "activate": "Activate A/C",
     "cash": "Cash A/C",
     "register": "Registration A/C",
+    "jump": "Jump",
     "skip": "Jump hint",
     "view": "Details",
     "transfer": "Transfer",

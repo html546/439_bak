@@ -226,6 +226,7 @@
     "activate": "激活賬戶",
     "cash": "現金賬戶",
     "register": "註冊賬戶",
+    "jump": "跳转",
     "skip": "跳轉提示",
     "view": "查看詳情",
     "transfer": "轉賬",
