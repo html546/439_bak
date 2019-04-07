@@ -12,15 +12,7 @@
             :model="form"
             style="width:660px;margin:0 auto;"
           >
-            <el-form-item
-              :label="$t('trade3.fee')"
-              v-show="fee"
-            >
-              <el-input
-                v-model="form.fee"
-                :readonly="true"
-              ></el-input>
-            </el-form-item>
+
             <el-form-item :label="$t('trade3.mode')">
               <el-select
                 v-model="form.tradetype"
@@ -37,6 +29,15 @@
                   value="2"
                 ></el-option>
               </el-select>
+            </el-form-item>
+            <el-form-item
+              :label="$t('trade3.fee')"
+              v-show="fee"
+            >
+              <el-input
+                v-model="form.fee"
+                :readonly="true"
+              ></el-input>
             </el-form-item>
             <!-- <el-form-item :label="$t('trade3.pay')">
               <el-select
