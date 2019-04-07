@@ -12,7 +12,10 @@
             :model="form"
             style="width:660px;margin:0 auto;"
           >
-            <el-form-item :label="$t('trade3.fee')">
+            <el-form-item
+              :label="$t('trade3.fee')"
+              v-show="fee"
+            >
               <el-input
                 v-model="form.fee"
                 :readonly="true"
@@ -56,7 +59,10 @@
               </el-select>
             </el-form-item> -->
             <el-form-item :label="$t('trade3.price')">
-              <el-input v-model="form.price"></el-input>
+              <el-input
+                v-model="form.price"
+                :readonly="true"
+              ></el-input>
             </el-form-item>
             <el-form-item :label="$t('trade3.num')">
               <el-input v-model="form.num"></el-input>
@@ -94,25 +100,42 @@ export default {
         num: '',
         pass2: '',
       },
+      fee: ''
     }
   },
   middleware: "auth",
   created() {
     this.getFee();
+    this.getPrice();
   },
   methods: {
+    getPrice() {
+      axios.post('/api/trade/getprice', {
+        userid: this.$store.state.message.userid,
+        sessionid: this.$store.state.message.sessionid
+      }).then(res => {
+        this.form.price = res.data.data.price.usdtprized;
+      }).catch(err => {
+        console.log(err);
+      })
+    },
     getFee() {
       axios.post('/api/trade/getFee', {
         userid: this.$store.state.message.userid,
         sessionid: this.$store.state.message.sessionid
       }).then(res => {
-        this.form.fee = res.data.data.tax + '%';
+        this.form.fee = res.data.data.tax;
       }).catch(err => {
         console.log(err);
       })
     },
     handleChange(e) {
       console.log(e);
+      if (e == 1) {
+        this.fee = true;
+      } else if (e == 2) {
+        this.fee = false;
+      }
     },
     handleHangOut() {
       axios.post('/api/trade/start', {

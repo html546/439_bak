@@ -63,12 +63,12 @@ export default {
   height: 40px;
   line-height: 40px;
   text-align: center;
-  border-bottom: 1px solid #a5d1ec;
+  border-bottom: 1px solid #6f9feb;
   color: #ffffff;
 }
 
 #tdcolor1 {
-  background-color: #1bbc9d;
+  background-color: #6f9feb;
 }
 
 #tdcolor2 {
@@ -113,7 +113,7 @@ export default {
   line-height: 40px;
   text-align: center;
   border-bottom: 1px solid #a5d1ec;
-  background-color: #1bbc9d;
+  background-color: #6f9feb;
 }
 
 .la5 {
@@ -147,6 +147,6 @@ export default {
 }
 
 .hengxian {
-  background-color: #003399;
+  background-color: #6f9feb;
 }
 </style>
