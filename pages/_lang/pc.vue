@@ -14,7 +14,11 @@
               >
               <div class="download_android_right">
                 <p>{{$t('home.android')}}</p>
-                <el-button round>{{$t('home.download_now')}}</el-button>
+                <el-button round>
+                  <a href="https://fir.im/9vtl">
+                    {{$t('home.download_now')}}
+                  </a>
+                </el-button>
               </div>
             </div>
           </el-col>
@@ -26,7 +30,11 @@
               >
               <div class="download_android_right">
                 <p>{{$t('home.ios')}}</p>
-                <el-button round>{{$t('home.download_now')}}</el-button>
+                <el-button round>
+                  <a href="https://fir.im/9vtl">
+                    {{$t('home.download_now')}}
+                  </a>
+                </el-button>
               </div>
             </div>
           </el-col>
@@ -128,11 +136,16 @@ export default {
   text-align: center;
   padding: 12px 6px;
 }
+.download_android_right .el-button a {
+  color: #258ffc;
+}
 .download_android_right .el-button:hover {
   background: #258ffc;
   color: #fff;
 }
-
+.download_android_right .el-button:hover a {
+  color: #fff;
+}
 .download_row {
   height: 100%;
 }
