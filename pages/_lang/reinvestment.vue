@@ -14,6 +14,7 @@
               v-model="mode"
               :placeholder="$t('reinvestment.select')"
               style="width:100%;"
+              @change="handleSelectChange"
             >
               <el-option
                 value="1"
@@ -25,25 +26,15 @@
               ></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item :label="$t('reinvestment.type')">
-            <el-select
-              style="width:100%;"
-              value-key="money"
-              @change="handleChange"
-              v-model="balance1"
-              :placeholder="$t('reinvestment.select1')"
-            >
-              <el-option
-                v-for="(item,index) in finance"
-                :key="index"
-                :label="item.name"
-                :value="index"
-              ></el-option>
-            </el-select>
-          </el-form-item>
           <el-form-item :label="$t('reinvestment.balance')">
             <el-input
-              v-model="balance"
+              v-model="balance1"
+              :readonly="true"
+            ></el-input>
+          </el-form-item>
+          <el-form-item :label="$t('reinvestment.balance3')">
+            <el-input
+              v-model="balance3"
               :readonly="true"
             ></el-input>
           </el-form-item>
@@ -59,6 +50,20 @@
               :readonly="true"
             ></el-input>
           </el-form-item>
+          <template v-if="mode2">
+            <el-form-item :label="$t('reinvestment.balance1_1')">
+              <el-input
+                v-model="lv1money"
+                :readonly="true"
+              ></el-input>
+            </el-form-item>
+            <el-form-item :label="$t('reinvestment.balance3_1')">
+              <el-input
+                v-model="lv3money"
+                :disabled="lv3disabled"
+              ></el-input>
+            </el-form-item>
+          </template>
           <el-button
             type="primary"
             class="submit_btn"
@@ -80,13 +85,26 @@ export default {
       bd_money: '',
       price: '',
       finance: '',
-      balance: '',
-      balance1: ''
+      balance1: '',
+      balance3: '',
+      lv1money: '',
+      lv3money: '',
+      mode2: false,
+      lv3disabled: false
     }
   },
   middleware: "auth",
   created() {
     this.getData();
+  },
+  watch: {
+    lv3money(val) {
+      if (val <= this.bd_money) {
+        this.lv1money = ((this.bd_money - val) * 7 / this.price).toFixed(2);
+      } else {
+        this.lv3money = this.bd_money;
+      }
+    }
   },
   methods: {
     getData() {
@@ -98,23 +116,32 @@ export default {
         this.bd_money = res.data.data.salenode.default;
         this.price = res.data.data.price;
         this.finance = res.data.data.finance;
+        this.balance1 = res.data.data.finance[0].money;
+        this.balance2 = res.data.data.finance[1].money;
+        this.balance3 = res.data.data.finance[2].money;
+        this.lv1money = res.data.data.jh2;
+        this.lv3money = this.bd_money * 90 / 100;
       }).catch(err => {
         console.log(err);
       })
     },
-    handleChange(val) {
-      this.finance.forEach((item, index) => {
-        if (index == val) {
-          this.balance = item.money;
-        }
-      })
+    handleSelectChange(e) {
+      console.log(e);
+      if (e == 2) {
+        this.mode2 = true;
+      } else {
+        this.mode2 = false;
+      }
     },
     handleSubmit() {
       axios.post('/api/member/salesave', {
         userid: this.$store.state.message.userid,
         sessionid: this.$store.state.message.sessionid,
         regtype: this.mode,
-        bd_money: this.bd_money
+        bd_money: this.bd_money,
+        lv1money: this.lv1money,
+        lv3money: this.lv3money,
+        price: this.price
       }).then(res => {
         console.log(res);
         if (res.data.status == 1) {
@@ -137,11 +164,11 @@ export default {
       })
     },
     onclose() {
-      // this.getData();
+      this.getData();
       this.mode = '';
       this.money = '';
-      this.balance = '';
-      this.balance1 = '';
+      this.lv1money = '';
+      this.lv3money = '';
     }
   },
 }
