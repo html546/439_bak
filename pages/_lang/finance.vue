@@ -1,19 +1,33 @@
 <template>
   <div class="finance">
-    <div class="finance_btn">
-      <el-button
-        type="danger"
-        @click="dialogShow(1)"
-      >{{$t('finance.activate')}}</el-button>
-      <el-button
-        type="warning"
-        @click="dialogShow(2)"
-      >{{$t('finance.cash')}}</el-button>
-      <el-button
-        type="success"
-        @click="dialogShow(3)"
-      >{{$t('finance.register')}}</el-button>
-    </div>
+    <el-row :gutter="10">
+      <template>
+        <div
+          v-for="(item,index) in wallet"
+          :key="index"
+        >
+          <el-col :span="8">
+            <el-card
+              class="box-card"
+              :class="getClass(index)"
+            >
+              <div
+                slot="header"
+                class="clearfix"
+              >
+                <span>{{item.wallet_name}}</span>
+                <el-button
+                  type="text"
+                  style="float:right;padding:3px 0;"
+                  @click="dialogShow(index+1)"
+                >跳转</el-button>
+              </div>
+              <div>{{item.balance}}</div>
+            </el-card>
+          </el-col>
+        </div>
+      </template>
+    </el-row>
     <el-dialog
       :title="$t('finance.skip')"
       :visible.sync="centerDialogVisible"
@@ -55,13 +69,35 @@ export default {
       transfer: false,
       recharge: false,
       link: '',
-      link1: ''
+      link1: '',
+      wallet: []
     }
   },
   middleware: "auth",
   created() {
+    this.getWallet();
   },
   methods: {
+    getWallet() {
+      axios.post('/api/finance/getUserWallet', {
+        userid: this.$store.state.message.userid,
+        sessionid: this.$store.state.message.sessionid
+      }).then(res => {
+        console.log(res);
+        this.wallet = res.data.data;
+      }).catch(err => {
+        console.log(err);
+      })
+    },
+    getClass(index) {
+      if (index === 0) {
+        return 'box-card1';
+      } else if (index === 1) {
+        return 'box-card2';
+      } else {
+        return 'box-card3';
+      }
+    },
     dialogShow(type) {
       this.centerDialogVisible = true;
       this.link = this.$i18n.path(`pass/${type}`);
@@ -95,5 +131,23 @@ export default {
 }
 .finance_btn .el-button {
   margin: 10px 0;
+}
+.box-card {
+  color: #fff;
+}
+.box-card .el-button {
+  color: #fff;
+}
+.box-card1 {
+  background: url("../../assets/finance1.png") no-repeat center center;
+  background-size: cover;
+}
+.box-card2 {
+  background: url("../../assets/finance2.png") no-repeat center center;
+  background-size: cover;
+}
+.box-card3 {
+  background: url("../../assets/finance3.png") no-repeat center center;
+  background-size: cover;
 }
 </style>

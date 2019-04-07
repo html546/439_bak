@@ -97,17 +97,17 @@ export default {
     handlePrevClick(val) {
       this.loading = true;
       this.getPage(val);
-      this.$store.state.commit('SET_FINANCE', val);
+      this.$store.commit('SET_FINANCE', val);
     },
     handleNextClick(val) {
       this.loading = true;
       this.getPage(val);
-      this.$store.state.commit('SET_FINANCE', val);
+      this.$store.commit('SET_FINANCE', val);
     },
     handleChange(val) {
       this.loading = true;
       this.getPage(val);
-      this.$store.state.commit('SET_FINANCE', val);
+      this.$store.commit('SET_FINANCE', val);
     },
     timefilter(val) {
       return this.$format1(val * 1000);

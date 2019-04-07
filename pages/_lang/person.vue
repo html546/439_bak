@@ -281,27 +281,27 @@ export default {
     },
     handlePrev(val) {
       this.getNotice(val);
-      this.$store.state.commit('SET_NOTICE', val);
+      this.$store.commit('SET_NOTICE', val);
     },
     handleNext(val) {
       this.getNotice(val);
-      this.$store.state.commit('SET_NOTICE', val);
+      this.$store.commit('SET_NOTICE', val);
     },
     handleChange(val) {
       this.getNotice(val);
-      this.$store.state.commit('SET_NOTICE', val);
+      this.$store.commit('SET_NOTICE', val);
     },
     handlePrev1(val) {
       this.getMails(val);
-      this.$store.state.commit('SET_EMAIL', val);
+      this.$store.commit('SET_EMAIL', val);
     },
     handleNext1(val) {
       this.getMails(val);
-      this.$store.state.commit('SET_EMAIL', val);
+      this.$store.commit('SET_EMAIL', val);
     },
     handleChange1(val) {
       this.getMails(val);
-      this.$store.state.commit('SET_EMAIL', val);
+      this.$store.commit('SET_EMAIL', val);
     }
   },
   mounted() {

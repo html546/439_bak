@@ -176,17 +176,17 @@ export default {
     handlePrev(val) {
       this.loading = true;
       this.getList(val);
-      this.$store.state.commit('SET_MANAGE', val);
+      this.$store.commit('SET_MANAGE', val);
     },
     handleNext(val) {
       this.loading = true;
       this.getList(val);
-      this.$store.state.commit('SET_MANAGE', val);
+      this.$store.commit('SET_MANAGE', val);
     },
     handleChange(val) {
       this.loading = true;
       this.getList(val);
-      this.$store.state.commit('SET_MANAGE', val);
+      this.$store.commit('SET_MANAGE', val);
     },
     handleCheck(scope) {
       axios.post('/api/member/saleView', {
