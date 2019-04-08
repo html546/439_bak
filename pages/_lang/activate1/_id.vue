@@ -116,6 +116,7 @@ export default {
         this.price = res.data.data.price;
         this.memberInfo = res.data.data.memberInfo;
         this.reg_level_money = this.memberInfo.reg_level_money;
+        this.lv3money = (this.reg_level_money * 0.9).toFixed(2);
       }).catch(err => {
         console.log(err);
       })
