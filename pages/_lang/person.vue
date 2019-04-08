@@ -111,6 +111,15 @@
             <p>{{$t('person.finance')}}</p>
           </div>
         </nuxt-link>
+        <nuxt-link :to="$i18n.path('message')">
+          <div class="friend_item">
+            <img
+              src="~assets/message.png"
+              alt=""
+            >
+            <p>{{$t('person.message')}}</p>
+          </div>
+        </nuxt-link>
       </div>
     </div>
     <div class="list">

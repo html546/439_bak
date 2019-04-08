@@ -279,7 +279,7 @@
       >
         <el-form
           :model="form1"
-          label-width="80px"
+          label-width="150px"
         >
           <el-form-item :label="$t('trade2.sellid')">
             <el-input

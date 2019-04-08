@@ -80,7 +80,7 @@
     "loading": "拼命加載中"
   },
   "trade2": {
-    "tel":"手機號",
+    "tel": "手機號",
     "detail": "交易明細",
     "number": "用戶名",
     "type": "類型",
@@ -173,7 +173,8 @@
     "mailbox": "我的郵箱",
     "release": "已釋放",
     "release1": "待釋放",
-    "all": "總量"
+    "all": "總量",
+    "message": "个人资料"
   },
   "reinvestment": {
     "mode": "復投方式",

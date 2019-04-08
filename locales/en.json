@@ -173,7 +173,8 @@
     "mailbox": "my mail box",
     "release": "Released",
     "release1": "Releasable",
-    "all": "Total"
+    "all": "Total",
+    "message": "Personal information"
   },
   "reinvestment": {
     "mode": "Reinvestment method",
