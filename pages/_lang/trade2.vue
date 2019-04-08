@@ -81,7 +81,7 @@
           :label="$t('trade2.fee')"
         ></el-table-column>
         <el-table-column
-          prop="remitmoney"
+          prop="usdtprice"
           :label="$t('trade2.pay')"
         ></el-table-column>
         <el-table-column
