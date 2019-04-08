@@ -129,7 +129,7 @@
   },
   "trade3": {
     "hangout": "Transaction submission",
-    "fee": "Commission(%)",
+    "fee": "Commission",
     "mode": "Hangout mode",
     "pay": "payment method",
     "price": "Hang up price",
