@@ -177,7 +177,6 @@ export default {
     onclose() {
       this.form.tradetype = '';
       this.form.paytype = '';
-      this.form.price = '';
       this.form.num = '';
       this.form.pass2 = '';
     },

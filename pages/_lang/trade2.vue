@@ -472,7 +472,7 @@ export default {
   },
   computed: {
     money() {
-      return this.form1.num * this.form1.oneprice;
+      return (this.form1.num * 6.3 / this.form1.usdtprice).toFixed(2);
     }
   },
   methods: {
