@@ -30,14 +30,14 @@
           prop="oneprice"
           :label="$t('trade2.oneprice')"
         ></el-table-column>
-        <el-table-column
+        <!-- <el-table-column
           prop="all"
           :label="$t('trade2.total')"
         >
           <template slot-scope="scope">
-            <p>{{scope.row.num* scope.row.oneprice | allFilter}}</p>
+            <p>{{scope.row.num* scope.row.oneprice*6.3/scope.row.usdtprice | allFilter}}</p>
           </template>
-        </el-table-column>
+        </el-table-column> -->
         <el-table-column
           prop="state"
           :label="$t('trade2.state')"
@@ -547,12 +547,17 @@ export default {
         this.state = res.data.data.state;
         this.ordertype = res.data.data.ordertype;
         this.buydata = res.data.data.buydata;
-        if (scope.row.state == 0 && scope.row.username == this.$store.state.message.username) {
+        /* if (scope.row.state == 0 && scope.row.username == this.$store.state.message.username) {
           this.tel = res.data.data.saleuser.mobile_phone;
         } else if (scope.row.state == 1 && scope.row.saleusername == this.$store.state.message.username) {
           this.tel = res.data.data.buyuser.mobile_phone;
         } else if (scope.row.state == 4 && scope.row.username == this.$store.state.message.username) {
           this.tel = res.data.data.saleuser.mobile_phone;
+        } */
+        if (scope.row.username == this.$store.state.message.username) {
+          this.tel = res.data.data.saleuser.mobile_phone;
+        } else if (scope.row.saleusername == this.$store.state.message.username) {
+          this.tel = res.data.data.buyuser.mobile_phone;
         }
       }).catch(err => {
         console.log(err);
