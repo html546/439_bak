@@ -72,7 +72,7 @@
                 type="danger"
                 v-if="scope.row.bd_state == '未确认'"
               >
-                <nuxt-link :to="$i18n.path(`activate1/${scope.row.id}`)">
+                <nuxt-link :to="$i18n.path(`activate1/${scope.row.userid}`)">
                   激活
                 </nuxt-link>
               </el-button>

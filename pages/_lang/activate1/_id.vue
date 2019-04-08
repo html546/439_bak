@@ -5,10 +5,24 @@
         <el-form label-width="140">
           <el-form-item :label="$t('activate.balance')">
             <el-input
-              v-model="balance"
+              v-model="balance1"
               :readonly="true"
             ></el-input>
           </el-form-item>
+          <template v-if="combine">
+            <el-form-item :label="$t('activate.balance2')">
+              <el-input
+                v-model="balance2"
+                :readonly="true"
+              ></el-input>
+            </el-form-item>
+            <el-form-item :label="$t('activate.balance3')">
+              <el-input
+                v-model="balance3"
+                :readonly="true"
+              ></el-input>
+            </el-form-item>
+          </template>
           <el-form-item :label="$t('activate.price')">
             <el-input
               v-model="price"
@@ -21,6 +35,7 @@
               v-model="mode"
               style="width:100%;"
               @change="handleChange"
+              :placeholder="$t('activate.select')"
             >
               <el-option
                 :label="$t('activate.register')"
@@ -32,6 +47,14 @@
               ></el-option>
             </el-select>
           </el-form-item>
+          <template v-if="combine">
+            <el-form-item :label="$t('activate.balance1_1')">
+              <el-input v-model="level"></el-input>
+            </el-form-item>
+            <el-form-item :label="$t('activate.balance3_1')">
+              <el-input v-model="lv3money"></el-input>
+            </el-form-item>
+          </template>
           <el-button
             type="primary"
             @click="handleSubmit"
@@ -49,18 +72,34 @@ export default {
   data() {
     return {
       balance: '',
+      balance2: '',
+      balance3: '',
+      combine: false,
+      lv1money: '',
+      lv3money: '',
       price: '',
       level: '',
       mode: '',
-      memberInfo: ''
+      memberInfo: '',
+      reg_level_money: ''
     }
   },
   middleware: "auth",
   created() {
     this.getPage();
   },
+  watch: {
+    lv3money(val) {
+      if (val <= Number(this.reg_level_money)) {
+        this.level = ((this.reg_level_money - val) * 7 / this.price).toFixed(2);
+      } else {
+        this.level = this.reg_level_money;
+      }
+    }
+  },
   methods: {
     getPage() {
+      console.log(this.$route.params.id);
       axios.post('/api/member/tmeconfirm', {
         userid: this.$store.state.message.userid,
         sessionid: this.$store.state.message.sessionid,
@@ -71,17 +110,23 @@ export default {
           this.$router.replace('/login');
         }
         console.log(res);
-        this.balance = res.data.data.financeinfo[0].money;
+        this.balance1 = res.data.data.financeinfo[0].money;
+        this.balance2 = res.data.data.financeinfo[1].money;
+        this.balance3 = res.data.data.financeinfo[2].money;
         this.price = res.data.data.price;
         this.memberInfo = res.data.data.memberInfo;
+        this.reg_level_money = this.memberInfo.reg_level_money;
       }).catch(err => {
         console.log(err);
       })
     },
     handleChange(val) {
+      console.log(this.mode);
       if (val == 1) {
+        this.combine = false;
         this.level = this.memberInfo.jh1;
       } else if (val == 2) {
+        this.combine = true;
         this.level = this.memberInfo.jh2;
       }
     },
@@ -90,6 +135,9 @@ export default {
         userid: this.$store.state.message.userid,
         sessionid: this.$store.state.message.sessionid,
         regtype: this.mode,
+        price: this.price,
+        lv1money: this.level,
+        lv3money: this.lv3money,
         ist: 2,
         saleid: this.$route.params.id
       }).then(res => {
@@ -114,8 +162,7 @@ export default {
       })
     },
     onclose() {
-      this.mode = '';
-      this.level = '';
+      this.lv3money = '';
     }
   },
 }
