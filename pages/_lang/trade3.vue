@@ -39,26 +39,6 @@
                 :readonly="true"
               ></el-input>
             </el-form-item>
-            <!-- <el-form-item :label="$t('trade3.pay')">
-              <el-select
-                v-model="form.paytype"
-                :placeholder="$t('trade3.pay_mode')"
-                style="width:100%;"
-              >
-                <el-option
-                  :label="$t('trade3.alipay')"
-                  value="1"
-                ></el-option>
-                <el-option
-                  :label="$t('trade3.wechat')"
-                  value="2"
-                ></el-option>
-                <el-option
-                  :label="$t('trade3.bank')"
-                  value="3"
-                ></el-option>
-              </el-select>
-            </el-form-item> -->
             <el-form-item :label="$t('trade3.price')">
               <el-input
                 v-model="form.price"
@@ -82,6 +62,64 @@
             </el-form-item>
           </el-form>
         </div>
+        <el-table
+          :data="tableData"
+          border
+          stripe
+          v-loading="loading"
+          :element-loading-text="$t('trade2.loading')"
+          element-loading-spinner="el-icon-loading"
+          element-loading-background="rgba(0, 0, 0, 0.8)"
+        >
+          <el-table-column
+            prop="time"
+            label="时间"
+          >
+            <template slot-scope="scope">
+              {{timefilter(scope.row.time)}}
+            </template>
+          </el-table-column>
+          <el-table-column
+            prop="num"
+            label="交易数量"
+          ></el-table-column>
+          <el-table-column
+            prop="oneprice"
+            label="单价"
+          ></el-table-column>
+          <el-table-column
+            prop="state"
+            label="状态"
+          >
+            <template slot-scope="scope">
+              {{scope.row.state==0?'未完成':'已完成'}}
+            </template>
+          </el-table-column>
+          <el-table-column
+            prop="tradetype"
+            label="交易方式"
+          ></el-table-column>
+          <el-table-column label="操作">
+            <template slot-scope="scope">
+              <el-button
+                type="danger"
+                @click="handleCancel(scope.row.id)"
+              >撤销</el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+        <el-pagination
+          layout="prev,pager,next"
+          :page-count="allPage"
+          class="pagination"
+          style="text-align:center"
+          background
+          @prev-click="handlePrevClick"
+          @current-change="handleChange1"
+          @next-click="handleNextClick"
+          :current-page="currentPage"
+        >
+        </el-pagination>
       </el-card>
     </div>
   </div>
@@ -101,15 +139,80 @@ export default {
         num: '',
         pass2: '',
       },
-      fee: ''
+      fee: '',
+      currentPage: 1,
+      tableData: '',
+      allPage: '',
+      loading: true
     }
   },
   middleware: "auth",
   created() {
     this.getFee();
     this.getPrice();
+    var page = this.$store.state.page4;
+    console.log(page);
+    if (page) {
+      this.currentPage = Number(page);
+      this.getPage(page);
+    } else {
+      this.getPage(this.currentPage);
+    }
   },
   methods: {
+    getPage(page) {
+      axios.post('/api/trade/tradeinfo', {
+        userid: this.$store.state.message.userid,
+        sessionid: this.$store.state.message.sessionid,
+        page: page,
+      }).then(res => {
+        console.log(res);
+        if (res.data.status == 0) {
+          this.commit('clearMessage');
+          this.$router.replace('/login');
+        }
+        this.loading = false;
+        this.allPage = res.data.data.allPage;
+        this.tableData = res.data.data.trades;
+      }).catch(err => {
+        console.log(err);
+      })
+    },
+    handlePrevClick(val) {
+      this.loading = true;
+      this.getPage(val);
+      this.$store.commit('SET_PAGE4', val);
+    },
+    handleNextClick(val) {
+      this.loading = true;
+      this.getPage(val);
+      this.$store.commit('SET_PAGE4', val);
+    },
+    handleChange1(val) {
+      this.loading = true;
+      this.getPage(val);
+      this.$store.commit('SET_PAGE4', val);
+    },
+    handleCancel(id) {
+      axios.post('/api/trade/canceltrade', {
+        userid: this.$store.state.message.userid,
+        sessionid: this.$store.state.message.sessionid,
+        id: id
+      }).then(res => {
+        console.log(res);
+        this.$message({
+          type: "success",
+          message: res.data.msg,
+          showClose: true,
+          onClose: this.onclose1()
+        })
+      }).catch(err => {
+        console.log(err);
+      })
+    },
+    onclose1() {
+      this.getPage(this.$store.state.page4);
+    },
     getPrice() {
       axios.post('/api/trade/getprice', {
         userid: this.$store.state.message.userid,
@@ -180,6 +283,9 @@ export default {
       this.form.num = '';
       this.form.pass2 = '';
     },
+    timefilter(val) {
+      return this.$format1(val * 1000);
+    }
   },
 }
 </script>
@@ -188,5 +294,8 @@ export default {
 .hang_out {
   width: 1200px;
   margin: 50px auto 120px;
+}
+.pagination {
+  margin-top: 20px;
 }
 </style>
