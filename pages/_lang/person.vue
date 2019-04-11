@@ -120,6 +120,15 @@
             <p>{{$t('person.message')}}</p>
           </div>
         </nuxt-link>
+        <nuxt-link :to="$i18n.path('editmessage')">
+          <div class="friend_item">
+            <img
+              src="~assets/edit.png"
+              alt=""
+            >
+            <p>{{$t('person.editmessage')}}</p>
+          </div>
+        </nuxt-link>
       </div>
     </div>
     <div class="list">
@@ -381,7 +390,7 @@ export default {
   justify-content: space-around;
 }
 .friend_item {
-  width: 260px;
+  width: 220px;
   height: 250px;
   border: 1px solid #fff;
   border-radius: 20px;
@@ -401,7 +410,7 @@ export default {
 }
 .friend_item p {
   color: #fff;
-  font-size: 24px;
+  font-size: 20px;
 }
 .list {
   width: 100%;

@@ -183,7 +183,8 @@
     "release": "Released",
     "release1": "Releasable",
     "all": "Total",
-    "message": "Personal information"
+    "message": "Personal information",
+    "editmessage": "Modify data"
   },
   "reinvestment": {
     "mode": "Reinvestment method",
@@ -297,5 +298,9 @@
   },
   "message": {
     "message": "personal information"
+  },
+  "editmessage":{
+    "message":"Modify data",
+    "confirm":"Confirm the changes"
   }
 }

@@ -150,7 +150,7 @@
     "transaction": "交易方式",
     "operate": "操作",
     "cancel": "撤銷",
-    "undone":"未完成",
+    "undone": "未完成",
     "completed": "已完成"
   },
   "friend": {
@@ -183,7 +183,8 @@
     "release": "已釋放",
     "release1": "待釋放",
     "all": "總量",
-    "message": "个人资料"
+    "message": "个人资料",
+    "editmessage": "修改资料"
   },
   "reinvestment": {
     "mode": "復投方式",
@@ -297,5 +298,9 @@
   },
   "message": {
     "message": "个人资料"
+  },
+  "editmessage": {
+    "message": "修改资料",
+    "confirm": "确认修改"
   }
 }
