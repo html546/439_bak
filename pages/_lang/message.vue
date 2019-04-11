@@ -39,6 +39,7 @@ export default {
       form: []
     }
   },
+  middleware: "auth",
   created() {
     this.getPage();
   },

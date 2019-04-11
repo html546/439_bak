@@ -60,6 +60,7 @@ export default {
       editInfo: ''
     }
   },
+  middleware: "auth",
   created() {
     this.getPage();
   },

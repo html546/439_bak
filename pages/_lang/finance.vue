@@ -16,51 +16,48 @@
                 class="clearfix"
               >
                 <span>{{item.wallet_name}}</span>
+                <nuxt-link :to="$i18n.path(`pass/${index+1}`)">
+                  <el-button
+                    type="text"
+                    style="float:right;padding:3px 0;"
+                  >
+                    {{$t('finance.view')}}
+                  </el-button>
+                </nuxt-link>
+              </div>
+              <div>
+                {{item.balance}}
+                <template v-if="index==0">
+                  <el-button
+                    type="text"
+                    style="float:right;padding:0"
+                  >
+                    <nuxt-link :to="$i18n.path('activate')">
+                      {{$t('finance.recharge')}}
+                    </nuxt-link>
+                  </el-button>
+                  <el-button
+                    type="text"
+                    style="float:right;padding:0"
+                  >
+                    提币
+                  </el-button>
+                </template>
                 <el-button
                   type="text"
-                  style="float:right;padding:3px 0;"
-                  @click="dialogShow(index+1)"
+                  v-if="index==2"
+                  style="float:right;padding:0"
                 >
-                  <!-- {{$t('finance.jump')}} -->
-                  详情
+                  <nuxt-link :to="$i18n.path(`transfer/${index+1}`)">
+                    {{$t('finance.transfer')}}
+                  </nuxt-link>
                 </el-button>
               </div>
-              <div>{{item.balance}}</div>
             </el-card>
           </el-col>
         </div>
       </template>
     </el-row>
-    <!-- <el-dialog
-      :title="$t('finance.skip')"
-      :visible.sync="centerDialogVisible"
-    >
-      <nuxt-link :to="link">
-        <el-button type="primary">{{$t('finance.view')}}</el-button>
-      </nuxt-link>
-      <el-button
-        type="danger"
-        v-if="transfer"
-      >
-        <nuxt-link :to="link1">
-          {{$t('finance.transfer')}}
-        </nuxt-link>
-      </el-button>
-      <el-button
-        type="success"
-        v-if="recharge"
-      >
-        <nuxt-link :to="$i18n.path('activate')">
-          {{$t('finance.recharge')}}
-        </nuxt-link>
-      </el-button>
-      <span
-        slot="footer"
-        class="dialog-footer"
-      >
-        <el-button @click="centerDialogVisible= false">{{$t('finance.cancel')}}</el-button>
-      </span>
-    </el-dialog> -->
   </div>
 </template>
 <script>
@@ -68,11 +65,6 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      centerDialogVisible: false,
-      transfer: false,
-      recharge: false,
-      link: '',
-      link1: '',
       wallet: []
     }
   },
@@ -105,21 +97,6 @@ export default {
         return 'box-card3';
       }
     },
-    dialogShow(type) {
-      this.centerDialogVisible = true;
-      this.link = this.$i18n.path(`pass/${type}`);
-      if (type == 1) {
-        this.recharge = true;
-        this.transfer = false;
-      } else if (type == 3) {
-        this.transfer = true;
-        this.recharge = false;
-        this.link1 = this.$i18n.path(`transfer/${type}`);
-      } else {
-        this.recharge = false;
-        this.transfer = false;
-      }
-    }
   },
 }
 </script>
