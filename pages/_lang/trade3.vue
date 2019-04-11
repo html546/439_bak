@@ -73,7 +73,7 @@
         >
           <el-table-column
             prop="time"
-            label="时间"
+            :label="$t('trade3.time')"
           >
             <template slot-scope="scope">
               {{timefilter(scope.row.time)}}
@@ -81,30 +81,30 @@
           </el-table-column>
           <el-table-column
             prop="num"
-            label="交易数量"
+            :label="$t('trade3.num')"
           ></el-table-column>
           <el-table-column
             prop="oneprice"
-            label="单价"
+            :label="$t('trade3.oneprice')"
           ></el-table-column>
           <el-table-column
             prop="state"
-            label="状态"
+            :label="$t('trade3.state')"
           >
             <template slot-scope="scope">
-              {{scope.row.state==0?'未完成':'已完成'}}
+              {{scope.row.state==0?$t('trade3.undone'):$t('trade3.completed')}}
             </template>
           </el-table-column>
           <el-table-column
             prop="tradetype"
-            label="交易方式"
+            :label="$t('trade3.transaction')"
           ></el-table-column>
-          <el-table-column label="操作">
+          <el-table-column :label="$t('trade3.operate')">
             <template slot-scope="scope">
               <el-button
                 type="danger"
                 @click="handleCancel(scope.row.id)"
-              >撤销</el-button>
+              >{{$t('trade3.cancel')}}</el-button>
             </template>
           </el-table-column>
         </el-table>

@@ -142,7 +142,16 @@
     "pay_mode": "請選擇付款方式",
     "alipay": "支付寶",
     "wechat": "微信",
-    "bank": "銀行匯款"
+    "bank": "銀行匯款",
+    "time": "掛單時間",
+    "num": "交易數量",
+    "oneprice": "單價",
+    "state": "狀態",
+    "transaction": "交易方式",
+    "operate": "操作",
+    "cancel": "撤銷",
+    "undone":"未完成",
+    "completed": "已完成"
   },
   "friend": {
     "register": "會員註冊",

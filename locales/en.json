@@ -142,7 +142,16 @@
     "pay_mode": "Please choose the mode of payment",
     "alipay": "Alipay",
     "wechat": "WeChat",
-    "bank": "Bank remittance"
+    "bank": "Bank remittance",
+    "time": "Pending time",
+    "num": "Number of transactions",
+    "oneprice": "Unit price",
+    "state": "Status",
+    "transaction": "Means of transaction",
+    "operate": "Operate",
+    "cancel": "Cancel",
+    "undone": "Undone",
+    "completed": "Completion"
   },
   "friend": {
     "register": "Member registration",
