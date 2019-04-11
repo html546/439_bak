@@ -38,9 +38,11 @@
                   </el-button>
                   <el-button
                     type="text"
-                    style="float:right;padding:0"
+                    style="float:right;padding:0;margin-right:10px;"
                   >
-                    提币
+                    <nuxt-link :to="$i18n.path('coin')">
+                      提币
+                    </nuxt-link>
                   </el-button>
                 </template>
                 <el-button
