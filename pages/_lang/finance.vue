@@ -25,12 +25,12 @@
                   </el-button>
                 </nuxt-link>
               </div>
-              <div>
-                {{item.balance}}
+              <div style="overflow:hidden;">
+                <p style="float:left;">{{item.balance}}</p>
                 <template v-if="index==0">
                   <el-button
                     type="text"
-                    style="float:right;padding:0"
+                    style="padding:0;float:right;"
                   >
                     <nuxt-link :to="$i18n.path('activate')">
                       {{$t('finance.recharge')}}
@@ -38,7 +38,7 @@
                   </el-button>
                   <el-button
                     type="text"
-                    style="float:right;padding:0;margin-right:10px;"
+                    style="padding:0;float:right;margin-right:10px;"
                   >
                     <nuxt-link :to="$i18n.path('coin')">
                       提币
