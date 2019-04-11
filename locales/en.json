@@ -285,5 +285,8 @@
     "status": "Order Status",
     "operate": "Operate",
     "check": "View"
+  },
+  "message": {
+    "message": "personal information"
   }
 }

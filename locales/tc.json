@@ -285,5 +285,8 @@
     "status": "訂單狀態",
     "operate": "操作",
     "check": "查看"
+  },
+  "message": {
+    "message": "个人资料"
   }
 }

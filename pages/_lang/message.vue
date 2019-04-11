@@ -5,7 +5,7 @@
         slot="header"
         class="clearfix"
       >
-        <span>会员资料</span>
+        <span>{{$t('message.message')}}</span>
       </div>
       <div>
         <el-form
