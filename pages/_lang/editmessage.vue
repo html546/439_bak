@@ -6,13 +6,17 @@
         class="clearfix"
       >
         <span>{{$t('editmessage.message')}}</span>
+        <el-button
+          type="text"
+          @click="handleSubmit"
+          style="float:right;padding:3px 0;"
+        >{{$t('editmessage.confirm')}}</el-button>
       </div>
       <div>
         <el-form
           ref="form"
           label-width="100px"
           style="width:800px;margin:0 auto;"
-          @submit.native="handleSubmit"
         >
           <template v-for="(val,key) in editInfo">
             <el-form-item
@@ -41,17 +45,12 @@
               </el-select>
             </el-form-item>
           </template>
-          <el-button
-            type="danger"
-            native-type="submit"
-            class="confirmBtn"
-          >{{$t('editmessage.confirm')}}</el-button>
+
         </el-form>
       </div>
     </el-card>
   </div>
 </template>
-
 <script>
 import axios from 'axios';
 export default {
@@ -77,14 +76,13 @@ export default {
       })
     },
     handleSubmit(e) {
-      e.preventDefault();
-      console.log(e);
       let formData = new FormData();
       formData.append('userid', this.$store.state.message.userid);
       formData.append('sessionid', this.$store.state.message.sessionid);
       formData.append('username', this.$store.state.message.username);
-      for (let i = 0; i < e.target.length; i++) {
-        formData.append(e.target[i].name, e.target[i].value);
+      console.log(this.$refs.form);
+      for (let i = 0; i < this.$refs.form.$el.length; i++) {
+        formData.append(this.$refs.form.$el[i].name, this.$refs.form.$el[i].value);
       }
       axios.post('/api/member/saveprofile', formData).then(res => {
         console.log(res);
@@ -110,9 +108,8 @@ export default {
 </script>
 
 <style >
-.confirmBtn {
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
+.message-card {
+  width: 1200px;
+  margin: 30px auto;
 }
 </style>

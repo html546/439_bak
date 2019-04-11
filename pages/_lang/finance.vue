@@ -20,7 +20,10 @@
                   type="text"
                   style="float:right;padding:3px 0;"
                   @click="dialogShow(index+1)"
-                >{{$t('finance.jump')}}</el-button>
+                >
+                  <!-- {{$t('finance.jump')}} -->
+                  详情
+                </el-button>
               </div>
               <div>{{item.balance}}</div>
             </el-card>
@@ -28,7 +31,7 @@
         </div>
       </template>
     </el-row>
-    <el-dialog
+    <!-- <el-dialog
       :title="$t('finance.skip')"
       :visible.sync="centerDialogVisible"
     >
@@ -57,7 +60,7 @@
       >
         <el-button @click="centerDialogVisible= false">{{$t('finance.cancel')}}</el-button>
       </span>
-    </el-dialog>
+    </el-dialog> -->
   </div>
 </template>
 <script>
