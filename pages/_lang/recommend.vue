@@ -23,6 +23,11 @@ export default {
     this.getNetwork();
   },
   methods: {
+    onclose1() {
+      setTimeout(() => {
+        this.$router.replace('/login');
+      }, 3000);
+    },
     getNetwork() {
       axios.post('/api/net/recommendInWork', {
         userid: this.$store.state.message.userid,
@@ -31,7 +36,11 @@ export default {
         console.log(res);
         if (res.data.status == 0) {
           this.$store.commit('clearMessage');
-          this.$router.replace('/login');
+          this.$message({
+            type: 'error',
+            message: res.data.msg,
+            onClose: this.onclose1()
+          })
         }
         document.getElementById('network').innerHTML = res.data.data.htmlstr;
       }).catch(err => {

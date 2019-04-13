@@ -44,6 +44,11 @@ export default {
     this.getPage();
   },
   methods: {
+    onclose1() {
+      setTimeout(() => {
+        this.$router.replace('/login');
+      }, 3000);
+    },
     getPage() {
       axios.post('/api/member/memberProfile', {
         userid: this.$store.state.message.userid,
@@ -52,7 +57,11 @@ export default {
         console.log(res);
         if (res.data.status == 0) {
           this.$store.commit('clearMessage');
-          this.$router.replace('/login');
+          this.$message({
+            type: 'error',
+            message: res.data.msg,
+            onClose: this.onclose1()
+          })
         }
         this.form = res.data.data;
       }).catch(err => {

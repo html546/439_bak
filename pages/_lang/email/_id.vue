@@ -38,6 +38,11 @@ export default {
   },
   middleware: 'auth',
   methods: {
+    onclose() {
+      setTimeout(() => {
+        this.$router.replace('/login');
+      }, 3000);
+    },
     getDetail() {
       axios.post('/api/notice/viewdetails', {
         userid: this.$store.state.message.userid,
@@ -46,7 +51,11 @@ export default {
       }).then(res => {
         if (res.data.status == 0) {
           this.$store.commit('clearMessage');
-          this.$router.replace('/login');
+          this.$message({
+            type: 'error',
+            message: res.data.msg,
+            onClose: this.onclose()
+          })
         }
         console.log(res);
         if (res.data.status == 1) {

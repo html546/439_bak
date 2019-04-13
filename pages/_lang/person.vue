@@ -257,6 +257,11 @@ export default {
     this.getltc();
   },
   methods: {
+    onclose1() {
+      setTimeout(() => {
+        this.$router.replace('/login');
+      }, 3000);
+    },
     getNotice(page) {
       axios.post('/api/notice/notice', {
         userid: this.$store.state.message.userid,
@@ -265,7 +270,11 @@ export default {
       }).then(res => {
         if (res.data.status == 0) {
           this.$store.commit('clearMessage');
-          this.$router.replace('/login');
+          this.$message({
+            type: 'error',
+            message: res.data.msg,
+            onClose: this.onclose1()
+          })
         }
         console.log(res);
         this.notices = res.data.data.notices;

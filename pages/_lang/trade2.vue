@@ -476,6 +476,11 @@ export default {
     }
   },
   methods: {
+    onclose5() {
+      setTimeout(() => {
+        this.$router.replace('/login');
+      }, 3000);
+    },
     getPage(page) {
       axios.post('/api/trade/buyinfo', {
         userid: this.$store.state.message.userid,
@@ -484,7 +489,11 @@ export default {
       }).then(res => {
         if (res.data.status == 0) {
           this.commit('clearMessage');
-          this.$router.replace('/login');
+          this.$message({
+            type: 'error',
+            message: res.data.msg,
+            onClose: this.onclose5()
+          })
         }
         this.detailData = res.data.data.trade_buy;
         this.loading = false;

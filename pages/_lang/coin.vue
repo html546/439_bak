@@ -101,6 +101,11 @@ export default {
     this.getPage();
   },
   methods: {
+    onclose1() {
+      setTimeout(() => {
+        this.$router.replace('/login');
+      }, 3000);
+    },
     getPage() {
       axios.post('/api/finance/getFee', {
         userid: this.$store.state.message.userid,
@@ -109,7 +114,11 @@ export default {
         console.log(res);
         if (res.data.status == 0) {
           this.$store.commit('clearMessage');
-          this.$router.replace('/login');
+          this.$message({
+            type: 'error',
+            message: res.data.msg,
+            onClose: this.onclose1()
+          })
         }
         this.typename = res.data.data.typename;
         this.coin_balance = res.data.data.money;

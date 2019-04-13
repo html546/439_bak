@@ -167,6 +167,11 @@ export default {
   mounted() {
   },
   methods: {
+    onclose1() {
+      setTimeout(() => {
+        this.$router.replace('/login');
+      }, 3000);
+    },
     getData(page, type) {
       console.log(this.$store.state);
       // var message = JSON.parse(localStorage.getItem('store'));
@@ -180,7 +185,11 @@ export default {
       }).then(res => {
         if (res.data.status == 0) {
           this.$store.commit('clearMessage');
-          this.$router.replace('/login');
+          this.$message({
+            type: 'error',
+            message: res.data.msg,
+            onClose: this.onclose1()
+          })
         } else {
           if (type == 1) {
             this.loading1 = false;

@@ -79,6 +79,11 @@ export default {
     }
   },
   methods: {
+    onclose() {
+      setTimeout(() => {
+        this.$router.replace('/login');
+      }, 3000);
+    },
     getPage(page) {
       axios.post('/api/finance/info', {
         userid: this.$store.state.message.userid,
@@ -88,7 +93,11 @@ export default {
       }).then(res => {
         if (res.data.status == 0) {
           this.$store.commit('clearMessage');
-          this.$router.replace('/login');
+          this.$message({
+            type: 'error',
+            message: res.data.msg,
+            onClose: this.onclose()
+          })
         }
         console.log(res);
         this.loading = false;

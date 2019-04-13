@@ -230,6 +230,11 @@ export default {
   mounted() {
   },
   methods: {
+    onclose2() {
+      setTimeout(() => {
+        this.$router.replace('/login');
+      }, 3000);
+    },
     getQRCode() {
       axios.post('/api/member/qrCode', {
         userid: this.$store.state.message.userid,
@@ -237,7 +242,11 @@ export default {
       }).then(res => {
         if (res.data.status == 0) {
           this.$store.commit('clearMessage');
-          this.$router.replace('/login');
+          this.$message({
+            type: 'error',
+            message: res.data.msg,
+            onClose: this.onclose1()
+          })
         }
         console.log(res, 666666);
         this.qrcode = res.data.data;
@@ -273,7 +282,11 @@ export default {
       }).then(res => {
         if (res.data.status == 0) {
           this.$store.commit('clearMessage');
-          this.$router.replace('/login');
+          this.$message({
+            type: 'error',
+            message: res.data.msg,
+            onClose: this.onclose2()
+          })
         }
         console.log(res);
         this.username = res.data.data.defaultname;

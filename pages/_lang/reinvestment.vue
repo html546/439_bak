@@ -107,6 +107,11 @@ export default {
     }
   },
   methods: {
+    onclose1() {
+      setTimeout(() => {
+        this.$router.replace('/login');
+      }, 3000);
+    },
     getData() {
       axios.post('/api/member/sale', {
         userid: this.$store.state.message.userid,
@@ -114,7 +119,11 @@ export default {
       }).then(res => {
         if (res.data.status == 0) {
           this.$store.commit('clearMessage');
-          this.$router.replace('/login');
+          this.$message({
+            type: 'error',
+            message: res.data.msg,
+            onClose: this.onclose1()
+          })
         }
         console.log(res);
         this.bd_money = res.data.data.salenode.default;
