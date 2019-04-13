@@ -37,6 +37,12 @@
                 ></el-input>
                 <p class="coin_balance">*{{$t('coin.balance')}}:{{coin_balance}}</p>
               </el-form-item>
+              <el-form-item :label="$t('coin.real_money')">
+                <el-input
+                  v-model="real_money"
+                  :readonly="true"
+                ></el-input>
+              </el-form-item>
               <el-form-item
                 :label="$t('coin.address')"
                 v-if="coin_type == 1"
@@ -102,6 +108,13 @@ export default {
   middleware: "auth",
   created() {
     this.getPage();
+  },
+  computed: {
+    real_money() {
+      if (this.money) {
+        return this.money - this.fee;
+      }
+    }
   },
   methods: {
     onclose1() {
