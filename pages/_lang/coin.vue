@@ -29,6 +29,7 @@
               <el-form-item
                 :label="$t('coin.money')"
                 style="margin-bottom:0;"
+                required
               >
                 <el-input
                   v-model="money"
@@ -39,6 +40,7 @@
               <el-form-item
                 :label="$t('coin.address')"
                 v-if="coin_type == 1"
+                required
               >
                 <el-input
                   v-model="address"
@@ -48,6 +50,7 @@
               <el-form-item
                 :label="$t('coin.number')"
                 v-else-if="coin_type==2"
+                required
               >
                 <el-input
                   v-model="username"
