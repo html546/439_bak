@@ -243,7 +243,8 @@
     "view": "查看詳情",
     "transfer": "轉賬",
     "recharge": "充值",
-    "cancel": "取消"
+    "cancel": "取消",
+    "coin": "提幣"
   },
   "finance_detail": {
     "time": "變動時間",
@@ -297,10 +298,26 @@
     "check": "查看"
   },
   "message": {
-    "message": "个人资料"
+    "message": "個人資料"
   },
   "editmessage": {
-    "message": "修改资料",
-    "confirm": "确认修改"
+    "message": "修改資料",
+    "confirm": "確認修改"
+  },
+  "coin": {
+    "coin": "提幣",
+    "type": "提幣類型",
+    "money": "提幣金額",
+    "coin_money": "請輸入提幣金額",
+    "select_type": "請選擇提幣類型",
+    "balance": "賬戶餘額",
+    "address": "提幣地址",
+    "coin_address": "請輸入提幣地址",
+    "number": "會員編號",
+    "coin_number": "請輸入轉入人編號",
+    "fee": "手續費",
+    "tips": "溫馨提示",
+    "tips_content": "普通提幣到賬時間一般為兩個小時以內，若遇到網絡擁堵，會適當延長時間。提幣到本系統其他賬戶，為實時到賬。",
+    "submit": "立即提交"
   }
 }

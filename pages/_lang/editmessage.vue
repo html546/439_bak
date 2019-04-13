@@ -71,6 +71,10 @@ export default {
         sessionid: this.$store.state.message.sessionid
       }).then(res => {
         console.log(res);
+        if (res.data.status == 0) {
+          this.$store.commit('clearMessage');
+          this.$router.replace('/login');
+        }
         this.editInfo = res.data.data.editinfo;
       }).catch(err => {
         console.log(err);

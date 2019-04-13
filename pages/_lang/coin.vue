@@ -5,15 +5,15 @@
         slot="header"
         class="clearfix"
       >
-        <span>提币</span>
+        <span>{{$t('coin.coin')}}</span>
       </div>
       <div class="box">
         <el-row :gutter="150">
           <el-col :span="12">
-            <el-form label-width="80px">
-              <el-form-item label="提币类型">
+            <el-form label-width="100px">
+              <el-form-item :label="$t('coin.type')">
                 <el-select
-                  placeholder="请选择提币类型"
+                  :placeholder="$t('coin.select_type')"
                   style="width:100%;"
                   v-model="coin_type"
                   @change="handleChange"
@@ -27,34 +27,34 @@
                 </el-select>
               </el-form-item>
               <el-form-item
-                label="提币金额"
+                :label="$t('coin.money')"
                 style="margin-bottom:0;"
               >
                 <el-input
                   v-model="money"
-                  placeholder="请输入提币金额"
+                  :placeholder="$t('coin.coin_money')"
                 ></el-input>
-                <p class="coin_balance">*账户余额:{{coin_balance}}</p>
+                <p class="coin_balance">*{{$t('coin.balance')}}:{{coin_balance}}</p>
               </el-form-item>
               <el-form-item
-                label="提币地址"
+                :label="$t('coin.address')"
                 v-if="coin_type == 1"
               >
                 <el-input
                   v-model="address"
-                  placeholder="请输入提币地址"
+                  :placeholder="$t('coin.coin_address')"
                 ></el-input>
               </el-form-item>
               <el-form-item
-                label="会员编号"
+                :label="$t('coin.number')"
                 v-else-if="coin_type==2"
               >
                 <el-input
                   v-model="username"
-                  placeholder="请输入转入人编号"
+                  :placeholder="$t('coin.coin_number')"
                 ></el-input>
               </el-form-item>
-              <el-form-item label="手续费">
+              <el-form-item :label="$t('coin.fee')">
                 <el-input
                   v-model="fee"
                   :readonly="true"
@@ -64,13 +64,13 @@
                 type="primary"
                 class="coin_btn"
                 @click="handleSubmit"
-              >确认提交</el-button>
+              >{{$t('coin.submit')}}</el-button>
             </el-form>
           </el-col>
           <el-col :span="12">
             <div class="coin_tips">
-              <h5 class="title">温馨提示：</h5>
-              <p>普通提币到账时间一般为两个小时以内，若遇到网络拥堵，会适当延长时间。提币到本系统其他账户，为实时到账。</p>
+              <h5 class="title">{{$t('coin.tips')}}：</h5>
+              <p>{{$t('coin.tips_content')}}</p>
             </div>
           </el-col>
         </el-row>
@@ -106,6 +106,10 @@ export default {
         sessionid: this.$store.state.message.sessionid
       }).then(res => {
         console.log(res);
+        if (res.data.status == 0) {
+          this.$store.commit('clearMessage');
+          this.$router.replace('/login');
+        }
         this.typename = res.data.data.typename;
         this.coin_balance = res.data.data.money;
         this.fee = res.data.data.fee;

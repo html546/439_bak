@@ -243,7 +243,8 @@
     "view": "Details",
     "transfer": "Transfer",
     "recharge": "Recharge",
-    "cancel": "cancel"
+    "cancel": "cancel",
+    "coin": "withdraw money"
   },
   "finance_detail": {
     "time": "Change time",
@@ -299,8 +300,24 @@
   "message": {
     "message": "personal information"
   },
-  "editmessage":{
-    "message":"Modify data",
-    "confirm":"Confirm the changes"
+  "editmessage": {
+    "message": "Modify data",
+    "confirm": "Confirm the changes"
+  },
+  "coin": {
+    "coin": "withdraw money",
+    "type": "Type",
+    "money": "Money",
+    "coin_money": "Please enter the amount of the coin",
+    "select_type": "Please select the type of coin",
+    "balance": "Account Balance",
+    "address": "Address",
+    "coin_address": "Please enter the coin address",
+    "number": "Member number",
+    "coin_number": "Please enter the transferee number",
+    "fee": "Commission",
+    "tips": "tips",
+    "tips_content": "Ordinary bills are usually available within two hours, and if the network is congested, the time will be extended. To withdraw money to other accounts in this system, it will arrive in real time.",
+    "submit": "Submit now"
   }
 }

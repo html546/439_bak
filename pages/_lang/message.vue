@@ -50,6 +50,10 @@ export default {
         sessionid: this.$store.state.message.sessionid
       }).then(res => {
         console.log(res);
+        if (res.data.status == 0) {
+          this.$store.commit('clearMessage');
+          this.$router.replace('/login');
+        }
         this.form = res.data.data;
       }).catch(err => {
         console.log(err);

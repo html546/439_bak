@@ -41,7 +41,7 @@
                     style="padding:0;float:right;margin-right:10px;"
                   >
                     <nuxt-link :to="$i18n.path('coin')">
-                      提币
+                      {{$t('finance.coin')}}
                     </nuxt-link>
                   </el-button>
                 </template>
