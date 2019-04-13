@@ -92,7 +92,8 @@ export default {
       coin_type: '',
       coin_balance: '',
       transfers: [],
-      username: ''
+      username: '',
+      fee1: ''
     }
   },
   middleware: "auth",
@@ -112,7 +113,7 @@ export default {
         }
         this.typename = res.data.data.typename;
         this.coin_balance = res.data.data.money;
-        this.fee = res.data.data.fee;
+        this.fee1 = res.data.data.fee;
         this.transfers = res.data.data.transfers;
       }).catch(err => {
         console.log(err);
@@ -121,6 +122,7 @@ export default {
     handleChange(e) {
       console.log(e);
       if (e == 1) {
+        this.fee = this.fee1;
         return false;
       } else if (e == 2) {
         this.fee = this.transfers.servicecharge;
