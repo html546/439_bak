@@ -1,26 +1,221 @@
 <template>
   <div>
-    <h1>提币</h1>
+    <el-card class="message-card">
+      <div
+        slot="header"
+        class="clearfix"
+      >
+        <span>提币</span>
+      </div>
+      <div class="box">
+        <el-row :gutter="150">
+          <el-col :span="12">
+            <el-form label-width="80px">
+              <el-form-item label="提币类型">
+                <el-select
+                  placeholder="请选择提币类型"
+                  style="width:100%;"
+                  v-model="coin_type"
+                  @change="handleChange"
+                >
+                  <el-option
+                    v-for="(val,key) in typename"
+                    :key="key"
+                    :value="key"
+                    :label="val"
+                  >{{val}}</el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item
+                label="提币金额"
+                style="margin-bottom:0;"
+              >
+                <el-input
+                  v-model="money"
+                  placeholder="请输入提币金额"
+                ></el-input>
+                <p class="coin_balance">*账户余额:{{coin_balance}}</p>
+              </el-form-item>
+              <el-form-item
+                label="提币地址"
+                v-if="coin_type == 1"
+              >
+                <el-input
+                  v-model="address"
+                  placeholder="请输入提币地址"
+                ></el-input>
+              </el-form-item>
+              <el-form-item
+                label="会员编号"
+                v-else-if="coin_type==2"
+              >
+                <el-input
+                  v-model="username"
+                  placeholder="请输入转入人编号"
+                ></el-input>
+              </el-form-item>
+              <el-form-item label="手续费">
+                <el-input
+                  v-model="fee"
+                  :readonly="true"
+                ></el-input>
+              </el-form-item>
+              <el-button
+                type="primary"
+                class="coin_btn"
+                @click="handleSubmit"
+              >确认提交</el-button>
+            </el-form>
+          </el-col>
+          <el-col :span="12">
+            <div class="coin_tips">
+              <h5 class="title">温馨提示：</h5>
+              <p>普通提币到账时间一般为两个小时以内，若遇到网络拥堵，会适当延长时间。提币到本系统其他账户，为实时到账。</p>
+            </div>
+          </el-col>
+        </el-row>
+      </div>
+    </el-card>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: '',
   data() {
     return {
-
+      money: '',
+      address: '',
+      fee: '',
+      typename: '',
+      coin_type: '',
+      coin_balance: '',
+      transfers: [],
+      username: ''
     }
   },
   middleware: "auth",
   created() {
-
+    this.getPage();
   },
   methods: {
-
+    getPage() {
+      axios.post('/api/finance/getFee', {
+        userid: this.$store.state.message.userid,
+        sessionid: this.$store.state.message.sessionid
+      }).then(res => {
+        console.log(res);
+        this.typename = res.data.data.typename;
+        this.coin_balance = res.data.data.money;
+        this.fee = res.data.data.fee;
+        this.transfers = res.data.data.transfers;
+      }).catch(err => {
+        console.log(err);
+      })
+    },
+    handleChange(e) {
+      console.log(e);
+      if (e == 1) {
+        return false;
+      } else if (e == 2) {
+        this.fee = this.transfers.servicecharge;
+      }
+    },
+    onclose() {
+      this.coin_type = '';
+      this.money = '';
+      this.address = '';
+      this.username = '';
+      this.getPage();
+    },
+    handleSubmit() {
+      if (this.coin_type == 1) {
+        axios.post('/api/finance/withdrawsave', {
+          userid: this.$store.state.message.userid,
+          sessionid: this.$store.state.message.sessionid,
+          type: 1,
+          tixian_money: this.money,
+          istype: 1,
+          okex_user_wallet_addr: this.address
+        }).then(res => {
+          console.log(res);
+          if (res.data.status == 1) {
+            this.$message({
+              type: 'success',
+              showClose: true,
+              message: res.data.msg,
+              onClose: this.onclose()
+            })
+          } else {
+            this.$message({
+              type: 'error',
+              message: res.data.msg
+            })
+          }
+        }).catch(err => {
+          console.log(err);
+        })
+      } else if (this.coin_type == 2) {
+        axios.post('/api/finance/transfers', {
+          userid: this.$store.state.message.userid,
+          sessionid: this.$store.state.message.sessionid,
+          banktype: 1,
+          username: this.username,
+          money: this.money,
+          givekey: 0,
+          istype: 2
+        }).then(res => {
+          console.log(res);
+          if (res.data.status == 1) {
+            this.$message({
+              type: 'success',
+              showClose: true,
+              message: res.data.msg,
+              onClose: this.onclose()
+            })
+          } else {
+            this.$message({
+              type: 'error',
+              message: res.data.msg
+            })
+          }
+        }).catch(err => {
+          console.log(err);
+        })
+      }
+    }
   },
 }
 </script>
 
 <style>
+.message-card {
+  width: 1200px;
+  margin: 30px auto;
+}
+.message-card .box {
+  width: 900px;
+  margin: 0 auto;
+}
+.coin_btn {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.coin_tips {
+  margin-top: 30px;
+}
+.coin_tips .title {
+  font-size: 16px;
+  line-height: 40px;
+}
+.coin_tips p {
+  line-height: 40px;
+}
+.coin_balance {
+  float: right;
+  line-height: 22px;
+  color: #949eff;
+}
 </style>
