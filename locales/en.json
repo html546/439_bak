@@ -244,7 +244,8 @@
     "transfer": "Transfer",
     "recharge": "Recharge",
     "cancel": "cancel",
-    "coin": "withdraw money"
+    "coin": "withdraw money",
+    "recharge_coin": "Recharge currency"
   },
   "finance_detail": {
     "time": "Change time",

@@ -50,7 +50,7 @@
                     style="padding:0;float:right;"
                   >
                     <nuxt-link :to="$i18n.path('recharge_coin')">
-                      充币
+                      {{$t('finance.recharge_coin')}}
                     </nuxt-link>
                   </el-button>
                 </template>

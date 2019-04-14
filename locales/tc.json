@@ -244,7 +244,8 @@
     "transfer": "轉賬",
     "recharge": "充值",
     "cancel": "取消",
-    "coin": "提幣"
+    "coin": "提幣",
+    "recharge_coin": "充幣"
   },
   "finance_detail": {
     "time": "變動時間",
