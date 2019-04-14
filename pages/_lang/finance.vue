@@ -28,6 +28,7 @@
               <div style="overflow:hidden;">
                 <p style="float:left;">{{item.balance}}</p>
                 <template v-if="index==0">
+
                   <el-button
                     type="text"
                     style="padding:0;float:right;"
@@ -42,6 +43,14 @@
                   >
                     <nuxt-link :to="$i18n.path('coin')">
                       {{$t('finance.coin')}}
+                    </nuxt-link>
+                  </el-button>
+                  <el-button
+                    type="text"
+                    style="padding:0;float:right;"
+                  >
+                    <nuxt-link :to="$i18n.path('recharge_coin')">
+                      充币
                     </nuxt-link>
                   </el-button>
                 </template>

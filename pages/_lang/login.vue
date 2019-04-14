@@ -77,7 +77,8 @@ export default {
             await that.$store.dispatch('setMessage', {
               userid: res.data.result.id,
               sessionid: res.data.result.sessionid,
-              username: res.data.result.username
+              username: res.data.result.username,
+              usdt: res.data.result.usdt
             });
             return res.data.msg;
           }

@@ -320,5 +320,10 @@
     "tips_content": "Ordinary bills are usually available within two hours, and if the network is congested, the time will be extended. To withdraw money to other accounts in this system, it will arrive in real time.",
     "submit": "Submit now",
     "real_money":"Actual arrival amount"
+  },
+  "recharge_coin":{
+    "recharge":"Currency address",
+    "copy":"Click to copy",
+    "success":"Successful currency"
   }
 }
