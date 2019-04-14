@@ -325,6 +325,6 @@
   "recharge_coin": {
     "recharge": "充幣地址",
     "copy": "一鍵複製",
-    "success": "充幣成功"
+    "success": "複製成功"
   }
 }
