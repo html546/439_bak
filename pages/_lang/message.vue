@@ -10,7 +10,7 @@
       <div>
         <el-form
           ref="form"
-          label-width="100px"
+          label-width="120px"
           style="width:800px;margin:0 auto;"
         >
           <template v-for="(item,index) in form">
