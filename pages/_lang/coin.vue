@@ -1,10 +1,7 @@
 <template>
   <div>
     <el-card class="message-card">
-      <div
-        slot="header"
-        class="clearfix"
-      >
+      <div slot="header" class="clearfix">
         <span>{{$t('coin.coin')}}</span>
       </div>
       <div class="box">
@@ -26,54 +23,26 @@
                   >{{val}}</el-option>
                 </el-select>
               </el-form-item>
-              <el-form-item
-                :label="$t('coin.money')"
-                style="margin-bottom:0;"
-                required
-              >
-                <el-input
-                  v-model="money"
-                  :placeholder="$t('coin.coin_money')"
-                ></el-input>
+              <el-form-item :label="$t('coin.money')" style="margin-bottom:0;" required>
+                <el-input v-model="money" :placeholder="$t('coin.coin_money')"></el-input>
                 <p class="coin_balance">*{{$t('coin.balance')}}:{{coin_balance}}</p>
               </el-form-item>
               <el-form-item :label="$t('coin.real_money')">
-                <el-input
-                  v-model="real_money"
-                  :readonly="true"
-                ></el-input>
+                <el-input v-model="real_money" :readonly="true"></el-input>
               </el-form-item>
-              <el-form-item
-                :label="$t('coin.address')"
-                v-if="coin_type == 1"
-                required
-              >
-                <el-input
-                  v-model="address"
-                  :placeholder="$t('coin.coin_address')"
-                ></el-input>
+              <el-form-item :label="$t('coin.address')" v-if="coin_type == 1" required>
+                <el-input v-model="address" :placeholder="$t('coin.coin_address')"></el-input>
               </el-form-item>
-              <el-form-item
-                :label="$t('coin.number')"
-                v-else-if="coin_type==2"
-                required
-              >
-                <el-input
-                  v-model="username"
-                  :placeholder="$t('coin.coin_number')"
-                ></el-input>
+              <el-form-item :label="$t('coin.number')" v-else-if="coin_type==2" required>
+                <el-input v-model="username" :placeholder="$t('coin.coin_number')"></el-input>
               </el-form-item>
               <el-form-item :label="$t('coin.fee')">
-                <el-input
-                  v-model="fee"
-                  :readonly="true"
-                ></el-input>
+                <el-input v-model="fee" :readonly="true"></el-input>
               </el-form-item>
-              <el-button
-                type="primary"
-                class="coin_btn"
-                @click="handleSubmit"
-              >{{$t('coin.submit')}}</el-button>
+              <el-form-item :label="$t('coin.pass2')" v-if="cashPass2 == 'true'">
+                <el-input v-model="pass2" show-password></el-input>
+              </el-form-item>
+              <el-button type="primary" class="coin_btn" @click="handleSubmit">{{$t('coin.submit')}}</el-button>
             </el-form>
           </el-col>
           <el-col :span="12">
@@ -89,21 +58,23 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
-  name: '',
+  name: "",
   data() {
     return {
-      money: '',
-      address: '',
-      fee: '',
-      typename: '',
-      coin_type: '',
-      coin_balance: '',
+      money: "",
+      address: "",
+      fee: "",
+      typename: "",
+      coin_type: "",
+      coin_balance: "",
       transfers: [],
-      username: '',
-      fee1: ''
-    }
+      username: "",
+      fee1: "",
+      pass2: "",
+      cashPass2: ""
+    };
   },
   middleware: "auth",
   created() {
@@ -111,7 +82,7 @@ export default {
   },
   computed: {
     real_money() {
-      if (!this.money || ((this.money - this.fee) < 0)) {
+      if (!this.money || this.money - this.fee < 0) {
         return 0;
       }
       return this.money - this.fee;
@@ -120,30 +91,34 @@ export default {
   methods: {
     onclose1() {
       setTimeout(() => {
-        this.$router.replace('/login');
+        this.$router.replace("/login");
       }, 3000);
     },
     getPage() {
-      axios.post('/api/finance/getFee', {
-        userid: this.$store.state.message.userid,
-        sessionid: this.$store.state.message.sessionid
-      }).then(res => {
-        console.log(res);
-        if (res.data.status == 0) {
-          this.$store.commit('clearMessage');
-          this.$message({
-            type: 'error',
-            message: res.data.msg,
-            onClose: this.onclose1()
-          })
-        }
-        this.typename = res.data.data.typename;
-        this.coin_balance = res.data.data.money;
-        this.fee1 = res.data.data.fee;
-        this.transfers = res.data.data.transfers;
-      }).catch(err => {
-        console.log(err);
-      })
+      axios
+        .post("/api/finance/getFee", {
+          userid: this.$store.state.message.userid,
+          sessionid: this.$store.state.message.sessionid
+        })
+        .then(res => {
+          console.log(res);
+          if (res.data.status == 0) {
+            this.$store.commit("clearMessage");
+            this.$message({
+              type: "error",
+              message: res.data.msg,
+              onClose: this.onclose1()
+            });
+          }
+          this.typename = res.data.data.typename;
+          this.coin_balance = res.data.data.money;
+          this.fee1 = res.data.data.fee;
+          this.transfers = res.data.data.transfers;
+          this.cashPass2 = res.data.data.cashPass2;
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
     handleChange(e) {
       console.log(e);
@@ -155,70 +130,78 @@ export default {
       }
     },
     onclose() {
-      this.coin_type = '';
-      this.money = '';
-      this.address = '';
-      this.username = '';
+      this.coin_type = "";
+      this.money = "";
+      this.address = "";
+      this.username = "";
       this.getPage();
     },
     handleSubmit() {
       if (this.coin_type == 1) {
-        axios.post('/api/finance/withdrawsave', {
-          userid: this.$store.state.message.userid,
-          sessionid: this.$store.state.message.sessionid,
-          type: 1,
-          tixian_money: this.money,
-          istype: 1,
-          okex_user_wallet_addr: this.address
-        }).then(res => {
-          console.log(res);
-          if (res.data.status == 1) {
-            this.$message({
-              type: 'success',
-              showClose: true,
-              message: res.data.msg,
-              onClose: this.onclose()
-            })
-          } else {
-            this.$message({
-              type: 'error',
-              message: res.data.msg
-            })
-          }
-        }).catch(err => {
-          console.log(err);
-        })
+        axios
+          .post("/api/finance/withdrawsave", {
+            userid: this.$store.state.message.userid,
+            sessionid: this.$store.state.message.sessionid,
+            type: 1,
+            tixian_money: this.money,
+            istype: 1,
+            okex_user_wallet_addr: this.address,
+            transferPass2: this.pass2
+          })
+          .then(res => {
+            console.log(res);
+            if (res.data.status == 1) {
+              this.$message({
+                type: "success",
+                showClose: true,
+                message: res.data.msg,
+                onClose: this.onclose()
+              });
+            } else {
+              this.$message({
+                type: "error",
+                message: res.data.msg
+              });
+            }
+          })
+          .catch(err => {
+            console.log(err);
+          });
       } else if (this.coin_type == 2) {
-        axios.post('/api/finance/transfers', {
-          userid: this.$store.state.message.userid,
-          sessionid: this.$store.state.message.sessionid,
-          banktype: 1,
-          username: this.username,
-          money: this.money,
-          givekey: 0,
-          istype: 2
-        }).then(res => {
-          console.log(res);
-          if (res.data.status == 1) {
-            this.$message({
-              type: 'success',
-              showClose: true,
-              message: res.data.msg,
-              onClose: this.onclose()
-            })
-          } else {
-            this.$message({
-              type: 'error',
-              message: res.data.msg
-            })
-          }
-        }).catch(err => {
-          console.log(err);
-        })
+        axios
+          .post("/api/finance/transfers", {
+            userid: this.$store.state.message.userid,
+            sessionid: this.$store.state.message.sessionid,
+            banktype: 1,
+            username: this.username,
+            money: this.money,
+            givekey: 0,
+            istype: 2,
+            transferPass2: this.pass2
+          })
+          .then(res => {
+            console.log(res);
+            if (res.data.status == 1) {
+              this.$message({
+                type: "success",
+                showClose: true,
+                message: res.data.msg,
+                onClose: this.onclose()
+              });
+            } else {
+              this.$message({
+                type: "error",
+                message: res.data.msg
+              });
+            }
+          })
+          .catch(err => {
+            console.log(err);
+          });
       }
     }
-  },
-}
+  }
+};
 </script>
 
 <style>
