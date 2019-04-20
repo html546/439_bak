@@ -1,33 +1,16 @@
 <template>
   <div>
     <el-card class="message-card">
-      <div
-        slot="header"
-        class="clearfix"
-      >
+      <div slot="header" class="clearfix">
         <span>{{$t('recharge_coin.recharge')}}</span>
       </div>
       <div class="box">
         <el-row>
-          <el-col
-            :span="8"
-            :offset="8"
-          >
-            <qrcode-vue
-              :value="value"
-              :size="size"
-              level="H"
-            ></qrcode-vue>
+          <el-col :span="8" :offset="8">
+            <qrcode-vue :value="value" :size="size" level="H"></qrcode-vue>
+            <p style="text-align:center;" ref="usdt">{{value}}</p>
+            <el-button type="primary" class="copy" @click="copy">{{$t('recharge_coin.copy')}}</el-button>
           </el-col>
-          <p
-            style="text-align:center;"
-            ref="usdt"
-          >{{value}}</p>
-          <el-button
-            type="primary"
-            class="copy"
-            @click="copy"
-          >{{$t('recharge_coin.copy')}}</el-button>
         </el-row>
       </div>
     </el-card>
@@ -35,8 +18,8 @@
 </template>
 
 <script>
-import axios from 'axios'
-import QrcodeVue from 'qrcode.vue'
+import axios from "axios";
+import QrcodeVue from "qrcode.vue";
 
 export default {
   components: {
@@ -46,29 +29,28 @@ export default {
     return {
       value: this.$store.state.message.usdt,
       size: 300
-    }
+    };
   },
-  created() {
-  },
+  created() {},
   methods: {
     copy() {
       console.log(this.$refs.usdt.innerText);
       let usdt = this.$refs.usdt.innerText;
-      let oInput = document.createElement('input');
+      let oInput = document.createElement("input");
       oInput.value = usdt;
       document.body.appendChild(oInput);
       oInput.select();
       document.execCommand("Copy");
       oInput.className = "oInput";
-      oInput.style.display = 'none';
+      oInput.style.display = "none";
       this.$message({
-        type: 'success',
-        message: this.$t('recharge_coin.success'),
+        type: "success",
+        message: this.$t("recharge_coin.success"),
         showClose: true
-      })
+      });
     }
-  },
-}
+  }
+};
 </script>
 <style>
 .message-card {
