@@ -142,7 +142,7 @@ export default {
           .post("/api/finance/withdrawsave", {
             userid: this.$store.state.message.userid,
             sessionid: this.$store.state.message.sessionid,
-            type: 1,
+            type: 4,
             tixian_money: this.money,
             istype: 1,
             okex_user_wallet_addr: this.address,
@@ -172,7 +172,7 @@ export default {
           .post("/api/finance/transfers", {
             userid: this.$store.state.message.userid,
             sessionid: this.$store.state.message.sessionid,
-            banktype: 1,
+            banktype: 4,
             username: this.username,
             money: this.money,
             givekey: 0,
