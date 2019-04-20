@@ -73,7 +73,8 @@ export default {
       username: "",
       fee1: "",
       pass2: "",
-      cashPass2: ""
+      cashPass2: "",
+      keys: ""
     };
   },
   middleware: "auth",
@@ -115,6 +116,7 @@ export default {
           this.fee1 = res.data.data.fee;
           this.transfers = res.data.data.transfers;
           this.cashPass2 = res.data.data.cashPass2;
+          this.keys = res.data.data.keys;
         })
         .catch(err => {
           console.log(err);
@@ -175,7 +177,7 @@ export default {
             banktype: 4,
             username: this.username,
             money: this.money,
-            givekey: 0,
+            givekey: this.keys,
             istype: 2,
             transferPass2: this.pass2
           })
