@@ -24,7 +24,7 @@
                     <nuxt-link :to="$i18n.path('recharge_coin')">{{$t('finance.recharge_coin')}}</nuxt-link>
                   </el-button>
                 </template>
-                <el-button type="text" v-if="index==2" style="float:right;padding:0">
+                <el-button type="text" style="float:right;padding:0">
                   <nuxt-link :to="$i18n.path(`transfer/${index+1}`)">{{$t('finance.transfer')}}</nuxt-link>
                 </el-button>
               </div>
