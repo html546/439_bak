@@ -159,7 +159,6 @@ export default {
           }
         });
       } else {
-        console.log(val);
         for (const key in this.transfers) {
           if (key == val) {
             this.form.minmoney = this.transfers[key].minmoney;

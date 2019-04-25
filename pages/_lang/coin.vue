@@ -89,6 +89,14 @@ export default {
       return this.money - this.fee;
     }
   },
+  watch: {
+    money(val) {
+      let pattern = /^[0-9]*$/g;
+      if (val.search(pattern) == -1) {
+        this.money = "";
+      }
+    }
+  },
   methods: {
     onclose1() {
       setTimeout(() => {
