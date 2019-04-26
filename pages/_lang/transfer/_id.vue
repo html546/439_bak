@@ -27,7 +27,7 @@
           <el-form-item :label="$t('transfer.number')" v-if="!form.isme">
             <el-input v-model="form.username"></el-input>
           </el-form-item>
-          <el-form-item :label="$t('transfer.mini')">
+          <!-- <el-form-item :label="$t('transfer.mini')">
             <el-input v-model="form.minmoney" :readonly="true"></el-input>
           </el-form-item>
           <el-form-item :label="$t('transfer.max')">
@@ -38,7 +38,7 @@
           </el-form-item>
           <el-form-item :label="$t('transfer.rate')">
             <el-input v-model="form.rate" :readonly="true"></el-input>
-          </el-form-item>
+          </el-form-item> -->
           <el-form-item :label="$t('transfer.charge')">
             <el-input v-model="form.fee" :readonly="true"></el-input>
           </el-form-item>

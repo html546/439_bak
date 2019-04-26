@@ -265,7 +265,7 @@
     "max": "Maximum transfer amount",
     "multiple": "Integer multiple",
     "rate": "Exchange rate",
-    "charge": "Commission",
+    "charge": "Commission(%)",
     "pass2": "Two password",
     "tel": "Tel. No.",
     "Captcha": "Character verification code",
