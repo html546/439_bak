@@ -328,5 +328,26 @@
     "recharge": "Currency address",
     "copy": "Click to copy",
     "success": "Successful copy"
+  },
+  "exchange": {
+    "exchange": "exchange",
+    "detail": "exchange details",
+    "cash": "Cash Account balance",
+    "price": "ETUT price",
+    "num": "exchange num",
+    "afternum": "num after exchange",
+    "formula": "exchange formula",
+    "pass2": "Two password",
+    "submit": "submit",
+    "formulaAll": "Converted Quantity = Converted Quantity * 6.3 / Current ETUT Price",
+    "number": "number"
+  },
+  "exchange_detail": {
+    "number": "number",
+    "num": "Number of convertible etuts",
+    "time": "exchange time",
+    "money": "exchange money",
+    "price": "ETUT price",
+    "formula": "exchange formula"
   }
 }

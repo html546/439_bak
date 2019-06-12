@@ -246,7 +246,7 @@
     "cancel": "取消",
     "coin": "提幣",
     "recharge_coin": "充幣",
-    "exchange": "兑换"
+    "exchange": "兌換"
   },
   "finance_detail": {
     "time": "變動時間",
@@ -328,5 +328,26 @@
     "recharge": "充幣地址",
     "copy": "一鍵複製",
     "success": "複製成功"
+  },
+  "exchange": {
+    "exchange": "兌換",
+    "detail": "兌換明細",
+    "cash": "現金賬戶餘額",
+    "price": "ETUT價格",
+    "num": "兌換數量",
+    "afternum": "兌換后數量",
+    "formula": "兌換公式",
+    "pass2": "二級密碼",
+    "submit": "提交",
+    "formulaAll": "兌換後的數量 = 兌換數量*6.3/當前ETUT價格",
+    "number": "編號"
+  },
+  "exchange_detail": {
+    "number": "編號",
+    "num": "兌換ETUT的數量",
+    "time": "兌換時間",
+    "money": "兌換金額",
+    "price": "ETUT價格",
+    "formula": "兌換公式"
   }
 }

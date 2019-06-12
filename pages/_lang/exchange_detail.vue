@@ -8,16 +8,16 @@
       class="exchange_table"
       v-loading="loading"
     >
-      <el-table-column prop="username" label="编号" width="100"></el-table-column>
-      <el-table-column label="兑换etut数量" prop="bd_money" width="100"></el-table-column>
-      <el-table-column label="兑换时间" width="150">
+      <el-table-column prop="username" :label="$t('exchange_detail.number')" width="100"></el-table-column>
+      <el-table-column :label="$t('exchange_detail.num')" prop="bd_money" width="100"></el-table-column>
+      <el-table-column :label="$t('exchange_detail.time')" width="150">
         <template slot-scope="scope">
           <p>{{timefilter(scope.row.pay_time)}}</p>
         </template>
       </el-table-column>
-      <el-table-column label="兑换金额" prop="money" width="100"></el-table-column>
-      <el-table-column label="etut价格" prop="etut_price" width="100"></el-table-column>
-      <el-table-column label="计算公式" prop="formula" width="100"></el-table-column>
+      <el-table-column :label="$t('exchange_detail.money')" prop="money" width="100"></el-table-column>
+      <el-table-column :label="$t('exchange_detail.price')" prop="etut_price" width="100"></el-table-column>
+      <el-table-column :label="$t('exchange_detail.formula')" prop="formula" width="100"></el-table-column>
     </el-table>
     <el-pagination
       style="text-align:center;margin-top:20px;"

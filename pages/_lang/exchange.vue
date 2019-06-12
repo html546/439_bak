@@ -2,33 +2,36 @@
   <div class="exchange">
     <el-card class="box-card form-box">
       <div slot="header" class="clearfix">
-        <span>兑换</span>
+        <span>{{$t('exchange.exchange')}}</span>
         <el-button type="text" style="float:right;padding:3px 0;">
-          <nuxt-link to="/exchange_detail" style="color:blue">兑换明细</nuxt-link>
+          <nuxt-link
+            :to="$i18n.path('exchange_detail')"
+            style="color:blue"
+          >{{$t('exchange.detail')}}</nuxt-link>
         </el-button>
       </div>
       <div>
-        <el-form ref="form" :model="form" label-width="100px">
-          <el-form-item label="现金账户余额">
+        <el-form ref="form" :model="form" label-width="150px">
+          <el-form-item :label="$t('exchange.cash')">
             <el-input :readonly="true" v-model="balance"></el-input>
           </el-form-item>
-          <el-form-item label="ETUT价格">
+          <el-form-item :label="$t('exchange.price')">
             <el-input :readonly="true" v-model="price"></el-input>
           </el-form-item>
-          <el-form-item label="兑换数量" prop="money">
+          <el-form-item :label="$t('exchange.num')" prop="money">
             <el-input v-model="form.money"></el-input>
           </el-form-item>
-          <el-form-item label="兑换后数量">
+          <el-form-item :label="$t('exchange.afternum')">
             <el-input v-model="afterSum"></el-input>
           </el-form-item>
-          <el-form-item label="兑换公式">
-            <p>兑换后的数量 =兑换数量*6.3/当前ETUT价格</p>
+          <el-form-item :label="$t('exchange.formula')">
+            <p>{{$t('exchange.formulaAll')}}</p>
           </el-form-item>
-          <el-form-item label="二级密码" prop="checkpass">
+          <el-form-item :label="$t('exchange.pass2')" prop="checkpass">
             <el-input type="password" v-model="form.checkpass"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="handleSubmit">提交兑换</el-button>
+            <el-button type="primary" @click="handleSubmit">{{$t('exchange.submit')}}</el-button>
           </el-form-item>
         </el-form>
       </div>
