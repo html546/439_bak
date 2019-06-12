@@ -245,7 +245,8 @@
     "recharge": "充值",
     "cancel": "取消",
     "coin": "提幣",
-    "recharge_coin": "充幣"
+    "recharge_coin": "充幣",
+    "exchange": "兑换"
   },
   "finance_detail": {
     "time": "變動時間",
@@ -321,7 +322,7 @@
     "tips_content": "普通提幣到賬時間一般為兩個小時以內，若遇到網絡擁堵，會適當延長時間。提幣到本系統其他賬戶，為實時到賬。",
     "submit": "立即提交",
     "real_money": "實際到賬金額",
-    "pass2":"二級密碼"
+    "pass2": "二級密碼"
   },
   "recharge_coin": {
     "recharge": "充幣地址",

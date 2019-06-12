@@ -3,7 +3,7 @@
     <el-row :gutter="10">
       <template>
         <div v-for="(item,index) in wallet" :key="index">
-          <el-col :span="6">
+          <el-col :span="12" style="margin-bottom:10px;">
             <el-card class="box-card" :class="getClass(index)">
               <div slot="header" class="clearfix">
                 <span>{{item.wallet_name}}</span>
@@ -24,7 +24,12 @@
                     <nuxt-link :to="$i18n.path('recharge_coin')">{{$t('finance.recharge_coin')}}</nuxt-link>
                   </el-button>
                 </template>
-                <el-button type="text" style="float:right;padding:0">
+                <template v-if="index == 1">
+                  <el-button type="text" style="padding:0;float:right;margin-left:10px;">
+                    <nuxt-link :to="$i18n.path('exchange')">{{$t('finance.exchange')}}</nuxt-link>
+                  </el-button>
+                </template>
+                <el-button type="text" style="float:right;padding:0" v-if="item.iszhuanzhang == 1">
                   <nuxt-link :to="$i18n.path(`transfer/${index+1}`)">{{$t('finance.transfer')}}</nuxt-link>
                 </el-button>
               </div>
@@ -82,8 +87,10 @@ export default {
         return "box-card2";
       } else if (index === 2) {
         return "box-card3";
-      } else {
+      } else if (index === 3) {
         return "box-card4";
+      } else if (index === 4) {
+        return "box-card5";
       }
     }
   }
@@ -108,13 +115,15 @@ export default {
 .box-card1,
 .box-card2,
 .box-card3,
-.box-card4 {
+.box-card4,
+.box-card5 {
   color: #fff;
 }
 .box-card1 .el-button,
 .box-card2 .el-button,
 .box-card3 .el-button,
-.box-card4 .el-button {
+.box-card4 .el-button,
+.box-card5 .el-button {
   color: #fff;
 }
 .box-card1 {
@@ -131,6 +140,10 @@ export default {
 }
 .box-card4 {
   background: url("../../assets/finance4.png") no-repeat center center;
+  background-size: cover;
+}
+.box-card5 {
+  background: url("../../assets/finance5.png") no-repeat center center;
   background-size: cover;
 }
 </style>
