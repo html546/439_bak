@@ -25,7 +25,7 @@
             <el-input v-model="afterSum"></el-input>
           </el-form-item>
           <el-form-item :label="$t('exchange.formula')">
-            <p>{{$t('exchange.formulaAll')}}</p>
+            <p>{{$t('exchange.formulaAll')}} * {{etutRate}} / {{$t('exchange.current_etut')}}</p>
           </el-form-item>
           <el-form-item :label="$t('exchange.pass2')" prop="checkpass">
             <el-input type="password" v-model="form.checkpass"></el-input>
@@ -50,7 +50,8 @@ export default {
         checkpass: ""
       },
       balance: "",
-      price: ""
+      price: "",
+      etutRate: 0
     };
   },
   created() {
@@ -58,7 +59,7 @@ export default {
   },
   computed: {
     afterSum() {
-      return (this.form.money * 6.3) / this.price;
+      return (this.form.money * this.etutRate) / this.price;
     }
   },
   methods: {
@@ -85,6 +86,7 @@ export default {
           }
           this.balance = res.data.data.money;
           this.price = res.data.data.price;
+          this.etutRate = res.data.data.etutRate;
         })
         .catch(err => {
           console.log(err);

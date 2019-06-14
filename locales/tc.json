@@ -339,7 +339,8 @@
     "formula": "兌換公式",
     "pass2": "二級密碼",
     "submit": "提交",
-    "formulaAll": "兌換後的數量 = 兌換數量*6.3/當前ETUT價格",
+    "formulaAll": "兌換後的數量 = 兌換數量",
+    "current_etut": "當前ETUT價格",
     "number": "編號"
   },
   "exchange_detail": {

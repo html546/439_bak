@@ -339,7 +339,8 @@
     "formula": "exchange formula",
     "pass2": "Two password",
     "submit": "submit",
-    "formulaAll": "Converted Quantity = Converted Quantity * 6.3 / Current ETUT Price",
+    "formulaAll": "Converted Quantity = Converted Quantity",
+    "current_etut": "Current ETUT Price",
     "number": "number"
   },
   "exchange_detail": {
