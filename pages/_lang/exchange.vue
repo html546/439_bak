@@ -59,7 +59,7 @@ export default {
   },
   computed: {
     afterSum() {
-      return (this.form.money * this.etutRate) / this.price;
+      return ((this.form.money * this.etutRate) / this.price).toFixed(2);
     }
   },
   methods: {
