@@ -59,6 +59,9 @@ export default {
   },
   computed: {
     afterSum() {
+      if (this.etutRate == 0) {
+        return 0;
+      }
       return ((this.form.money * this.etutRate) / this.price).toFixed(2);
     }
   },
