@@ -2,38 +2,25 @@
   <div>
     <div class="download">
       <div class="download_center">
-        <el-row
-          type="flex"
-          class="download_row"
-        >
+        <el-row type="flex" class="download_row">
           <el-col :span="12">
             <div class="download_android">
-              <img
-                src="~assets/android.png"
-                alt=""
-              >
+              <img src="~assets/android.png" alt>
               <div class="download_android_right">
                 <p>{{$t('home.android')}}</p>
                 <el-button round>
-                  <a href="https://fir.im/9vtl">
-                    {{$t('home.download_now')}}
-                  </a>
+                  <a href="https://fir.im/dalm">{{$t('home.download_now')}}</a>
                 </el-button>
               </div>
             </div>
           </el-col>
           <el-col :span="12">
             <div class="download_android">
-              <img
-                src="~assets/ios.png"
-                alt=""
-              >
+              <img src="~assets/ios.png" alt>
               <div class="download_android_right">
                 <p>{{$t('home.ios')}}</p>
                 <el-button round>
-                  <a href="https://fir.im/9vtl">
-                    {{$t('home.download_now')}}
-                  </a>
+                  <a href="https://fir.im/dalm">{{$t('home.download_now')}}</a>
                 </el-button>
               </div>
             </div>
@@ -43,39 +30,17 @@
     </div>
     <div class="panel">
       <div class="panel_table">
-        <el-table
-          :data="post"
-          :border="true"
-        >
-          <el-table-column
-            prop="name"
-            :label="$t('home.coin_name')"
-          ></el-table-column>
-          <el-table-column
-            prop="current_price"
-            :label="$t('home.zh_price')"
-          ></el-table-column>
-          <el-table-column
-            prop="current_price_usd"
-            :label="$t('home.us_price')"
-          >
-          </el-table-column>
-          <el-table-column
-            :label="$t('home.coin_gain')"
-            prop="change_percent"
-          ></el-table-column>
+        <el-table :data="post" :border="true">
+          <el-table-column prop="name" :label="$t('home.coin_name')"></el-table-column>
+          <el-table-column prop="current_price" :label="$t('home.zh_price')"></el-table-column>
+          <el-table-column prop="current_price_usd" :label="$t('home.us_price')"></el-table-column>
+          <el-table-column :label="$t('home.coin_gain')" prop="change_percent"></el-table-column>
           <el-table-column :label="$t('home.logo')">
             <template slot-scope="scope">
-              <img
-                :src="scope.row.logo"
-                alt=""
-              >
+              <img :src="scope.row.logo" alt>
             </template>
           </el-table-column>
-          <el-table-column
-            prop="fullname"
-            :label="$t('home.cn_name')"
-          ></el-table-column>
+          <el-table-column prop="fullname" :label="$t('home.cn_name')"></el-table-column>
         </el-table>
       </div>
     </div>
@@ -83,21 +48,20 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
   data() {
     return {
-      isActive: false,
-    }
+      isActive: false
+    };
   },
   asyncData() {
-    return axios.get('/api/Login/get_price')
-      .then(res => {
-        console.log(res);
-        return { post: res.data.data }
-      })
-  },
-}
+    return axios.get("/api/Login/get_price").then(res => {
+      console.log(res);
+      return { post: res.data.data };
+    });
+  }
+};
 </script>
 <style>
 .download {
