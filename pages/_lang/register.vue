@@ -5,30 +5,17 @@
         <div class="button_group">
           <el-row :gutter="40">
             <el-col :span="12">
-              <button
-                :class="{active:isActive}"
-                @click="handleActive"
-              >{{$t('register.mobile')}}</button>
+              <button :class="{active:isActive}" @click="handleActive">{{$t('register.mobile')}}</button>
             </el-col>
             <el-col :span="12">
-              <button
-                :class="{active:!isActive}"
-                @click="handleActive1"
-              >{{$t('register.email')}}</button>
+              <button :class="{active:!isActive}" @click="handleActive1">{{$t('register.email')}}</button>
             </el-col>
           </el-row>
         </div>
-        <form
-          @submit="handleSubmit"
-          @keyup.enter="handleSubmit"
-        >
+        <form @submit="handleSubmit" @keyup.enter="handleSubmit">
           <div class="register_form">
-            <label for="">{{$t('register.username')}}</label>
-            <input
-              type="text"
-              v-model="username"
-              :readonly="true"
-            >
+            <label for>{{$t('register.username')}}</label>
+            <input type="text" v-model="username" :readonly="true">
           </div>
           <div
             class="register_form"
@@ -36,124 +23,65 @@
             :key="key"
             :class="{active:val.input == 'hidden'}"
           >
-            <label for="">{{val.name}}</label>
+            <label for>{{val.name}}</label>
             <input
               :name="key"
               type="text"
               v-if="val.input!=='hidden'&&val.input!=='select'&&key!=='mobile_phone'"
               v-model="val.default"
             >
-            <input
-              type="text"
-              :name="key"
-              v-if="key == 'mobile_phone'"
-              v-model="mobile"
-            >
+            <input type="text" :name="key" v-if="key == 'mobile_phone'" v-model="mobile">
             <select
               :name="key"
               v-else-if="val.input=='select'&&key!=='bank_name'"
               v-model="val.default"
             >
-              <option
-                v-for="(val1,key1) in val.select"
-                :key="key1"
-                :value="key1"
-              >{{val1}}</option>
+              <option v-for="(val1,key1) in val.select" :key="key1" :value="key1">{{val1}}</option>
             </select>
             <select
               :name="key"
               v-else-if="val.input=='select'&&key=='bank_name'"
               v-model="val.default"
             >
-              <option
-                v-for="item in banks"
-                :value="item.id"
-                :key="item.id"
-              >
-                {{item.bank_names}}
-              </option>
+              <option v-for="item in banks" :value="item.id" :key="item.id">{{item.bank_names}}</option>
             </select>
           </div>
           <div class="register_form captcha">
-            <label for="">{{$t('register.Captcha')}}</label>
-            <input
-              type="text"
-              v-model="verify_code"
-            >
-            <img
-              :src="imageUrl"
-              @click="getVerifyCode"
-              alt=""
-            >
+            <label for>{{$t('register.Captcha')}}</label>
+            <input type="text" v-model="verify_code">
+            <img :src="imageUrl" @click="getVerifyCode" alt>
           </div>
           <div class="register_form mobile_code">
-            <label for="">{{$t('register.code')}}</label>
-            <input
-              type="text"
-              name="mobile_code"
-            >
-            <el-button
-              type="text"
-              @click="getverify"
-              :disabled="disabled"
-            >{{name}}</el-button>
+            <label for>{{$t('register.code')}}</label>
+            <input type="text" name="mobile_code">
+            <el-button type="text" @click="getverify" :disabled="disabled">{{name}}</el-button>
           </div>
           <div class="register_form">
-            <label for="">{{$t('register.loginpass')}}</label>
-            <input
-              type="password"
-              v-model="pass1"
-              name="pass1"
-            >
+            <label for>{{$t('register.loginpass')}}</label>
+            <input type="password" v-model="pass1" name="pass1">
           </div>
           <div class="register_form">
-            <label for="">{{$t('register.loginpass1')}}</label>
-            <input
-              type="password"
-              v-model="pass1c"
-              name="pass1c"
-            >
+            <label for>{{$t('register.loginpass1')}}</label>
+            <input type="password" v-model="pass1c" name="pass1c">
           </div>
           <div class="register_form">
-            <label for="">{{$t('register.paypass')}}</label>
-            <input
-              type="password"
-              v-model="pass2"
-              name="pass2"
-            >
+            <label for>{{$t('register.paypass')}}</label>
+            <input type="password" v-model="pass2" name="pass2">
           </div>
           <div class="register_form">
-            <label for="">{{$t('register.paypass1')}}</label>
-            <input
-              type="password"
-              v-model="pass2c"
-              name="pass2c"
-            >
+            <label for>{{$t('register.paypass1')}}</label>
+            <input type="password" v-model="pass2c" name="pass2c">
           </div>
-          <button
-            class="register_btn1"
-            type="submit"
-          >{{$t('register.register')}}</button>
-          <el-row
-            type="flex"
-            justify="space-around"
-            class="footer_links"
-          >
+          <button class="register_btn1" type="submit">{{$t('register.register')}}</button>
+          <el-row type="flex" justify="space-around" class="footer_links">
             <el-col :span="12">
               <el-button type="text">
-                <nuxt-link :to="$i18n.path('forget')">
-                  {{$t('register.forget')}}
-                </nuxt-link>
+                <nuxt-link :to="$i18n.path('forget')">{{$t('register.forget')}}</nuxt-link>
               </el-button>
             </el-col>
             <el-col :span="12">
               <el-button type="text">
-                <nuxt-link
-                  :to="$i18n.path('login')"
-                  class="link_blue"
-                >
-                  {{$t('register.login')}}
-                </nuxt-link>
+                <nuxt-link :to="$i18n.path('login')" class="link_blue">{{$t('register.login')}}</nuxt-link>
               </el-button>
             </el-col>
           </el-row>
@@ -164,27 +92,27 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
-  layout: 'lorr',
+  layout: "lorr",
   data() {
     return {
       regdata: {},
       banks: [],
       isActive: true,
-      pass1: '',
-      pass1c: '',
-      pass2: '',
-      pass2c: '',
-      mobile: '',
-      imageUrl: '',
-      encrypt_code: '',
-      verify_code: '',
-      name: this.$t('register.getcode'),
+      pass1: "",
+      pass1c: "",
+      pass2: "",
+      pass2c: "",
+      mobile: "",
+      imageUrl: "",
+      encrypt_code: "",
+      verify_code: "",
+      name: this.$t("register.getcode"),
       disabled: false,
       statetype: 1,
-      username: ''
-    }
+      username: ""
+    };
   },
   created() {
     console.log(this.$store.state.locale);
@@ -194,23 +122,29 @@ export default {
   },
   methods: {
     getVerifyCode() {
-      axios.post('/api/login/getVerifyCode').then(res => {
-        this.imageUrl = res.data.image;
-        this.encrypt_code = res.data.encryptCode;
-      }).catch(err => {
-        console.log(err);
-      })
+      axios
+        .post("/api/login/getVerifyCode")
+        .then(res => {
+          this.imageUrl = res.data.image;
+          this.encrypt_code = res.data.encryptCode;
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
     getRegData(statetype) {
-      axios.post('/api/webmember/register', {
-        statetype: statetype
-      }).then(res => {
-        console.log(res);
-        this.regdata = res.data.data.regdatasets;
-        this.username = res.data.data.defaultname;
-      }).catch(err => {
-        console.log(err);
-      })
+      axios
+        .post("/api/webmember/register", {
+          statetype: statetype
+        })
+        .then(res => {
+          console.log(res);
+          this.regdata = res.data.data.regdatasets;
+          this.username = res.data.data.defaultname;
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
     handleSubmit(e) {
       e.preventDefault();
@@ -219,15 +153,23 @@ export default {
       for (let i = 0; i < e.target.length; i++) {
         formdata.append(e.target[i].name, e.target[i].value);
       }
-      formdata.append('statetype', this.statetype);
-      formdata.append('username', this.username);
-      axios.post('/api/webmember/registersave',
-        formdata
-      ).then(res => {
-        console.log(res);
-      }).catch(err => {
-        console.log(err);
-      })
+      formdata.append("statetype", this.statetype);
+      formdata.append("username", this.username);
+      axios
+        .post("/api/webmember/registersave", formdata)
+        .then(res => {
+          console.log(res);
+          if (res.data.status == 1) {
+            this.$message({
+              type: "success",
+              message: res.data.msg,
+              onClose: this.onclose2()
+            });
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
     handleActive() {
       this.isActive = true;
@@ -240,35 +182,41 @@ export default {
       this.getRegData(2);
     },
     getBanks() {
-      axios.post('/api/webmember/getbanks').then(res => {
-        this.banks = res.data.data;
-      }).catch(err => {
-        console.log(err);
-      })
+      axios
+        .post("/api/webmember/getbanks")
+        .then(res => {
+          this.banks = res.data.data;
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
     getverify() {
-      axios.post('/api/login/verify', {
-        verify_code: this.verify_code,
-        encrypt_code: this.encrypt_code,
-        mobile_phone: this.mobile
-      }).then(res => {
-        if (res.data.status == 1) {
-          this.$message({
-            message: res.data.msg,
-            type: 'success',
-            showClose: true,
-            onClose: this.onclose()
-          })
-        } else {
-          this.$message({
-            message: res.data.msg,
-            type: 'danger',
-            showClose: true
-          })
-        }
-      }).catch(err => {
-        console.log(err);
-      })
+      axios
+        .post("/api/login/verify", {
+          verify_code: this.verify_code,
+          encrypt_code: this.encrypt_code,
+          mobile_phone: this.mobile
+        })
+        .then(res => {
+          if (res.data.status == 1) {
+            this.$message({
+              message: res.data.msg,
+              type: "success",
+              showClose: true,
+              onClose: this.onclose()
+            });
+          } else {
+            this.$message({
+              message: res.data.msg,
+              type: "danger",
+              showClose: true
+            });
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
     onclose() {
       let i = 60;
@@ -278,14 +226,17 @@ export default {
           this.name = `${i}s`;
           this.disabled = true;
         } else {
-          this.name = this.$t('register.retrieve');
+          this.name = this.$t("register.retrieve");
           this.disabled = false;
           clearInterval(timer);
         }
       }, 1000);
+    },
+    onclose2() {
+      this.$router.replace("/login");
     }
-  },
-}
+  }
+};
 </script>
 <style>
 .register {
