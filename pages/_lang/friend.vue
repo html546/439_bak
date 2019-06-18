@@ -13,25 +13,16 @@
             style="width:560px;float:left;"
             @submit.native="handleSubmit"
           >
-            <div
-              class="button_group"
-              style="margin:20px auto;"
-            >
+            <div class="button_group" style="margin:20px auto;">
               <el-row>
-                <el-col
-                  :span="12"
-                  style="text-align:center;"
-                >
+                <el-col :span="12" style="text-align:center;">
                   <el-button
                     type="primary"
                     :disabled="!isActive"
                     @click="handleActive"
                   >{{$t('friend.mobile')}}</el-button>
                 </el-col>
-                <el-col
-                  :span="12"
-                  style="text-align:center;"
-                >
+                <el-col :span="12" style="text-align:center;">
                   <el-button
                     type="primary"
                     :disabled="isActive"
@@ -41,11 +32,7 @@
               </el-row>
             </div>
             <el-form-item :label="$t('friend.member')">
-              <el-input
-                name="username"
-                v-model="username"
-                :readonly="true"
-              ></el-input>
+              <el-input name="username" v-model="username" :readonly="true"></el-input>
             </el-form-item>
             <el-form-item
               v-for="(val,key) in formContent"
@@ -76,8 +63,7 @@
                   :key="key1"
                   :label="val1"
                   :value="key1"
-                >
-                </el-option>
+                ></el-option>
               </el-select>
               <el-select
                 :name="key"
@@ -90,8 +76,7 @@
                   :key="key1"
                   :label="val1"
                   :value="key1"
-                >
-                </el-option>
+                ></el-option>
               </el-select>
               <el-select
                 :name="key"
@@ -104,22 +89,12 @@
                   :key="index"
                   :label="item.bank_names"
                   :value="item.id"
-                >
-                </el-option>
+                ></el-option>
               </el-select>
             </el-form-item>
             <el-form-item :label="$t('friend.Captcha')">
-              <el-input
-                type="text"
-                v-model="verify_code"
-                style="width:70%;float:left;"
-              ></el-input>
-              <img
-                :src="imageUrl"
-                @click="getVerifyCode"
-                style="width:30%;height:40px;"
-                alt=""
-              >
+              <el-input type="text" v-model="verify_code" style="width:70%;float:left;"></el-input>
+              <img :src="imageUrl" @click="getVerifyCode" style="width:30%;height:40px;" alt>
             </el-form-item>
             <el-form-item :label="$t('friend.code')">
               <el-input
@@ -127,8 +102,7 @@
                 v-model="mobile_code"
                 name="mobile_code"
                 style="width:70%;float:left;"
-              >
-              </el-input>
+              ></el-input>
               <el-button
                 type="text"
                 @click="getverify"
@@ -137,46 +111,23 @@
               >{{name}}</el-button>
             </el-form-item>
             <el-form-item :label="$t('friend.pass1')">
-              <el-input
-                name="pass1"
-                v-model="pass1"
-                show-password
-              ></el-input>
+              <el-input name="pass1" v-model="pass1" show-password></el-input>
             </el-form-item>
             <el-form-item :label="$t('friend.pass1c')">
-              <el-input
-                name="pass1c"
-                v-model="pass1c"
-                show-password
-              ></el-input>
+              <el-input name="pass1c" v-model="pass1c" show-password></el-input>
             </el-form-item>
             <el-form-item :label="$t('friend.pass2')">
-              <el-input
-                name="pass2"
-                v-model="pass2"
-                show-password
-              ></el-input>
+              <el-input name="pass2" v-model="pass2" show-password></el-input>
             </el-form-item>
             <el-form-item :label="$t('friend.pass2c')">
-              <el-input
-                name="pass2c"
-                v-model="pass2c"
-                show-password
-              ></el-input>
+              <el-input name="pass2c" v-model="pass2c" show-password></el-input>
             </el-form-item>
             <el-form-item>
-              <el-button
-                type="primary"
-                native-type="submit"
-              >{{$t('friend.submit')}}</el-button>
+              <el-button type="primary" native-type="submit">{{$t('friend.submit')}}</el-button>
             </el-form-item>
           </el-form>
           <div class="qrcode_box">
-            <div
-              class="qrcode"
-              id="qrcode"
-            >
-            </div>
+            <div class="qrcode" id="qrcode"></div>
             <a :href="qrcode">{{qrcode}}</a>
             <p>{{$t('friend.follow')}}</p>
           </div>
@@ -187,38 +138,38 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
-  name: '',
+  name: "",
   data() {
     return {
-      formContent: '',
-      bank_names: '',
-      pass1: '',
-      pass1c: '',
-      pass2: '',
-      pass2c: '',
-      province: '',
-      city: '',
-      area: '',
+      formContent: "",
+      bank_names: "",
+      pass1: "",
+      pass1c: "",
+      pass2: "",
+      pass2c: "",
+      province: "",
+      city: "",
+      area: "",
       provinces: [],
       citys: [],
       areas: [],
-      bank_name: '',
-      sex: '',
-      memberrank: '',
-      username: '',
-      mobile: '',
-      imageUrl: '',
-      encrypt_code: '',
-      verify_code: '',
+      bank_name: "",
+      sex: "",
+      memberrank: "",
+      username: "",
+      mobile: "",
+      imageUrl: "",
+      encrypt_code: "",
+      verify_code: "",
       disabled: false,
-      name: this.$t('friend.getcode'),
-      mobile_code: '',
+      name: this.$t("friend.getcode"),
+      mobile_code: "",
       statetype: 1,
       isActive: false,
-      qrcode: '',
-    }
+      qrcode: ""
+    };
   },
   created() {
     this.getPage(this.statetype);
@@ -227,116 +178,136 @@ export default {
     this.getQRCode();
   },
   middleware: "auth",
-  mounted() {
-  },
+  mounted() {},
   methods: {
     onclose2() {
       setTimeout(() => {
-        this.$router.replace('/login');
+        this.$router.replace("/login");
       }, 3000);
     },
     getQRCode() {
-      axios.post('/api/member/qrCode', {
-        userid: this.$store.state.message.userid,
-        sessionid: this.$store.state.message.sessionid
-      }).then(res => {
-        if (res.data.status == 0) {
-          this.$store.commit('clearMessage');
-          this.$message({
-            type: 'error',
-            message: res.data.msg,
-            onClose: this.onclose1()
-          })
-        }
-        console.log(res, 666666);
-        this.qrcode = res.data.data;
-        if (!document.getElementById('qrcode').innerHTML) {
-          var qrcode = new QRCode('qrcode', {
-            text: res.data.data,
-            width: 180,
-            height: 180,
-            colorDark: '#000000',
-            colorLight: '#ffffff',
-            correctLevel: QRCode.CorrectLevel.H
-          })
-        } else {
-          return false;
-        }
-      }).catch(err => {
-        console.log(err);
-      })
+      axios
+        .post("/api/member/qrCode", {
+          userid: this.$store.state.message.userid,
+          sessionid: this.$store.state.message.sessionid
+        })
+        .then(res => {
+          if (res.data.status == 0) {
+            this.$store.commit("clearMessage");
+            this.$message({
+              type: "error",
+              message: res.data.msg,
+              onClose: this.onclose1()
+            });
+          }
+          console.log(res, 666666);
+          this.qrcode = res.data.data;
+          if (!document.getElementById("qrcode").innerHTML) {
+            var qrcode = new QRCode("qrcode", {
+              text: res.data.data,
+              width: 180,
+              height: 180,
+              colorDark: "#000000",
+              colorLight: "#ffffff",
+              correctLevel: QRCode.CorrectLevel.H
+            });
+          } else {
+            return false;
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
     getVerifyCode() {
-      axios.post('/api/login/getVerifyCode').then(res => {
-        this.imageUrl = res.data.image;
-        this.encrypt_code = res.data.encryptCode;
-      }).catch(err => {
-        console.log(err);
-      })
+      axios
+        .post("/api/login/getVerifyCode")
+        .then(res => {
+          this.imageUrl = res.data.image;
+          this.encrypt_code = res.data.encryptCode;
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
     getPage(statetype) {
-      axios.post('/api/member/register', {
-        userid: this.$store.state.message.userid,
-        sessionid: this.$store.state.message.sessionid,
-        statetype: statetype
-      }).then(res => {
-        if (res.data.status == 0) {
-          this.$store.commit('clearMessage');
-          this.$message({
-            type: 'error',
-            message: res.data.msg,
-            onClose: this.onclose2()
-          })
-        }
-        console.log(res);
-        this.username = res.data.data.defaultname;
-        this.formContent = res.data.data.regdatasets;
-        for (const key in this.formContent) {
-          if (key == 'sex' && this.formContent[key].default !== '') {
-            this.sex = this.formContent[key].default;
-          } else if (key == 'memberrank' && this.formContent[key].default !== '') {
-            this.memberrank = this.formContent[key].default;
-          } else if (key == 'bank_name' && this.formContent[key].default !== '') {
-            this.bank_name = this.formContent[key].dafault;
+      axios
+        .post("/api/member/register", {
+          userid: this.$store.state.message.userid,
+          sessionid: this.$store.state.message.sessionid,
+          statetype: statetype
+        })
+        .then(res => {
+          if (res.data.status == 0) {
+            this.$store.commit("clearMessage");
+            this.$message({
+              type: "error",
+              message: res.data.msg,
+              onClose: this.onclose2()
+            });
           }
-        }
-      }).catch(err => {
-        console.log(err);
-      })
+          console.log(res);
+          this.username = res.data.data.defaultname;
+          this.formContent = res.data.data.regdatasets;
+          for (const key in this.formContent) {
+            if (key == "sex" && this.formContent[key].default !== "") {
+              this.sex = this.formContent[key].default;
+            } else if (
+              key == "memberrank" &&
+              this.formContent[key].default !== ""
+            ) {
+              this.memberrank = this.formContent[key].default;
+            } else if (
+              key == "bank_name" &&
+              this.formContent[key].default !== ""
+            ) {
+              this.bank_name = this.formContent[key].dafault;
+            }
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
     getBanks() {
-      axios.post('/api/member/getbanks', {
-        userid: this.$store.state.message.userid,
-        sessionid: this.$store.state.message.sessionid
-      }).then(res => {
-        this.bank_names = res.data.data;
-      }).catch(err => {
-        console.log(err);;
-      })
+      axios
+        .post("/api/member/getbanks", {
+          userid: this.$store.state.message.userid,
+          sessionid: this.$store.state.message.sessionid
+        })
+        .then(res => {
+          this.bank_names = res.data.data;
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
     getverify() {
-      axios.post('/api/login/verify', {
-        verify_code: this.verify_code,
-        encrypt_code: this.encrypt_code,
-        mobile_phone: this.mobile
-      }).then(res => {
-        if (res.data.status == 1) {
-          this.$message({
-            message: res.data.msg,
-            type: 'success',
-            showClose: true,
-            onClose: this.onclose()
-          })
-        } else {
-          this.$message({
-            message: res.data.msg,
-            type: 'danger',
-            showClose: true
-          })
-        }
-      }).catch(err => {
-        console.log(err);
-      })
+      axios
+        .post("/api/login/verify", {
+          verify_code: this.verify_code,
+          encrypt_code: this.encrypt_code,
+          mobile_phone: this.mobile
+        })
+        .then(res => {
+          if (res.data.status == 1) {
+            this.$message({
+              message: res.data.msg,
+              type: "success",
+              showClose: true,
+              onClose: this.onclose()
+            });
+          } else {
+            this.$message({
+              message: res.data.msg,
+              type: "danger",
+              showClose: true
+            });
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
     onclose() {
       let i = 60;
@@ -346,7 +317,7 @@ export default {
           this.name = `${i}s`;
           this.disabled = true;
         } else {
-          this.name = this.$t('register.retrieve');
+          this.name = this.$t("register.retrieve");
           this.disabled = false;
           clearInterval(timer);
         }
@@ -355,33 +326,36 @@ export default {
     handleSubmit(e) {
       e.preventDefault();
       var formdata = new FormData();
-      console.log(e.target.length);
       for (let i = 0; i < e.target.length; i++) {
+        // console.log(e.target[i], 23333333333);
         formdata.append(e.target[i].name, e.target[i].value);
       }
-      formdata.append('userid', this.$store.state.message.userid);
-      formdata.append('sessionid', this.$store.state.message.sessionid);
-      axios.post('/api/member/registersave',
-        formdata
-      ).then(res => {
-        console.log(res);
-        if (res.data.status == 1) {
-          this.$message({
-            type: 'success',
-            message: res.data.msg,
-            showClose: true,
-            onClose: this.onclose1()
-          })
-        } else {
-          this.$message({
-            type: 'error',
-            message: res.data.msg,
-            showClose: true
-          })
-        }
-      }).catch(err => {
-        console.log(err);
-      })
+      formdata.delete("memberrank");
+      formdata.append("userid", this.$store.state.message.userid);
+      formdata.append("sessionid", this.$store.state.message.sessionid);
+      formdata.append("memberrank", this.memberrank);
+      axios
+        .post("/api/member/registersave", formdata)
+        .then(res => {
+          console.log(res);
+          if (res.data.status == 1) {
+            this.$message({
+              type: "success",
+              message: res.data.msg,
+              showClose: true,
+              onClose: this.onclose1()
+            });
+          } else {
+            this.$message({
+              type: "error",
+              message: res.data.msg,
+              showClose: true
+            });
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
     onclose1() {
       this.getPage(this.statetype);
@@ -398,11 +372,9 @@ export default {
       this.isActive = true;
       this.statetype = 2;
       this.getPage(2);
-    },
-  },
-}
-
-
+    }
+  }
+};
 </script>
 
 <style >
