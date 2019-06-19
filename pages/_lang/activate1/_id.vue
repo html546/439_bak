@@ -70,12 +70,12 @@ export default {
   },
   watch: {
     lv3money(val) {
-      if (val <= Number(this.reg_level_money)) {
+      if (val <= Number(this.reg_level_money) && this.combine) {
         this.level = (((this.reg_level_money - val) * 7) / this.price).toFixed(
           2
         );
       } else {
-        this.level = this.reg_level_money;
+        return false;
       }
     }
   },
@@ -111,6 +111,7 @@ export default {
           this.reg_level_money = this.memberInfo.reg_level_money;
           this.lv3money = this.memberInfo.zs;
           this.ratio = res.data.data.jihuobili;
+          this.level = res.data.data.memberInfo.jh1;
         })
         .catch(err => {
           console.log(err);

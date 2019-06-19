@@ -17,7 +17,7 @@
           <el-form-item :label="$t('activate.price')">
             <el-input v-model="price" :readonly="true"></el-input>
           </el-form-item>
-          <p>{{$t('activate.need')}}{{level}}({{$t('activate.parameter')}}),{{$t('activate.adequate')}}.</p>
+          <p>{{$t('activate.need')}} {{level}} ({{$t('activate.parameter')}}),{{$t('activate.adequate')}}.</p>
           <el-form-item :label="$t('activate.mode_select')">
             <el-select
               v-model="mode"
@@ -70,12 +70,12 @@ export default {
   },
   watch: {
     lv3money(val) {
-      if (val <= Number(this.reg_level_money)) {
+      if (val <= Number(this.reg_level_money) && this.combine) {
         this.level = (((this.reg_level_money - val) * 7) / this.price).toFixed(
           2
         );
       } else {
-        this.level = Number(this.reg_level_money);
+        return false;
       }
     }
   },
@@ -109,6 +109,8 @@ export default {
           this.reg_level_money = this.memberInfo.reg_level_money;
           this.lv3money = this.memberInfo.zs;
           this.ratio = res.data.data.jihuobili;
+          this.level = res.data.data.memberInfo.jh1;
+          console.log(this.level, 333333);
         })
         .catch(err => {
           console.log(err);
