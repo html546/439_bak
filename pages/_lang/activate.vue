@@ -4,30 +4,18 @@
       <div class="form_box">
         <el-form label-width="140">
           <el-form-item :label="$t('activate.balance')">
-            <el-input
-              v-model="balance1"
-              :readonly="true"
-            ></el-input>
+            <el-input v-model="balance1" :readonly="true"></el-input>
           </el-form-item>
           <template v-if="combine">
             <el-form-item :label="$t('activate.balance2')">
-              <el-input
-                v-model="balance2"
-                :readonly="true"
-              ></el-input>
+              <el-input v-model="balance2" :readonly="true"></el-input>
             </el-form-item>
             <el-form-item :label="$t('activate.balance3')">
-              <el-input
-                v-model="balance3"
-                :readonly="true"
-              ></el-input>
+              <el-input v-model="balance3" :readonly="true"></el-input>
             </el-form-item>
           </template>
           <el-form-item :label="$t('activate.price')">
-            <el-input
-              v-model="price"
-              :readonly="true"
-            ></el-input>
+            <el-input v-model="price" :readonly="true"></el-input>
           </el-form-item>
           <p>{{$t('activate.need')}}{{level}}({{$t('activate.parameter')}}),{{$t('activate.adequate')}}.</p>
           <el-form-item :label="$t('activate.mode_select')">
@@ -37,14 +25,8 @@
               @change="handleChange"
               :placeholder="$t('activate.select')"
             >
-              <el-option
-                :label="$t('activate.register')"
-                value="1"
-              ></el-option>
-              <el-option
-                :label="$t('activate.combine')"
-                value="2"
-              ></el-option>
+              <el-option :label="$t('activate.register')" value="1"></el-option>
+              <el-option :label="$t('activate.combine')" value="2"></el-option>
             </el-select>
           </el-form-item>
           <template v-if="combine">
@@ -52,13 +34,10 @@
               <el-input v-model="level"></el-input>
             </el-form-item>
             <el-form-item :label="$t('activate.balance3_1')">
-              <el-input v-model="lv3money"></el-input>
+              <el-input v-model="lv3money" @input.native="handleChangeMoney"></el-input>
             </el-form-item>
           </template>
-          <el-button
-            type="primary"
-            @click="handleSubmit"
-          >{{$t('activate.submit')}}</el-button>
+          <el-button type="primary" @click="handleSubmit">{{$t('activate.submit')}}</el-button>
         </el-form>
       </div>
     </div>
@@ -66,23 +45,24 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
-  name: '',
+  name: "",
   data() {
     return {
-      balance1: '',
-      balance2: '',
-      balance3: '',
+      balance1: "",
+      balance2: "",
+      balance3: "",
       combine: false,
-      lv1money: '',
-      lv3money: '',
-      price: '',
-      level: '',
-      mode: '',
-      memberInfo: '',
-      reg_level_money: ''
-    }
+      lv1money: "",
+      lv3money: "",
+      price: "",
+      level: "",
+      mode: "",
+      memberInfo: "",
+      reg_level_money: "",
+      ratio: ""
+    };
   },
   middleware: "auth",
   created() {
@@ -91,41 +71,48 @@ export default {
   watch: {
     lv3money(val) {
       if (val <= Number(this.reg_level_money)) {
-        this.level = ((this.reg_level_money - val) * 7 / this.price).toFixed(2);
+        this.level = (((this.reg_level_money - val) * 7) / this.price).toFixed(
+          2
+        );
       } else {
-        this.level = this.reg_level_money;
+        this.level = Number(this.reg_level_money);
       }
     }
   },
   methods: {
     onclose1() {
       setTimeout(() => {
-        this.$router.replace('/login');
+        this.$router.replace("/login");
       }, 3000);
     },
     getPage() {
-      axios.post('/api/member/meconfirm', {
-        userid: this.$store.state.message.userid,
-        sessionid: this.$store.state.message.sessionid
-      }).then(res => {
-        if (res.data.status == 0) {
-          this.$store.commit('clearMessage');
-          this.$message({
-            type: 'error',
-            message: res.data.msg,
-            onClose: this.onclose1()
-          })
-        }
-        console.log(res);
-        this.balance1 = res.data.data.financeinfo[0].money;
-        this.balance2 = res.data.data.financeinfo[1].money;
-        this.balance3 = res.data.data.financeinfo[2].money;
-        this.price = res.data.data.price;
-        this.memberInfo = res.data.data.memberInfo;
-        this.reg_level_money = this.memberInfo.reg_level_money;
-      }).catch(err => {
-        console.log(err);
-      })
+      axios
+        .post("/api/member/meconfirm", {
+          userid: this.$store.state.message.userid,
+          sessionid: this.$store.state.message.sessionid
+        })
+        .then(res => {
+          if (res.data.status == 0) {
+            this.$store.commit("clearMessage");
+            this.$message({
+              type: "error",
+              message: res.data.msg,
+              onClose: this.onclose1()
+            });
+          }
+          console.log(res);
+          this.balance1 = res.data.data.financeinfo[0].money;
+          this.balance2 = res.data.data.financeinfo[1].money;
+          this.balance3 = res.data.data.financeinfo[2].money;
+          this.price = res.data.data.price;
+          this.memberInfo = res.data.data.memberInfo;
+          this.reg_level_money = this.memberInfo.reg_level_money;
+          this.lv3money = this.memberInfo.zs;
+          this.ratio = res.data.data.jihuobili;
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
     handleChange(val) {
       if (val == 1) {
@@ -136,40 +123,48 @@ export default {
         this.level = this.memberInfo.jh2;
       }
     },
+    handleChangeMoney() {
+      if (this.lv3money > (Number(this.reg_level_money) * this.ratio) / 100) {
+        this.lv3money = (Number(this.reg_level_money) * this.ratio) / 100;
+      }
+    },
     handleSubmit() {
-      axios.post('/api/member/meconfirmSave', {
-        userid: this.$store.state.message.userid,
-        sessionid: this.$store.state.message.sessionid,
-        regtype: this.mode,
-        price: this.price,
-        lv1money: this.level,
-        lv3money: this.lv3money
-      }).then(res => {
-        console.log(res);
-        if (res.data.status == 1) {
-          this.$message({
-            type: "success",
-            message: res.data.msg,
-            showClose: true,
-            onClose: this.onclose()
-          })
-        } else {
-          this.$message({
-            type: "error",
-            message: res.data.msg,
-            showClose: true,
-            onClose: this.onclose()
-          })
-        }
-      }).catch(err => {
-        console.log(err);
-      })
+      axios
+        .post("/api/member/meconfirmSave", {
+          userid: this.$store.state.message.userid,
+          sessionid: this.$store.state.message.sessionid,
+          regtype: this.mode,
+          price: this.price,
+          lv1money: this.level,
+          lv3money: this.lv3money
+        })
+        .then(res => {
+          console.log(res);
+          if (res.data.status == 1) {
+            this.$message({
+              type: "success",
+              message: res.data.msg,
+              showClose: true,
+              onClose: this.onclose()
+            });
+          } else {
+            this.$message({
+              type: "error",
+              message: res.data.msg,
+              showClose: true,
+              onClose: this.onclose()
+            });
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
     onclose() {
-      this.lv3money = '';
+      this.lv3money = "";
     }
-  },
-}
+  }
+};
 </script>
 
 <style>
