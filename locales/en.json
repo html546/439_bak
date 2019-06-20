@@ -21,7 +21,8 @@
     "signout": "Logout",
     "person": "Personal center",
     "investment": "Member re-investment",
-    "activate": "Member activation"
+    "activate": "Member activation",
+    "update": "update"
   },
   "home": {
     "android": "Android client download",

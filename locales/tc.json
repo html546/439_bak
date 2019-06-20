@@ -21,7 +21,8 @@
     "signout": "退出",
     "person": "個人中心",
     "investment": "會員復投",
-    "activate": "會員激活"
+    "activate": "會員激活",
+    "update": "會員升級"
   },
   "home": {
     "android": "Android客戶端下載",
