@@ -6,45 +6,23 @@
           <button class="login_btn">{{$t('login.account')}}</button>
         </div>
         <div class="login_form">
-          <label for="">{{$t('login.username')}}</label>
-          <input
-            type="text"
-            v-model="username"
-          >
+          <label for>{{$t('login.username')}}</label>
+          <input type="text" v-model="username">
         </div>
         <div class="login_form">
-          <label for="">{{$t('login.pass')}}</label>
-          <input
-            type="password"
-            v-model="password"
-          >
+          <label for>{{$t('login.pass')}}</label>
+          <input type="password" v-model="password" @keyup.enter="handleSubmit">
         </div>
-        <button
-          class="login_btn1"
-          type="submit"
-          @click="handleSubmit"
-          @keyup.enter="handleSubmit"
-        >{{$t('login.submit')}}</button>
-        <el-row
-          type="flex"
-          justify="space-around"
-          class="footer_links"
-        >
+        <button class="login_btn1" type="submit" @click="handleSubmit">{{$t('login.submit')}}</button>
+        <el-row type="flex" justify="space-around" class="footer_links">
           <el-col :span="12">
             <el-button type="text">
-              <nuxt-link :to="$i18n.path('forget')">
-                {{$t('login.forget')}}
-              </nuxt-link>
+              <nuxt-link :to="$i18n.path('forget')">{{$t('login.forget')}}</nuxt-link>
             </el-button>
           </el-col>
           <el-col :span="12">
             <el-button type="text">
-              <nuxt-link
-                :to="$i18n.path('register')"
-                class="link_blue"
-              >
-                {{$t('login.register')}}
-              </nuxt-link>
+              <nuxt-link :to="$i18n.path('register')" class="link_blue">{{$t('login.register')}}</nuxt-link>
             </el-button>
           </el-col>
         </el-row>
@@ -54,60 +32,63 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
-  layout: 'lorr',
+  layout: "lorr",
   data() {
     return {
-      username: '',
-      password: ''
-    }
+      username: "",
+      password: ""
+    };
   },
   methods: {
     handleSubmit() {
-      axios.post('/api/login/login', {
-        username: this.username,
-        password: this.password
-      }).then(res => {
-        console.log(res);
-        if (res.data.status == 1) {
-          var that = this;
-          async function notify() {
-            // await that.$store.dispatch('setLogin');
-            await that.$store.dispatch('setMessage', {
-              userid: res.data.result.id,
-              sessionid: res.data.result.sessionid,
-              username: res.data.result.username,
-              usdt: res.data.result.usdt
+      axios
+        .post("/api/login/login", {
+          username: this.username,
+          password: this.password
+        })
+        .then(res => {
+          console.log(res);
+          if (res.data.status == 1) {
+            var that = this;
+            async function notify() {
+              // await that.$store.dispatch('setLogin');
+              await that.$store.dispatch("setMessage", {
+                userid: res.data.result.id,
+                sessionid: res.data.result.sessionid,
+                username: res.data.result.username,
+                usdt: res.data.result.usdt
+              });
+              return res.data.msg;
+            }
+            notify().then(message => {
+              that.$notify({
+                title: "成功",
+                message: message,
+                type: "success",
+                onClose: this.onclose()
+              });
             });
-            return res.data.msg;
+          } else {
+            this.$notify({
+              title: "失敗",
+              message: res.data.msg,
+              type: "error"
+            });
           }
-          notify().then((message) => {
-            that.$notify({
-              title: "成功",
-              message: message,
-              type: 'success',
-              onClose: this.onclose()
-            })
-          })
-        } else {
-          this.$notify({
-            title: "失敗",
-            message: res.data.msg,
-            type: 'error'
-          })
-        }
-      }).catch(err => {
-        console.log(err);
-      })
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
     onclose() {
       this.$router.push({
-        path: this.$i18n.path('')
-      })
+        path: this.$i18n.path("")
+      });
     }
-  },
-}
+  }
+};
 </script>
 <style>
 .login_panel {
