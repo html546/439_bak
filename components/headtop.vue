@@ -43,7 +43,7 @@
               <el-menu-item index="9">
                 <nuxt-link :to="$i18n.path('activate')">{{$t('links.activate')}}</nuxt-link>
               </el-menu-item>
-              <el-menu-item index="10">
+              <el-menu-item index="10" v-if="ismax == 0">
                 <nuxt-link :to="$i18n.path('update')">{{$t('links.update')}}</nuxt-link>
               </el-menu-item>
               <el-submenu index="6" style="float:right;">
@@ -95,11 +95,13 @@ export default {
   props: ["color", "opacity"],
   data() {
     return {
-      activeIndex: "0"
+      activeIndex: "0",
+      ismax: 0
     };
   },
   created() {
     console.log(this.$store.state, 111111);
+    this.getUpMenu();
   },
   computed: {
     isActive() {
@@ -121,6 +123,17 @@ export default {
     }
   },
   methods: {
+    getUpMenu() {
+      axios
+        .post("/api/Index/index", {
+          userid: this.$store.state.message.userid,
+          sessionid: this.$store.state.message.sessionid
+        })
+        .then(res => {
+          console.log(res);
+          this.ismax = res.data.data.ismax;
+        });
+    },
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
       if (key == "5-1") {
