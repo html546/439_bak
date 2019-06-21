@@ -2,11 +2,11 @@
   <div class="update">
     <div class="form-box">
       <el-form ref="form" :model="form" label-width="150px">
-        <el-form-item label="會員當前級別">
+        <el-form-item :label="$t('upgrade.rank')">
           <el-input v-model="nowrank" readonly></el-input>
         </el-form-item>
-        <el-form-item label="會員可以申請的級別" prop="newrank">
-          <el-select v-model="form.newrank" placeholder="請選擇申請級別" style="width:100%;">
+        <el-form-item :label="$t('upgrade.newrank')" prop="newrank">
+          <el-select v-model="form.newrank" :placeholder="$t('upgrade.choose')" style="width:100%;">
             <el-option
               v-for="(item,index) in rankinfos"
               :key="index"
@@ -15,20 +15,20 @@
             ></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="會員升級方式" prop="regtype">
+        <el-form-item :label="$t('upgrade.mode')" prop="regtype">
           <el-select v-model="form.regtype" @change="handleChange" style="width:100%;">
-            <el-option label="全額升級" :value="1"></el-option>
-            <el-option label="組合方式升級" :value="2"></el-option>
+            <el-option :label="$t('upgrade.full')" :value="1"></el-option>
+            <el-option :label="$t('upgrade.combine')" :value="2"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="激活錢包金額">
+        <el-form-item :label="$t('upgrade.balance1_1')">
           <el-input v-model="form.lv1money" readonly></el-input>
         </el-form-item>
-        <el-form-item v-if="combine" label="註冊錢包金額" prop="lv3money">
+        <el-form-item v-if="combine" :label="$t('upgrade.balance3_1')" prop="lv3money">
           <el-input v-model="form.lv3money" @input.native="handleMoneyChange"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="handleSubmit">提交升級</el-button>
+          <el-button type="primary" @click="handleSubmit">{{$t('upgrade.submit')}}</el-button>
         </el-form-item>
       </el-form>
     </div>

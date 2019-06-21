@@ -22,7 +22,7 @@
     "person": "個人中心",
     "investment": "會員復投",
     "activate": "會員激活",
-    "update": "會員升級"
+    "upgrade": "會員升級"
   },
   "home": {
     "android": "Android客戶端下載",
@@ -351,5 +351,16 @@
     "money": "兌換金額",
     "price": "ETUT價格",
     "formula": "兌換公式"
+  },
+  "upgrade": {
+    "rank": "會員當前級別",
+    "newrank": "可以申請的級別",
+    "choose": "選擇申請級別",
+    "mode": "升級方式",
+    "full": "全額升級",
+    "combine": "組合方式升級",
+    "balance1_1": "激活賬戶",
+    "balance3_1": "認購賬戶",
+    "submit": "提交升級"
   }
 }

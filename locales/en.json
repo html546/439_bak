@@ -22,7 +22,7 @@
     "person": "Personal center",
     "investment": "Member re-investment",
     "activate": "Member activation",
-    "update": "update"
+    "upgrade": "upgrade"
   },
   "home": {
     "android": "Android client download",
@@ -351,5 +351,16 @@
     "money": "exchange money",
     "price": "ETUT price",
     "formula": "exchange formula"
+  },
+  "upgrade": {
+    "rank": "Current level",
+    "newrank": "Level of applicability",
+    "choose": "Selection of application level",
+    "mode": "Upgrade mode",
+    "full": "Full upgrade",
+    "combine": "Combination mode",
+    "balance1_1": "Activate A/C",
+    "balance3_1": "Registration A/C",
+    "submit": "Submit upgrades"
   }
 }

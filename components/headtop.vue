@@ -44,7 +44,7 @@
                 <nuxt-link :to="$i18n.path('activate')">{{$t('links.activate')}}</nuxt-link>
               </el-menu-item>
               <el-menu-item index="10" v-if="ismax == 0">
-                <nuxt-link :to="$i18n.path('update')">{{$t('links.update')}}</nuxt-link>
+                <nuxt-link :to="$i18n.path('upgrade')">{{$t('links.upgrade')}}</nuxt-link>
               </el-menu-item>
               <el-submenu index="6" style="float:right;">
                 <template slot="title">{{$store.state.message.username}}</template>
