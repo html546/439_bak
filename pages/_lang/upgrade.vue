@@ -63,9 +63,10 @@ export default {
     "form.lv3money": {
       handler: function(val) {
         this.form.lv1money = (
-          ((((this.upmoney - val) * this.jihuobili) / 100) * 7) /
+          ((this.upmoney - val) * 7) /
           this.form.price
         ).toFixed(2);
+        // console.log(this.form.lv1money, 123123);
       }
     }
   },
