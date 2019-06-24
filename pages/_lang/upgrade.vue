@@ -106,6 +106,7 @@ export default {
     handleChange(val) {
       if (val == 1) {
         this.combine = false;
+        this.form.lv1money = ((this.upmoney * 7) / this.form.price).toFixed(2);
       } else {
         this.combine = true;
         this.form.lv3money = (this.upmoney * this.zhucebili) / 100;
