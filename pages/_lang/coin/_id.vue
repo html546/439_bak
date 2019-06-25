@@ -90,9 +90,9 @@ export default {
     },
     istype() {
       if (this.$route.params.id == 4) {
-        return 1;
-      } else if (this.$route.params.id == 5) {
         return 2;
+      } else if (this.$route.params.id == 5) {
+        return 3;
       }
     }
   },
