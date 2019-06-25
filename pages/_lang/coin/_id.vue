@@ -94,6 +94,13 @@ export default {
       } else if (this.$route.params.id == 5) {
         return 3;
       }
+    },
+    istype1() {
+      if (this.$route.params.id == 4) {
+        return 1;
+      } else if (this.$route.params.id == 5) {
+        return 2;
+      }
     }
   },
   watch: {
@@ -162,7 +169,7 @@ export default {
             sessionid: this.$store.state.message.sessionid,
             type: 4,
             tixian_money: this.money,
-            istype: this.istype,
+            istype: this.istype1,
             okex_user_wallet_addr: this.address,
             transferPass2: this.pass2
           })
