@@ -87,6 +87,13 @@ export default {
         return 0;
       }
       return this.money - this.fee;
+    },
+    istype() {
+      if (this.$route.params.id == 4) {
+        return 1;
+      } else if (this.$route.params.id == 5) {
+        return 2;
+      }
     }
   },
   watch: {
@@ -107,7 +114,8 @@ export default {
       axios
         .post("/api/finance/getFee", {
           userid: this.$store.state.message.userid,
-          sessionid: this.$store.state.message.sessionid
+          sessionid: this.$store.state.message.sessionid,
+          type: this.$route.params.id
         })
         .then(res => {
           console.log(res);
@@ -154,7 +162,7 @@ export default {
             sessionid: this.$store.state.message.sessionid,
             type: 4,
             tixian_money: this.money,
-            istype: 1,
+            istype: this.istype,
             okex_user_wallet_addr: this.address,
             transferPass2: this.pass2
           })
@@ -186,7 +194,7 @@ export default {
             username: this.username,
             money: this.money,
             givekey: this.keys,
-            istype: 2,
+            istype: this.istype,
             transferPass2: this.pass2
           })
           .then(res => {

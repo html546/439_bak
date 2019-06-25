@@ -58,7 +58,8 @@ export default {
                 userid: res.data.result.id,
                 sessionid: res.data.result.sessionid,
                 username: res.data.result.username,
-                usdt: res.data.result.usdt
+                usdt: res.data.result.usdt,
+                etut: res.data.result.etut
               });
               return res.data.msg;
             }

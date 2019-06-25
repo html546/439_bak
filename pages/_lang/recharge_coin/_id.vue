@@ -6,7 +6,7 @@
       </div>
       <div class="box">
         <el-row>
-          <el-col :span="8" :offset="8">
+          <el-col :span="10" :offset="7" class="box_content">
             <qrcode-vue :value="value" :size="size" level="H"></qrcode-vue>
             <p style="text-align:center;" ref="usdt">{{value}}</p>
             <el-button type="primary" class="copy" @click="copy">{{$t('recharge_coin.copy')}}</el-button>
@@ -27,9 +27,18 @@ export default {
   },
   data() {
     return {
-      value: this.$store.state.message.usdt,
-      size: 300
+      size: 350
     };
+  },
+  created() {},
+  computed: {
+    value() {
+      if (this.$route.params.id == 4) {
+        return this.$store.state.message.usdt;
+      } else {
+        return this.$store.state.message.etut;
+      }
+    }
   },
   created() {},
   methods: {
@@ -61,11 +70,14 @@ export default {
   width: 900px;
   margin: 0 auto;
 }
-.copy {
+.box_content {
+  text-align: center;
+}
+/* .copy {
   position: relative;
   left: 50%;
   transform: translateX(-50%);
   top: 10px;
-}
+} */
 </style>
 
