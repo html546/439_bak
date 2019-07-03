@@ -167,7 +167,7 @@ export default {
           .post("/api/finance/withdrawsave", {
             userid: this.$store.state.message.userid,
             sessionid: this.$store.state.message.sessionid,
-            type: 4,
+            type: this.$route.params.id,
             tixian_money: this.money,
             istype: this.istype1,
             okex_user_wallet_addr: this.address,
