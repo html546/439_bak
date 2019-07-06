@@ -166,16 +166,20 @@ export default {
     },
     handleSubmit() {
       if (this.coin_type == 1) {
+        let postData = {
+          userid: this.$store.state.message.userid,
+          sessionid: this.$store.state.message.sessionid,
+          type: this.$route.params.id,
+          tixian_money: this.money,
+          istype: this.istype1,
+          okex_user_wallet_addr: this.address
+          // transferPass2: this.pass2
+        };
+        if (this.cashPass2 == "true") {
+          postData.transferPass2 = this.pass2;
+        }
         axios
-          .post("/api/finance/withdrawsave", {
-            userid: this.$store.state.message.userid,
-            sessionid: this.$store.state.message.sessionid,
-            type: this.$route.params.id,
-            tixian_money: this.money,
-            istype: this.istype1,
-            okex_user_wallet_addr: this.address,
-            transferPass2: this.pass2
-          })
+          .post("/api/finance/withdrawsave", postData)
           .then(res => {
             console.log(res);
             if (res.data.status == 1) {
@@ -196,17 +200,20 @@ export default {
             console.log(err);
           });
       } else if (this.coin_type == 2) {
+        let postData = {
+          userid: this.$store.state.message.userid,
+          sessionid: this.$store.state.message.sessionid,
+          banktype: 4,
+          username: this.username,
+          money: this.money,
+          givekey: this.keys,
+          istype: this.istype
+        };
+        if (this.cashPass2 == "true") {
+          postData.transferPass2 = this.pass2;
+        }
         axios
-          .post("/api/finance/transfers", {
-            userid: this.$store.state.message.userid,
-            sessionid: this.$store.state.message.sessionid,
-            banktype: 4,
-            username: this.username,
-            money: this.money,
-            givekey: this.keys,
-            istype: this.istype,
-            transferPass2: this.pass2
-          })
+          .post("/api/finance/transfers", postData)
           .then(res => {
             console.log(res);
             if (res.data.status == 1) {
