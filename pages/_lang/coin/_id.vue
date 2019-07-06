@@ -83,6 +83,9 @@ export default {
   },
   computed: {
     real_money() {
+      if (this.$route.params.id == 5) {
+        return this.money;
+      }
       if (!this.money || this.money - this.fee < 0) {
         return 0;
       }
