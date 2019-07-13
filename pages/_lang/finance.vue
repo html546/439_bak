@@ -12,7 +12,13 @@
                 </nuxt-link>
               </div>
               <div style="overflow:hidden;">
-                <p style="float:left;">{{item.balance}}</p>
+                <p style="float:left;">
+                  余额：{{item.balance}}
+                  <template v-if="index == 5">
+                    <span>锁定中：{{item.lock_money}}</span>
+                    <span>释放中：{{item.not_released}}</span>
+                  </template>
+                </p>
                 <template v-if="index==3||index == 4">
                   <el-button type="text" style="padding:0;float:right;">
                     <nuxt-link :to="$i18n.path('activate')">{{$t('finance.recharge')}}</nuxt-link>
