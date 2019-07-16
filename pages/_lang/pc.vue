@@ -5,7 +5,7 @@
         <el-row type="flex" class="download_row">
           <el-col :span="12">
             <div class="download_android">
-              <img src="~assets/android.png" alt>
+              <img src="~assets/android.png" alt />
               <div class="download_android_right">
                 <p>{{$t('home.android')}}</p>
                 <el-button round>
@@ -16,7 +16,7 @@
           </el-col>
           <el-col :span="12">
             <div class="download_android">
-              <img src="~assets/ios.png" alt>
+              <img src="~assets/ios.png" alt />
               <div class="download_android_right">
                 <p>{{$t('home.ios')}}</p>
                 <el-button round>
@@ -37,7 +37,7 @@
           <el-table-column :label="$t('home.coin_gain')" prop="change_percent"></el-table-column>
           <el-table-column :label="$t('home.logo')">
             <template slot-scope="scope">
-              <img :src="scope.row.logo" alt>
+              <img class="table_img" :src="scope.row.logo" alt />
             </template>
           </el-table-column>
           <el-table-column prop="fullname" :label="$t('home.cn_name')"></el-table-column>
@@ -126,6 +126,10 @@ export default {
 }
 .el-table .cell {
   text-align: center;
+}
+.panel_table .table_img {
+  width: 60px;
+  height: 60px;
 }
 </style>
 
