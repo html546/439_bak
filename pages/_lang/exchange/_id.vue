@@ -75,7 +75,8 @@ export default {
       axios
         .post("/api/finance/etutprice", {
           userid: this.$store.state.message.userid,
-          sessionid: this.$store.state.message.sessionid
+          sessionid: this.$store.state.message.sessionid,
+          type: this.$route.params.id
         })
         .then(res => {
           console.log(res);

@@ -34,7 +34,7 @@
                 </template>
                 <template v-if="index == 1||index ==2">
                   <el-button type="text" style="padding:0;float:right;margin-left:10px;">
-                    <nuxt-link :to="$i18n.path('exchange')">{{$t('finance.exchange')}}</nuxt-link>
+                    <nuxt-link :to="$i18n.path(`exchange/${index+1}`)">{{$t('finance.exchange')}}</nuxt-link>
                   </el-button>
                 </template>
                 <el-button type="text" style="float:right;padding:0" v-if="item.iszhuanzhang == 1">
